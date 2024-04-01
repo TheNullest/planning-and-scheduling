@@ -1,0 +1,12 @@
+com.example.zamaan.app-core-1.6.0-0 C:\Users\moien\.gradle\caches\transforms-3\8e1a0d7de946b71857cd10e7654a3cc8\transformed\core-1.6.0\res
+com.example.zamaan.app-jetified-annotation-experimental-1.1.0-1 C:\Users\moien\.gradle\caches\transforms-3\c1413100091968fbb2a62dcd66468b3a\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.zamaan.app-jetified-window-java-1.0.0-beta04-2 C:\Users\moien\.gradle\caches\transforms-3\efec6f1eb0ed9ba6d2bb01421abdfbb1\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.zamaan.app-jetified-window-1.0.0-beta04-3 C:\Users\moien\.gradle\caches\transforms-3\fce3d24a9581b2a9171219f705aeb876\transformed\jetified-window-1.0.0-beta04\res
+com.example.zamaan.app-debug-4 E:\Flutter.Dart\Zamaan\Implementation\android\app\src\debug\res
+com.example.zamaan.app-main-5 E:\Flutter.Dart\Zamaan\Implementation\android\app\src\main\res
+com.example.zamaan.app-pngs-6 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\pngs\debug
+com.example.zamaan.app-resValues-7 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\resValues\debug
+com.example.zamaan.app-rs-8 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\rs\debug
+com.example.zamaan.app-mergeDebugResources-9 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.zamaan.app-mergeDebugResources-10 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.zamaan.app-merged_res-11 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\merged_res\debug
