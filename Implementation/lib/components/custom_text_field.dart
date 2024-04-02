@@ -5,35 +5,42 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isObscureText;
 
-  const CustomTextField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      required this.isObscureText});
+  const CustomTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.isObscureText,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          borderRadius: BorderRadius.circular(15)),
       child: TextField(
         obscureText: isObscureText,
         controller: controller,
+        textDirection: TextDirection.rtl,
         textAlign: TextAlign.right,
         decoration: InputDecoration(
-          fillColor: Theme.of(context).colorScheme.secondary,
-          focusColor: Colors.white,
+          focusColor: Colors.red,
           filled: true,
           hintText: hintText,
-          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          hintStyle: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontSize: 13,
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.surface),
+            borderSide: BorderSide(
+                width: .5, color: Theme.of(context).colorScheme.background),
           ),
-          hoverColor: Theme.of(context).colorScheme.onSurface,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.surface),
+            borderSide: BorderSide(
+                width: .5, color: Theme.of(context).colorScheme.secondary),
           ),
         ),
       ),

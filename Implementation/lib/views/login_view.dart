@@ -1,11 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/widgets.dart';
 import 'package:zamaan/components/custom_components.dart';
+import 'package:zamaan/components/normal_button.dart';
 import 'package:zamaan/data/data.dart';
-import 'package:zamaan/themes/theme_provider.dart';
+
+import '../routes/views_route.dart';
 
 class LoginView extends StatefulWidget {
+  static String routeName = 'login-view';
   const LoginView({super.key});
 
   @override
@@ -36,27 +38,57 @@ class _LoginViewState extends State<LoginView> {
                 width: 150,
                 height: 150,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(users[2].profileImagePath),
+                  backgroundImage: AssetImage(users[0].profileImagePath),
                 ),
               ),
 
               // UserName input field
               CustomTextField(
-                  controller: userNameController,
-                  hintText: 'نام کاربری',
-                  isObscureText: false),
+                controller: userNameController,
+                hintText: 'نام کاربری',
+                isObscureText: false,
+              ),
 
               // password input field
               CustomTextField(
-                  controller: passwordController,
-                  hintText: 'گذرواژه',
-                  isObscureText: true),
-              ElevatedButton(
-                  onPressed: () => {
-                        Provider.of<ThemeProvider>(context, listen: false)
-                            .toggleTheme()
-                      },
-                  child: Text(Provider.of<ThemeProvider>(context).selectedMode))
+                controller: passwordController,
+                hintText: 'گذرواژه',
+                isObscureText: true,
+              ),
+
+              // log in and go to home view
+              NormalButton(
+                  onPressed: () =>
+                      ViewsRoute.goToSelectedView(context, view: 'home'),
+                  text: 'ورود'),
+
+              // got ot register view
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                        onTap: () => ViewsRoute.goToSelectedView(context,
+                            view: 'register'),
+                        child: const Text(
+                          textDirection: TextDirection.rtl,
+                          'ایجاد حساب کاربری جدید.',
+                          style: TextStyle(fontSize: 10),
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      textDirection: TextDirection.rtl,
+                      'حساب کاربری ندارید؟',
+                      style: TextStyle(
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
