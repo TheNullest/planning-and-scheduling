@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:zamaan/components/custom_components.dart';
-import 'package:zamaan/components/normal_button.dart';
 import 'package:zamaan/data/data.dart';
 
 import '../routes/views_route.dart';
@@ -54,10 +52,11 @@ class _LoginViewState extends State<LoginView> {
                 controller: passwordController,
                 hintText: 'گذرواژه',
                 isObscureText: true,
+                margin: const EdgeInsets.symmetric(vertical: 10),
               ),
 
               // log in and go to home view
-              NormalButton(
+              CustomNormalButton(
                   onPressed: () =>
                       ViewsRoute.goToSelectedView(context, view: 'home'),
                   text: 'ورود'),
@@ -65,29 +64,16 @@ class _LoginViewState extends State<LoginView> {
               // got ot register view
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                        onTap: () => ViewsRoute.goToSelectedView(context,
-                            view: 'register'),
-                        child: const Text(
-                          textDirection: TextDirection.rtl,
-                          'ایجاد حساب کاربری جدید.',
-                          style: TextStyle(fontSize: 10),
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      textDirection: TextDirection.rtl,
-                      'حساب کاربری ندارید؟',
-                      style: TextStyle(
-                        fontSize: 10,
+                child: size.width > 500
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _createAccoutnButton(context),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        verticalDirection: VerticalDirection.up,
+                        children: _createAccoutnButton(context, height: 10),
                       ),
-                    ),
-                  ],
-                ),
               )
             ],
           ),
@@ -96,3 +82,24 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+
+List<Widget> _createAccoutnButton(BuildContext context, {double height = 0}) =>
+    [
+      CustomNoFieldTextButton(
+          onTap: () => ViewsRoute.goToSelectedView(context, view: 'register'),
+          name: 'ایجاد حساب کاربری جدید'),
+      const SizedBox(
+        width: 10,
+      ),
+      SizedBox(
+        height: height,
+      ),
+      const Text(
+        textDirection: TextDirection.rtl,
+        'حســـاب کاربـــری نداریـــد؟',
+        textAlign: TextAlign.justify,
+        style: TextStyle(
+          fontSize: 10,
+        ),
+      ),
+    ];

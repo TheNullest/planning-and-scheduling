@@ -4,18 +4,19 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool isObscureText;
-
+  final EdgeInsets? margin;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.isObscureText,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      margin: margin,
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(15)),
