@@ -24,71 +24,73 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: size.width,
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 100),
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 70),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Theme.of(context).colorScheme.surface),
-          child: Column(
-            children: [
-              // avatar or logo
-              Container(
-                margin: const EdgeInsets.only(bottom: 50),
-                width: 150,
-                height: 150,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(users[0].profileImagePath),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            width: size.width,
+            margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 100),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 70),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).colorScheme.surface),
+            child: Column(
+              children: [
+                // avatar or logo
+                Container(
+                  margin: const EdgeInsets.only(bottom: 50),
+                  width: 150,
+                  height: 150,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(users[0].profileImagePath),
+                  ),
                 ),
-              ),
 
-              // UserName input field
-              CustomTextField(
-                controller: userNameController,
-                hintText: 'نام کاربری',
-                isObscureText: false,
-              ),
+                // UserName input field
+                CustomTextField(
+                  controller: userNameController,
+                  hintText: 'نام کاربری',
+                  isObscureText: false,
+                ),
 
-              // phone number input field
-              CustomTextField(
-                controller: phoneNumberController,
-                hintText: 'شماره همراه',
-                isObscureText: false,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-              ),
+                // phone number input field
+                CustomTextField(
+                  controller: phoneNumberController,
+                  hintText: 'شماره همراه',
+                  isObscureText: false,
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                ),
 
-              // password input field
-              CustomTextField(
-                controller: passwordController,
-                hintText: 'گذرواژه',
-                isObscureText: true,
-              ),
+                // password input field
+                CustomTextField(
+                  controller: passwordController,
+                  hintText: 'گذرواژه',
+                  isObscureText: true,
+                ),
 
-              // confirm password input field
-              CustomTextField(
-                controller: confirmPasswordController,
-                hintText: 'تایید گذرواژه',
-                isObscureText: true,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-              ),
+                // confirm password input field
+                CustomTextField(
+                  controller: confirmPasswordController,
+                  hintText: 'تایید گذرواژه',
+                  isObscureText: true,
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                ),
 
-              // log in and go to home view
-              CustomNormalButton(
-                  onPressed: () =>
-                      ViewsRoute.goToSelectedView(context, view: 'home'),
-                  text: 'ایجاد حساب کاربری'),
+                // log in and go to home view
+                CustomNormalButton(
+                    onPressed: () =>
+                        ViewsRoute.goToSelectedView(context, view: 'home'),
+                    text: 'ایجاد حساب کاربری'),
 
-              // got ot login view
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: CustomNoFieldTextButton(
-                    onTap: () =>
-                        ViewsRoute.goToSelectedView(context, view: 'login'),
-                    name: 'حساب کاربری دارم !'),
-              )
-            ],
+                // got ot login view
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: CustomNoFieldTextButton(
+                      onTap: () =>
+                          ViewsRoute.goToSelectedView(context, view: 'login'),
+                      name: 'حساب کاربری دارم !'),
+                )
+              ],
+            ),
           ),
         ),
       ),

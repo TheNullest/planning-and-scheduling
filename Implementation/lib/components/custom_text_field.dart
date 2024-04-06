@@ -17,31 +17,38 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(15)),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
+        BoxShadow(
+          color: Theme.of(context).colorScheme.shadow,
+          offset: const Offset(0, 3),
+          blurRadius: 2,
+          spreadRadius: 0,
+        )
+      ]),
       child: TextField(
+        cursorColor: Theme.of(context).colorScheme.tertiary,
         obscureText: isObscureText,
         controller: controller,
         textDirection: TextDirection.rtl,
         textAlign: TextAlign.right,
         decoration: InputDecoration(
-          focusColor: Colors.red,
           filled: true,
+          fillColor: Theme.of(context).colorScheme.primary,
           hintText: hintText,
           hintStyle: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontSize: 13,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-                width: .5, color: Theme.of(context).colorScheme.background),
+                width: 0, color: Theme.of(context).colorScheme.primary),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-                width: .5, color: Theme.of(context).colorScheme.secondary),
+                width: .7, color: Theme.of(context).colorScheme.tertiary),
           ),
         ),
       ),

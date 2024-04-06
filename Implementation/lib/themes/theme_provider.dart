@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zamaan/themes/dark_mode.dart';
 import 'package:zamaan/themes/themes.dart';
 
 class ThemeProvider with ChangeNotifier {

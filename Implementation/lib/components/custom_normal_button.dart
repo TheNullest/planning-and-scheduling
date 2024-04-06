@@ -15,12 +15,14 @@ class CustomNormalButton extends StatelessWidget {
           const BoxConstraints(minWidth: double.infinity, minHeight: 50),
       elevation: 1,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
       ),
-      highlightColor: Theme.of(context).colorScheme.tertiary,
       fillColor: Theme.of(context).colorScheme.secondary,
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 15),
+      ),
     );
   }
 }
