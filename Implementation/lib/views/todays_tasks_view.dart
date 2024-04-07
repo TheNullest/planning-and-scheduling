@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// All tasks, works, projects, plans, etc. for today will be displayed on this view
 class TodaysTasksView extends StatefulWidget {
   const TodaysTasksView({super.key});
 

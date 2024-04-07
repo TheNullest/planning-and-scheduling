@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// All tasks, plans, etc. will be displayed in
+/// daily, weekly, monthly and yearly view.
+/// The greater the amount and number of tasks of that day, week, etc.
+/// the brighter the color will be.
 class CalendarView extends StatefulWidget {
   const CalendarView({super.key});
 

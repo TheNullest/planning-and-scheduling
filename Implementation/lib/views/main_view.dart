@@ -42,7 +42,7 @@ class _MainViewState extends State<MainView> {
     Icons.calendar_month_outlined,
 
     // AccomplishmentsView
-    Icons.playlist_add_check_circle_outlined
+    Icons.library_add_check_outlined
   ];
 
   @override
@@ -60,14 +60,19 @@ class _MainViewState extends State<MainView> {
         child: Scaffold(
             body: IndexedStack(
               index: _selecatedIndex,
-              children: _views,
+
+              /// Reversed for the Persian language
+              /// It can be adjusted for English language later
+              children: _views.reversed.toList(),
             ),
             bottomNavigationBar: !ResponsiveHelper.isDesktop(context)
                 ? Container(
                     padding: const EdgeInsets.only(bottom: 12),
                     color: Theme.of(context).colorScheme.surface,
                     child: CustomTabBar(
-                      icons: _icons,
+                      /// Reversed for the Persian language
+                      /// It can be adjusted for English language later
+                      icons: _icons.reversed.toList(),
                       onTap: (index) => setState(() => _selecatedIndex = index),
                       selectedIndex: _selecatedIndex,
                     ),

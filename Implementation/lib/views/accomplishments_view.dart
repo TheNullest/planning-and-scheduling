@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// All completed tasks, projects, plans, etc. will be displayed on this page
 class AccomplishmentsView extends StatefulWidget {
   const AccomplishmentsView({super.key});
 
