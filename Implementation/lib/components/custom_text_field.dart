@@ -4,13 +4,17 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool isObscureText;
+  final bool isExpandable;
   final EdgeInsets? margin;
+  final void Function(String)? onSubmitted;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
-    required this.isObscureText,
+    this.isObscureText = false,
+    this.isExpandable = false,
     this.margin,
+    this.onSubmitted,
   });
 
   @override
@@ -27,6 +31,8 @@ class CustomTextField extends StatelessWidget {
         )
       ]),
       child: TextField(
+        maxLines: isExpandable ? null : 1,
+        onSubmitted: onSubmitted,
         cursorColor: Theme.of(context).colorScheme.tertiary,
         obscureText: isObscureText,
         controller: controller,

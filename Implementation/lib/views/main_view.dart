@@ -45,17 +45,18 @@ class _MainViewState extends State<MainView> {
     Icons.library_add_check_outlined
   ];
 
+  int _selecatedIndex = 5;
+
   @override
   void dispose() {
     _trackingScrollController.dispose();
     super.dispose();
   }
 
-  int _selecatedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+        initialIndex: _selecatedIndex,
         length: _icons.length,
         child: Scaffold(
             body: IndexedStack(

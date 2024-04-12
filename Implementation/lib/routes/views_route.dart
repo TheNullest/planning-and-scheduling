@@ -8,7 +8,6 @@ class ViewsRoute {
         RegisterView.routeName: (context) => const RegisterView(),
         MainView.routeName: (context) => const MainView(),
         SettingsView.routeName: (context) => const SettingsView(),
-        AllTasksView.routeName: (context) => const AllTasksView(),
         ActiveTasksView.routeName: (context) => const ActiveTasksView(),
         ReportsView.routeName: (context) => const ReportsView(),
       };
@@ -26,9 +25,6 @@ class ViewsRoute {
         break;
       case 'settings':
         Navigator.pushNamed(context, SettingsView.routeName);
-        break;
-      case 'all-tasks':
-        Navigator.pushNamed(context, AllTasksView.routeName);
         break;
       case 'active-tasks':
         Navigator.pushNamed(context, ActiveTasksView.routeName);

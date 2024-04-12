@@ -49,14 +49,12 @@ class _RegisterViewState extends State<RegisterView> {
                 CustomTextField(
                   controller: userNameController,
                   hintText: 'نام کاربری',
-                  isObscureText: false,
                 ),
 
                 // phone number input field
                 CustomTextField(
                   controller: phoneNumberController,
                   hintText: 'شماره همراه',
-                  isObscureText: false,
                   margin: const EdgeInsets.symmetric(vertical: 20),
                 ),
 

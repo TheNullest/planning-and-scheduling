@@ -45,7 +45,6 @@ class _LoginViewState extends State<LoginView> {
                 CustomTextField(
                   controller: userNameController,
                   hintText: 'نام کاربری',
-                  isObscureText: false,
                 ),
 
                 // password input field
