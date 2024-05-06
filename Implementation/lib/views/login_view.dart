@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamaan/components/custom_components.dart';
 import 'package:zamaan/data/data.dart';
+import 'package:zamaan/utilities/providers/theme_provider.dart';
 
 import '../routes/views_route.dart';
 
@@ -20,6 +21,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: ThemeProvider.myTheme(context).backgroundColor,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -28,7 +30,9 @@ class _LoginViewState extends State<LoginView> {
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 70),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.surface),
+                border: Border.all(
+                    color: ThemeProvider.myTheme(context).sectionBorderColor),
+                color: ThemeProvider.myTheme(context).sectionColor),
             child: Column(
               children: [
                 // avatar or logo

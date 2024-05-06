@@ -8,4 +8,4 @@ export 'todays_tasks_view.dart';
 export 'reminder_view.dart';
 export 'accomplishments_view.dart';
 export 'calendar_view.dart';
-export 'dialog_views/add_task_dialog_view.dart';
+export 'dialogs/add_task_dialog.dart';

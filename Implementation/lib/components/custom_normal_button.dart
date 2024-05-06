@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zamaan/themes/custom_theme_extension.dart';
+import 'package:zamaan/utilities/providers/theme_provider.dart';
 
 class CustomNormalButton extends StatelessWidget {
   final Function() onPressed;
@@ -12,6 +14,7 @@ class CustomNormalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myTheme = ThemeProvider.myTheme(context);
     return RawMaterialButton(
       hoverElevation: 10,
       constraints: BoxConstraints(minWidth: minWidth, minHeight: 50),
@@ -19,11 +22,13 @@ class CustomNormalButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      fillColor: Theme.of(context).colorScheme.secondary,
+      fillColor: myTheme.buttonBackgroundColor,
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: const TextStyle(fontSize: 15),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 50, color: myTheme.buttonForegroundColor),
+        ),
       ),
     );
   }

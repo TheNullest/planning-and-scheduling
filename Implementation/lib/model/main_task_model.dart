@@ -4,7 +4,7 @@ import 'package:zamaan/model/models.dart';
 
 class MainTaskModel {
   final int id;
-  final int creatorId;
+  final UserModel creatorId;
   final String mainTaskName;
   final DateTime creationDate;
   final Color color;
@@ -13,9 +13,10 @@ class MainTaskModel {
   final String? description;
   final DateTime? deadline;
   final RepetitionInterval? repeat;
+  final List<SubTaskModel>? subtasks;
 
   /// Groups such as : sport, reading, working, fun ,...
-  final int groupId;
+  final GorupModel groupId;
   final List<int>? fixedTagsId;
   final List<int>? tagsId;
 
@@ -43,6 +44,7 @@ class MainTaskModel {
     required this.importance,
     this.fixedTagsId,
     this.tagsId,
+    this.subtasks,
     this.contributorsId,
     this.description,
     this.parentMainTaskId,

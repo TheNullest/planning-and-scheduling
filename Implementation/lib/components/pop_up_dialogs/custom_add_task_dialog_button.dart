@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zamaan/views/dialog_views/add_task_dialog_view.dart';
+import 'package:zamaan/views/dialogs/add_task_dialog.dart';
 
 class CustomAddTaskDialogButton extends StatefulWidget {
   final TextEditingController taskNameTextController;
@@ -27,7 +27,7 @@ class _CustomAddTaskDialogButtonState extends State<CustomAddTaskDialogButton> {
           ),
           onPressed: () => showDialog(
                 context: context,
-                builder: (context) => AddTaskDialogView(
+                builder: (context) => AddTaskDialog(
                   taskNameTextController: widget.taskNameTextController,
                   descriptionTextController: widget.descriptionTextController,
                 ),

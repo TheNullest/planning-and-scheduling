@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zamaan/components/custom_components.dart';
+import 'package:zamaan/utilities/providers/theme_provider.dart';
 import 'package:zamaan/utilities/responsive_helper.dart';
 import 'package:zamaan/views/views.dart';
 
@@ -59,6 +60,7 @@ class _MainViewState extends State<MainView> {
         initialIndex: _selecatedIndex,
         length: _icons.length,
         child: Scaffold(
+            backgroundColor: ThemeProvider.myTheme(context).backgroundColor,
             body: IndexedStack(
               index: _selecatedIndex,
 
@@ -69,7 +71,7 @@ class _MainViewState extends State<MainView> {
             bottomNavigationBar: !ResponsiveHelper.isDesktop(context)
                 ? Container(
                     padding: const EdgeInsets.only(bottom: 12),
-                    color: Theme.of(context).colorScheme.surface,
+                    color: ThemeProvider.myTheme(context).sectionColor,
                     child: CustomTabBar(
                       /// Reversed for the Persian language
                       /// It can be adjusted for English language later

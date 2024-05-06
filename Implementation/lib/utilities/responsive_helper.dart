@@ -15,6 +15,12 @@ class ResponsiveHelper extends StatelessWidget {
 
   static Size screenSize(BuildContext context) => MediaQuery.sizeOf(context);
 
+  static double screenSizeHeight(BuildContext context) =>
+      MediaQuery.sizeOf(context).height;
+
+  static double screenSizeWidth(BuildContext context) =>
+      MediaQuery.sizeOf(context).width;
+
   static bool isMobile(BuildContext context) => screenSize(context).width < 500;
 
   static bool isTablet(BuildContext context) =>
