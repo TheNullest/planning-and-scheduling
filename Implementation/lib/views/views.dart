@@ -4,7 +4,7 @@ export 'register_view.dart';
 export 'active_tasks_view.dart';
 export 'reports_veiw.dart';
 export 'settings_view.dart';
-export 'todays_tasks_view.dart';
+export 'today_tasks_view.dart';
 export 'reminder_view.dart';
 export 'accomplishments_view.dart';
 export 'calendar_view.dart';

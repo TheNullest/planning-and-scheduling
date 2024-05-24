@@ -1,4 +1,0 @@
-#Mon Jan 08 16:53:58 IRST 2024
-base.0=E\:\\Flutter.Dart\\Zamaan\\Implementation\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

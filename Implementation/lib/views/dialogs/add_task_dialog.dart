@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_persian_calendar/flutter_persian_calendar.dart';
+import 'package:provider/provider.dart';
 import 'package:shamsi_date/shamsi_date.dart';
-import 'package:zamaan/components/custom_components.dart';
+import 'package:zamaan/data/enums.dart';
+import 'package:zamaan/model/main_task_model.dart';
+import 'package:zamaan/widgets/custom_widgets.dart';
 import 'package:zamaan/data/data.dart';
 
 class AddTaskDialog extends StatefulWidget {
@@ -30,9 +33,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   String? creationDateToString;
   String? dueDateToString;
+  late MainTaskProvider mainTaskProvider;
+
+  RepetitionInterval? selectedRepetition = RepetitionInterval.daily;
 
   @override
   Widget build(BuildContext context) {
+    mainTaskProvider = Provider.of<MainTaskProvider>(context, listen: false);
     return Dialog(
       backgroundColor: Theme.of(context).colorScheme.surface,
       insetPadding: EdgeInsets.zero,
@@ -51,7 +58,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   child: Column(
                     children: [
                       /// Show Edit CreationDate DialogBox
-                      CustomNormalButton(
+                      CustomNormalButtonWidget(
                           onPressed: () => showDialogBox(
                                 Dialog(
                                     alignment: Alignment.center,
@@ -78,7 +85,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
 
                       /// Show DueDate Entry DialogBox
-                      CustomNormalButton(
+                      CustomNormalButtonWidget(
                           onPressed: () => showDialogBox(
                                 Dialog(
                                     alignment: Alignment.center,
@@ -106,13 +113,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
 
                       /// Task Name
-                      CustomTextField(
+                      CustomTextFieldWidget(
                         controller: widget.taskNameTextController,
                         hintText: 'نام کار جدید را وارد کنید',
                       ),
 
                       /// Task Description
-                      CustomTextField(
+                      CustomTextFieldWidget(
                         controller: widget.descriptionTextController,
                         hintText: 'توضیحات',
                         isExpandable: true,
@@ -120,7 +127,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
 
                       /// Select Contributers
-                      CustomNormalButton(
+                      CustomNormalButtonWidget(
                         text: 'انتخاب مشارکت کننده',
                         onPressed: () => showDialogBox(Dialog(
                           child: Container(
@@ -145,8 +152,37 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                         height: 15,
                       ),
 
+                      /// Select Contributers
+                      CustomNormalButtonWidget(
+                        text: 'نحوه تکرار',
+                        onPressed: () => showDialogBox(Dialog(
+                          child: Container(
+                              height: 400,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.surface,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: DropdownButton<RepetitionInterval>(
+                                value: selectedRepetition,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    selectedRepetition = newValue;
+                                  });
+                                },
+                                items: RepetitionInterval.values.map((item) {
+                                  return DropdownMenuItem(
+                                    child: Text(item.toString()),
+                                    value: item,
+                                  );
+                                }).toList(),
+                              )),
+                        )),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+
                       /// Select groups
-                      CustomNormalButton(
+                      CustomNormalButtonWidget(
                         text: 'گروه بندی',
                         onPressed: () => showDialogBox(Dialog(
                           backgroundColor:
@@ -175,7 +211,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
 
                       /// Select tags
-                      CustomNormalButton(
+                      CustomNormalButtonWidget(
                         text: 'تگ',
                         onPressed: () => showDialogBox(Dialog(
                           backgroundColor:
@@ -212,13 +248,26 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CustomNormalButton(
+                CustomNormalButtonWidget(
                   onPressed: exitDialog,
                   text: 'انصراف',
                   minWidth: 100,
                 ),
-                CustomNormalButton(
-                  onPressed: exitDialog,
+                CustomNormalButtonWidget(
+                  onPressed: () {
+                    mainTaskProvider.addTask(MainTaskModel(
+                        id: mainTaskProvider.tasks.length + 1,
+                        creatorId: users[01],
+                        mainTaskName: widget.taskNameTextController.text,
+                        groupId: groups[01],
+                        creationDate: DateTime.now(),
+                        color: Colors.red,
+                        icon: Icons.groups,
+                        repeat: selectedRepetition,
+                        importance: Importance.important));
+                    widget.taskNameTextController.clear();
+                    Navigator.pop(context);
+                  },
                   text: 'تایید',
                   minWidth: 100,
                 ),

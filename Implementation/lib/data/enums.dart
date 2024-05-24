@@ -24,3 +24,16 @@ enum WeekDays {
   thursday,
   friday,
 }
+
+enum ButtonStates {
+  exited,
+  hoverd,
+  tapDown,
+  tapUp,
+  longPressStart,
+  longPressEnd,
+  activated,
+  disabled,
+  dragged,
+  dropped,
+}

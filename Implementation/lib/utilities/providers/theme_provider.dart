@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zamaan/themes/custom_theme_extension.dart';
 import 'package:zamaan/themes/themes.dart';
 
 class ThemeProvider with ChangeNotifier {
@@ -11,6 +10,10 @@ class ThemeProvider with ChangeNotifier {
   late String selectedMode;
   ThemeData _themeData = lightTheme;
   ThemeData get themeData => _themeData;
+
+  /// Returns the customized theme that can choice colors
+  CustomThemeExtension myTheme(context) =>
+      Theme.of(context).extension<CustomThemeExtension>()!;
 
   bool get isDarkMode => _themeData == darkTheme;
 
@@ -28,9 +31,6 @@ class ThemeProvider with ChangeNotifier {
     }
   }
 
-  static currentTheme(context) => Provider.of<ThemeProvider>(context).themeData;
-
-  /// Returns the customized theme that can choice colors
-  static CustomThemeExtension myTheme(context) =>
-      Theme.of(context).extension<CustomThemeExtension>()!;
+  ThemeData currentTheme(context) =>
+      Provider.of<ThemeProvider>(context).themeData;
 }
