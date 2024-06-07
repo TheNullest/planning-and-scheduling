@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RawCustomButtonWidget extends StatefulWidget {
   final Widget child;
 
   final void Function(bool hovering)? onHover;
   final void Function(bool hovering)? onExit;
+  final void Function(bool pressed)? onTap;
   final void Function(bool pressed)? onTapDown;
   final void Function(bool pressed)? onTapUp;
+  final void Function(bool pressed)? onLongPress;
   final void Function(bool pressed)? onLongPressStart;
   final void Function(bool pressed)? onLongPressEnd;
   final MouseCursor cursor;
@@ -15,8 +18,10 @@ class RawCustomButtonWidget extends StatefulWidget {
       {super.key,
       this.onHover,
       this.onExit,
+      this.onTap,
       this.onTapDown,
       this.onTapUp,
+      this.onLongPress,
       this.onLongPressStart,
       this.onLongPressEnd,
       this.cursor = SystemMouseCursors.click,
@@ -34,14 +39,22 @@ class _RawCustomButtonWidgetState extends State<RawCustomButtonWidget> {
       onHover: (event) => widget.onHover?.call(true),
       onExit: (event) => widget.onExit?.call(true),
       child: GestureDetector(
-          onTapDown: (tapDown) => widget.onTapDown?.call(true),
+          onTap: () => {
+                HapticFeedback.heavyImpact(),
+                widget.onTap?.call(true),
+              },
+          onTapDown: (tapDown) => {
+                widget.onTapDown?.call(true),
+              },
           onTapUp: (tapUp) => widget.onTapUp?.call(true),
-          onLongPressStart: (start) =>
-              {widget.onTapUp?.call(true), widget.onLongPressStart?.call(true)},
-          onLongPressEnd: (end) {
-            widget.onLongPressEnd?.call(true);
-            widget.onHover?.call(true);
-          },
+          onLongPress: () => {
+                HapticFeedback.selectionClick(),
+                widget.onLongPress?.call(true),
+              },
+          onLongPressStart: (start) => {
+                widget.onLongPressStart?.call(true),
+              },
+          onLongPressEnd: (end) => widget.onLongPressEnd?.call(true),
           child: widget.child),
     );
   }

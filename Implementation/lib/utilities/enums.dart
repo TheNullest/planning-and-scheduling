@@ -28,12 +28,19 @@ enum WeekDays {
 enum ButtonStates {
   exited,
   hoverd,
+  tapped,
   tapDown,
   tapUp,
+  longPressed,
   longPressStart,
   longPressEnd,
   activated,
   disabled,
   dragged,
   dropped,
+}
+
+enum TaskTileSizes {
+  big,
+  small,
 }

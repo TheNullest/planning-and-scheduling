@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'custom_theme_extension.dart';
+import 'package:zamaan/themes/custom_theme_extension.dart';
 
 final darkTheme = ThemeData(
   textTheme: const TextTheme(
@@ -48,6 +47,7 @@ final darkTheme = ThemeData(
     taskButtonBackgroundColor: const Color.fromARGB(255, 60, 60, 60),
     taskButtonHoverdBackgroundColor: const Color.fromARGB(255, 50, 50, 50),
     taskButtonActivatedBackgroundColor: const Color.fromARGB(255, 35, 35, 35),
+    taskButtonBorderColor: Colors.black,
 
     // text button without field
     textButtonColor: const Color.fromARGB(255, 235, 248, 248),

@@ -14,6 +14,10 @@ class ReportsView extends StatelessWidget implements BaseView {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Expanded(
+        child: Container(color: Colors.red),
+      ),
+    );
   }
 }

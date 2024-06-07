@@ -1,10 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:zamaan/utilities/responsive_helper.dart';
+import 'package:zamaan/data/data.dart';
+import 'package:zamaan/model/main_task_model.dart';
+import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/enums.dart';
+import 'package:zamaan/utilities/providers/providers.dart';
 import 'package:zamaan/views/abstracts/asbtract_base_view.dart';
-import 'package:zamaan/views/sections/today_tasks_view_sections/today_active_tasks_sections.dart';
-import 'package:zamaan/views/sections/today_tasks_view_sections/today_tasks_section.dart';
 import 'package:zamaan/widgets/custom_widgets.dart';
 
 /// All tasks, works, projects, plans, etc. for today will be displayed on this view
@@ -22,45 +24,37 @@ class TodaysTasksView extends StatefulWidget implements BaseView {
 }
 
 class _TodaysTasksViewState extends State<TodaysTasksView> {
-  final TextEditingController taskNameTextController = TextEditingController();
-  final TextEditingController descriptionTextController =
-      TextEditingController();
-  @override
-  void dispose() {
-    taskNameTextController.dispose();
-    descriptionTextController.dispose();
-    super.dispose();
-  }
+  late int selectedTaskIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 10,
-              ),
-            ),
-            SliverToBoxAdapter(child: TodayActiveTasksSection()),
-            SliverToBoxAdapter(child: Divider()),
-            TodayTasksSection(),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 70,
-              ),
-            ),
-          ],
-        ),
-        Positioned(
-            bottom: 20,
-            right: 20,
-            child: CustomAddTaskDialogButton(
-              taskNameTextController: taskNameTextController,
-              descriptionTextController: descriptionTextController,
-            ))
-      ],
-    );
+    final List<MainTaskModel> mainTasksProvider =
+        Provider.of<MainTaskProvider>(context).tasks;
+    final CustomThemeExtension myTheme =
+        Provider.of<ThemeProvider>(context).myTheme(context);
+    final List<MainTaskModel> filteredMainTasks = mainTasksProvider
+        .where(
+            (task) => !task.isDone && task.repeat == RepetitionInterval.daily)
+        .toList();
+    return CustomScrollView(slivers: [
+      SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final MainTaskModel task = filteredMainTasks[index];
+
+          return CustomTaskButtonWidget(
+            task: task,
+            donePercentage: Random().nextDouble() * 1,
+            index: index,
+            isDisplayable:
+                selectedTaskIndex > -1 && selectedTaskIndex == index ||
+                    selectedTaskIndex == -1,
+            myTheme: myTheme,
+            onSelectedTaskChanged: (selectedTaskChanged) => setState(() {
+              selectedTaskIndex = selectedTaskChanged;
+            }),
+          );
+        }, childCount: filteredMainTasks.length),
+      ),
+    ]);
   }
 }

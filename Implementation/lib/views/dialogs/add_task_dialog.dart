@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_persian_calendar/flutter_persian_calendar.dart';
 import 'package:provider/provider.dart';
 import 'package:shamsi_date/shamsi_date.dart';
-import 'package:zamaan/data/enums.dart';
+import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/model/main_task_model.dart';
 import 'package:zamaan/widgets/custom_widgets.dart';
 import 'package:zamaan/data/data.dart';

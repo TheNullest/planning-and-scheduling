@@ -1,4 +1,4 @@
-import 'package:zamaan/data/enums.dart';
+import 'package:zamaan/utilities/enums.dart';
 
 class SubTaskModel {
   final int id;

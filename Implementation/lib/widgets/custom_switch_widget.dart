@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zamaan/widgets/custom_widgets.dart';
 
 /// It helps to switch between two constant and fixed values
 class CustomSwitchWidget extends StatefulWidget {
   final bool value;
-  final ValueChanged<bool> onChanged;
+  final void Function(bool valueChanged)? onChanged;
 
   const CustomSwitchWidget(
       {super.key, required this.value, required this.onChanged});
@@ -15,10 +16,8 @@ class CustomSwitchWidget extends StatefulWidget {
 class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        widget.onChanged(!widget.value);
-      },
+    return RawCustomButtonWidget(
+      onTap: (ontap) => widget.onChanged?.call(!widget.value),
       child: Container(
         width: 50,
         height: 30,

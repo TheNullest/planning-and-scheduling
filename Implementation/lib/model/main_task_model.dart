@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zamaan/data/enums.dart';
+import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/model/models.dart';
 
 class MainTaskModel {
