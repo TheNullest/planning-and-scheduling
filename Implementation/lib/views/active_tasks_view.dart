@@ -31,7 +31,7 @@ class _ActiveTasksViewState extends State<ActiveTasksView> {
   @override
   Widget build(BuildContext context) {
     final List<MainTaskModel> mainTasksProvider =
-        context.watch<MainTaskProvider>().tasks;
+        context.watch<ProjectModelProvider>().tasks;
 
     final CustomThemeExtension myTheme =
         Provider.of<ThemeProvider>(context).myTheme(context);

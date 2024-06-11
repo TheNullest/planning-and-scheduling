@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:zamaan/data/data.dart';
 import 'package:zamaan/model/main_task_model.dart';
+import 'package:zamaan/model/models.dart';
 import 'package:zamaan/themes/themes.dart';
 import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
@@ -29,18 +30,21 @@ class _TodaysTasksViewState extends State<TodaysTasksView> {
   @override
   Widget build(BuildContext context) {
     final List<MainTaskModel> mainTasksProvider =
-        Provider.of<MainTaskProvider>(context).tasks;
+        Provider.of<ProjectModelProvider>(context).tasks;
     final CustomThemeExtension myTheme =
         Provider.of<ThemeProvider>(context).myTheme(context);
     final List<MainTaskModel> filteredMainTasks = mainTasksProvider
         .where(
             (task) => !task.isDone && task.repeat == RepetitionInterval.daily)
         .toList();
+    final List<TaskDoingTimeFrameModel> timeFrames =
+        Provider.of<ProjectModelProvider>(context).getTaskDoingTimeFrame;
     return CustomScrollView(slivers: [
       SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
           final MainTaskModel task = filteredMainTasks[index];
-
+          task.timeFrames =
+              timeFrames.where((item) => item.mainTaskId == task.id).toList();
           return CustomTaskButtonWidget(
             task: task,
             donePercentage: Random().nextDouble() * 1,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zamaan/routes/views_route.dart';
 import 'package:zamaan/themes/custom_theme_extension.dart';
 import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
@@ -24,6 +25,21 @@ class SettingsView extends StatelessWidget implements BaseView {
       backgroundColor: myTheme.backgroundColor,
       body: Column(
         children: [
+          Container(
+            width: double.maxFinite,
+            margin: const EdgeInsets.all(50),
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                color: myTheme.sectionColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomNormalButtonWidget(
+                  onPressed: () =>
+                      ViewsRoute.goToSelectedView(context, view: 'login'),
+                  text: 'خروج'),
+            ),
+          ),
           Container(
             width: double.maxFinite,
             margin: const EdgeInsets.all(50),

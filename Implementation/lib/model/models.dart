@@ -6,3 +6,4 @@ export 'group_model.dart';
 export 'selected_week_days_model.dart';
 export 'shceduled_task_time_frame_model.dart';
 export 'sub_task_model.dart';
+export 'task_doing_time_frame_model.dart';

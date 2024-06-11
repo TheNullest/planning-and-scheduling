@@ -62,42 +62,20 @@ class _CustomAddNewTaskButtonWidgetState
                   taskNameTextController: TextEditingController(),
                 ));
       },
-      child: Stack(children: [
-        Positioned(
-          left: 5,
-          top: 5,
-          child: Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: backgroundColor,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black54, blurRadius: 20, spreadRadius: 1)
-                ]),
-            child: Icon(
-              Icons.add,
-              size: 20,
-              color: myTheme.buttonForegroundColor,
-            ),
-          ),
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: backgroundColor,
+            boxShadow: const [
+              BoxShadow(color: Colors.black54, blurRadius: 20, spreadRadius: 1)
+            ]),
+        child: Icon(
+          Icons.add,
+          size: 20,
+          color: myTheme.buttonForegroundColor,
         ),
-        ClipPath(
-          clipper: MyCustomClipper(top: 40, left: 40),
-          child: Container(
-            height: 40,
-            width: 40,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 5,
-                  color: myTheme.backgroundColor,
-                )),
-          ),
-        ),
-      ]),
+      ),
     );
   }
 }

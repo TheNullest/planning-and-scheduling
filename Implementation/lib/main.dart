@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:zamaan/data/data.dart';
 import 'package:zamaan/routes/views_route.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
+import 'package:zamaan/utilities/utilities.dart';
 import 'package:zamaan/views/views.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
-      // theme provider
       ChangeNotifierProvider(create: (context) => ThemeProvider()),
-
-      // theme provider
+      ChangeNotifierProvider(create: (context) => ResponsiveHelper()),
       ChangeNotifierProvider(create: (context) => ChangeTaskTileSizeProvider()),
-
-      // task provider
-      ChangeNotifierProvider(create: (context) => MainTaskProvider()),
+      ChangeNotifierProvider(create: (context) => ProjectModelProvider()),
+      ChangeNotifierProvider(create: (context) => HideUnhideBarsProvider()),
     ],
     child: const Zamaan(),
   ));

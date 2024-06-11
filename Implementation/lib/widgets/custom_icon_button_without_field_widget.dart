@@ -4,17 +4,19 @@ import 'package:zamaan/widgets/raws/raw_custom_button_widget.dart';
 
 class CustomIconButtonWithoutFieldWidget extends AbstractRawCustomButton {
   final IconData icon;
+  final Color iconColor;
   final double? iconSize;
   const CustomIconButtonWithoutFieldWidget({
+    required this.iconColor,
     super.key,
     required this.icon,
     this.iconSize,
-    required super.onTap,
-    required super.child,
+    super.onTap,
     super.onHover,
     super.onTapDown,
     super.onTapUp,
     super.childPrimaryColor,
+    super.child,
   });
 
   @override
@@ -30,6 +32,7 @@ class _CustomIconButtonWithoutFieldState
         child: Icon(
       widget.icon,
       size: widget.iconSize,
+      color: widget.iconColor,
     ));
   }
 }

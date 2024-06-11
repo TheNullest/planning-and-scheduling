@@ -14,6 +14,7 @@ class MainTaskModel {
   final DateTime? deadline;
   final RepetitionInterval? repeat;
   final List<SubTaskModel>? subtasks;
+  List<TaskDoingTimeFrameModel>? timeFrames;
 
   /// Groups such as : sport, reading, working, fun ,...
   final GorupModel groupId;
@@ -35,6 +36,7 @@ class MainTaskModel {
 
   MainTaskModel({
     required this.id,
+    this.timeFrames,
     required this.creatorId,
     required this.mainTaskName,
     required this.groupId,

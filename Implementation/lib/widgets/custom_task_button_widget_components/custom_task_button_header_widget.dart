@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/providers/hide_unhide_bars_providers.dart';
+import 'package:zamaan/utilities/responsive_helper.dart';
 import 'package:zamaan/widgets/custom_task_button_widget_components/custom_task_button_percentage_icon.dart';
 import 'package:zamaan/widgets/custom_task_button_widget_components/custom_task_button_running_icon_widget.dart';
 import 'package:zamaan/widgets/custom_task_button_widget_components/custom_task_button_tile_sizes/big_task_button.dart';
@@ -48,12 +50,12 @@ class _CustomTaskButtonHeaderWidgetState
       Provider.of<ThemeProvider>(context).myTheme(context);
 
   late Color backgroundColor = myTheme.taskButtonBackgroundColor;
-  late Color foreground = myTheme.taskButtonForegroundColor;
+  late Color foregroundColor = myTheme.taskButtonForegroundColor;
   late bool isActivated = false;
   late bool isStillHovered = false;
   late MouseCursor cursor = SystemMouseCursors.click;
   late ButtonStates buttonState = ButtonStates.exited;
-
+  late bool isMobiledevice = ResponsiveHelper.isMobileDevice(context);
   @override
   Widget build(BuildContext context) {
     TaskTileSizes taskTileSize =
@@ -71,10 +73,17 @@ class _CustomTaskButtonHeaderWidgetState
           stateUpdater(ButtonStates.tapped);
         },
         onLongPress: (onLongPress) {
-          stateUpdater(ButtonStates.longPressed);
+          if (isMobiledevice) {
+            stateUpdater(ButtonStates.longPressed);
+          }
           // _onLongPressTimer = Timer(const Duration(milliseconds: 500), () {
           //   stateUpdater(ButtonStates.tapDown);
           // });
+        },
+        onDoubleTap: () {
+          if (!isMobiledevice) {
+            stateUpdater(ButtonStates.longPressed);
+          }
         },
         cursor: cursor,
         child: taskTileSize == TaskTileSizes.big
@@ -83,7 +92,8 @@ class _CustomTaskButtonHeaderWidgetState
                 myTheme: myTheme,
                 canOpenOptionsSection: widget.canOpenOptionsSection,
                 taskName: widget.taskName,
-                foreground: foreground,
+                foregroundColor: foregroundColor,
+                backgroundColor: backgroundColor,
                 donePercentage: widget.donePercentage,
                 icon: widget.icon,
                 iconColor: widget.iconColor,
@@ -93,7 +103,7 @@ class _CustomTaskButtonHeaderWidgetState
                 myTheme: myTheme,
                 canOpenOptionsSection: widget.canOpenOptionsSection,
                 taskName: widget.taskName,
-                foreground: foreground,
+                foreground: foregroundColor,
                 donePercentage: widget.donePercentage,
                 icon: widget.icon,
                 iconColor: widget.iconColor,
@@ -136,6 +146,8 @@ class _CustomTaskButtonHeaderWidgetState
             {
               if (widget.canOpenOptionsSection) {
                 widget.onSelectedTaskChanged(widget.index, true);
+                Provider.of<HideUnhideBarsProvider>(context, listen: false)
+                    .barsDisplay = false;
               }
 
               break;

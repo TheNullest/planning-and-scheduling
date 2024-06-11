@@ -1,18 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
-enum Device { mobile, tablet, desktop }
+enum DevicePlatform { mobile, desktop }
 
-class ResponsiveHelper extends StatelessWidget {
-  final Widget mobileView;
-  final Widget tabletView;
-  final Widget desktopView;
+enum DeviceSize { small, medium, large }
 
-  const ResponsiveHelper(
-      {super.key,
-      required this.mobileView,
-      required this.tabletView,
-      required this.desktopView});
-
+class ResponsiveHelper extends ChangeNotifier {
   static Size screenSize(BuildContext context) => MediaQuery.sizeOf(context);
 
   static double screenSizeHeight(BuildContext context) =>
@@ -21,33 +14,27 @@ class ResponsiveHelper extends StatelessWidget {
   static double screenSizeWidth(BuildContext context) =>
       MediaQuery.sizeOf(context).width;
 
-  static double appBarHeigth = 0;
-  static double bottomBarHeigth = 60;
+  static double statusBarHeight = 0;
 
-  static double screenUsableHeight(context) =>
-      MediaQuery.sizeOf(context).height - appBarHeigth - bottomBarHeigth;
+  static bool smallScreenSize(BuildContext context) =>
+      screenSize(context).width < 500;
 
-  static bool isMobile(BuildContext context) => screenSize(context).width < 500;
-
-  static bool isTablet(BuildContext context) =>
+  static bool mediumScreenSize(BuildContext context) =>
       screenSize(context).width >= 500 && screenSize(context).width < 1000;
 
-  static bool isDesktop(BuildContext context) =>
-      screenSize(context).width >= 1000;
+  static bool largeScreenSize(BuildContext context) =>
+      screenSize(context).width > 1000;
 
   // may need it
-  static Device currentDevice(BuildContext context) => isMobile(context)
-      ? Device.mobile
-      : isTablet(context)
-          ? Device.tablet
-          : Device.desktop;
+  static DeviceSize currentDeviceSize(BuildContext context) =>
+      smallScreenSize(context)
+          ? DeviceSize.small
+          : mediumScreenSize(context)
+              ? DeviceSize.medium
+              : DeviceSize.large;
 
-  @override
-  Widget build(BuildContext context) {
-    return isMobile(context)
-        ? mobileView
-        : isTablet(context)
-            ? tabletView
-            : desktopView;
-  }
+  static bool isMobileDevice(BuildContext context) =>
+      Platform.isAndroid || Platform.isIOS;
+  static DevicePlatform currentDevicePlatform(BuildContext context) =>
+      isMobileDevice(context) ? DevicePlatform.mobile : DevicePlatform.desktop;
 }

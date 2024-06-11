@@ -26,6 +26,7 @@ class _CustomDateTimePickerWidgetState
             onTap: () {},
             icon: Icons.arrow_drop_up_rounded,
             iconSize: 35,
+            iconColor: Colors.white,
             child: const Icon(Icons.arrow_drop_up_rounded),
           )
         ])

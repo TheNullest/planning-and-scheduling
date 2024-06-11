@@ -10,7 +10,7 @@ final List<UserModel> users = [
     firstName: 'Yaavar',
     lastName: 'MJanlou',
     birthDate: DateTime.parse('1989-12-23'),
-    emailAddress: 'mpersia4@hotmail.com',
+    emailAddress: 'moien.janlou@outlook.com',
     profileImagePath: 'assets/images/profile_images/image1.jpg',
   ),
   UserModel(
@@ -92,10 +92,11 @@ final List<TagModel> tags = [
       icon: Icons.work),
 ];
 
-class MainTaskProvider extends ChangeNotifier {
+class ProjectModelProvider extends ChangeNotifier {
+  // MainTaskModel
   final List<MainTaskModel> _mainTasks = [
     MainTaskModel(
-      id: 01,
+      id: 1,
       creatorId: users[0],
       groupId: groups[2],
       contributorsId: [2],
@@ -110,7 +111,7 @@ class MainTaskProvider extends ChangeNotifier {
       repeat: RepetitionInterval.daily,
     ),
     MainTaskModel(
-      id: 01,
+      id: 2,
       creatorId: users[1],
       groupId: groups[1],
       contributorsId: [2],
@@ -223,11 +224,45 @@ class MainTaskProvider extends ChangeNotifier {
         importance: Importance.medium,
         isDone: true),
   ];
-
   void addTask(MainTaskModel task) {
     _mainTasks.add(task);
     notifyListeners();
   }
 
   List<MainTaskModel> get tasks => _mainTasks;
+
+  // TaskDoingTimeFrameModel
+  final List<TaskDoingTimeFrameModel> _taskDoingTimeFrames = [
+    TaskDoingTimeFrameModel(
+      id: 01,
+      userId: 1,
+      mainTaskId: 01,
+      subTaskId: null,
+      startAt: DateTime(2024, 06, 10, 15, 25, 30),
+      endAt: DateTime(2024, 06, 10, 17, 0, 0),
+    ),
+    TaskDoingTimeFrameModel(
+      id: 02,
+      userId: 1,
+      mainTaskId: 01,
+      subTaskId: null,
+      startAt: DateTime(2024, 06, 10, 17, 45, 30),
+      endAt: DateTime(2024, 06, 10, 18, 45, 0),
+    ),
+    TaskDoingTimeFrameModel(
+      id: 03,
+      userId: 1,
+      mainTaskId: 01,
+      subTaskId: null,
+      startAt: DateTime(2024, 06, 10, 20, 45, 30),
+      endAt: DateTime(2024, 06, 10, 22, 5, 0),
+    ),
+  ];
+  set addTaskDoingTimeFrame(TaskDoingTimeFrameModel timeFrame) {
+    _taskDoingTimeFrames.add(timeFrame);
+    notifyListeners();
+  }
+
+  List<TaskDoingTimeFrameModel> get getTaskDoingTimeFrame =>
+      _taskDoingTimeFrames;
 }

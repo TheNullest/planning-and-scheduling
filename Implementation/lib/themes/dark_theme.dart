@@ -47,7 +47,8 @@ final darkTheme = ThemeData(
     taskButtonBackgroundColor: const Color.fromARGB(255, 60, 60, 60),
     taskButtonHoverdBackgroundColor: const Color.fromARGB(255, 50, 50, 50),
     taskButtonActivatedBackgroundColor: const Color.fromARGB(255, 35, 35, 35),
-    taskButtonBorderColor: Colors.black,
+    taskButtonDoneBackgroundColor: Color.fromARGB(255, 18, 77, 126),
+    taskButtonBorderColor: const Color.fromARGB(255, 22, 22, 22),
 
     // text button without field
     textButtonColor: const Color.fromARGB(255, 235, 248, 248),

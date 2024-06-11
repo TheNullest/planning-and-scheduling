@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zamaan/themes/themes.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
 
 class CustomTabBarWidget extends StatefulWidget {
+  final bool bottomBarDisplay;
   final List<IconData> icons;
   final int selectedIndex;
   final Function(int) onTap;
@@ -16,6 +19,7 @@ class CustomTabBarWidget extends StatefulWidget {
     required this.selectedIndex,
     required this.onTap,
     this.isBottomIndicator = false,
+    required this.bottomBarDisplay,
   });
 
   @override
@@ -27,8 +31,10 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
   Widget build(BuildContext context) {
     final CustomThemeExtension myTheme =
         Provider.of<ThemeProvider>(context).myTheme(context);
-    return Container(
-      height: 60,
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      height: widget.bottomBarDisplay ? 60 : 0,
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(

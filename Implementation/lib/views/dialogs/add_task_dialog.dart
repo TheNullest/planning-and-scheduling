@@ -33,13 +33,14 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   String? creationDateToString;
   String? dueDateToString;
-  late MainTaskProvider mainTaskProvider;
+  late ProjectModelProvider mainTaskProvider;
 
   RepetitionInterval? selectedRepetition = RepetitionInterval.daily;
 
   @override
   Widget build(BuildContext context) {
-    mainTaskProvider = Provider.of<MainTaskProvider>(context, listen: false);
+    mainTaskProvider =
+        Provider.of<ProjectModelProvider>(context, listen: false);
     return Dialog(
       backgroundColor: Theme.of(context).colorScheme.surface,
       insetPadding: EdgeInsets.zero,

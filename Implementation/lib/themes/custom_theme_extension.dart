@@ -23,6 +23,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color taskButtonBackgroundColor;
   final Color taskButtonHoverdBackgroundColor;
   final Color taskButtonActivatedBackgroundColor;
+  final Color taskButtonDoneBackgroundColor;
   final Color taskButtonBorderColor;
 
   final Color textButtonColor;
@@ -58,6 +59,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       required this.taskButtonBackgroundColor,
       required this.taskButtonHoverdBackgroundColor,
       required this.taskButtonActivatedBackgroundColor,
+      required this.taskButtonDoneBackgroundColor,
       required this.taskButtonBorderColor,
       required this.textButtonColor,
       required this.textButtonHoveredColor,
@@ -90,6 +92,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? taskButtonBackgroundColor,
     Color? taskButtonHoverdBackgroundColor,
     Color? taskButtonActivatedBackgroundColor,
+    Color? taskButtonDoneBackgroundColor,
     Color? taskButtonBorderColor,
     Color? textButtonColor,
     Color? textButtonHoveredColor,
@@ -146,6 +149,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
           this.taskButtonHoverdBackgroundColor,
       taskButtonActivatedBackgroundColor: taskButtonActivatedBackgroundColor ??
           this.taskButtonActivatedBackgroundColor,
+      taskButtonDoneBackgroundColor:
+          taskButtonDoneBackgroundColor ?? this.taskButtonDoneBackgroundColor,
       taskButtonBorderColor:
           taskButtonBorderColor ?? this.taskButtonBorderColor,
     );
@@ -213,6 +218,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
           t)!,
       taskButtonBorderColor:
           Color.lerp(taskButtonBorderColor, other.taskButtonBorderColor, t)!,
+      taskButtonDoneBackgroundColor: Color.lerp(taskButtonDoneBackgroundColor,
+          other.taskButtonDoneBackgroundColor, t)!,
     );
   }
 }
