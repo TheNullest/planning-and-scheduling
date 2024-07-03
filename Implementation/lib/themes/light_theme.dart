@@ -37,7 +37,7 @@ final lightTheme = ThemeData(
     taskButtonBackgroundColor: const Color.fromARGB(255, 16, 77, 231),
     taskButtonHoverdBackgroundColor: const Color.fromARGB(255, 7, 68, 224),
     taskButtonActivatedBackgroundColor: const Color.fromARGB(255, 4, 62, 209),
-    taskButtonDoneBackgroundColor: Color.fromARGB(255, 14, 50, 92),
+    taskButtonDoneBackgroundColor: const Color.fromARGB(255, 14, 50, 92),
 
     // text button without field
     textButtonColor: const Color.fromARGB(255, 233, 233, 233),

@@ -3,6 +3,7 @@ import 'package:zamaan/routes/views_route.dart';
 import 'package:zamaan/themes/custom_theme_extension.dart';
 import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
+import 'package:zamaan/utilities/utilities.dart';
 import 'package:zamaan/views/abstracts/asbtract_base_view.dart';
 import 'package:zamaan/widgets/custom_widgets.dart';
 
@@ -11,7 +12,7 @@ class SettingsView extends StatelessWidget implements BaseView {
   static String routeName = 'settings-view';
 
   @override
-  String get viewTitle => 'Settings';
+  String get viewTitle => 'تنظیمات';
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,7 @@ class SettingsView extends StatelessWidget implements BaseView {
                 Text(
                   Provider.of<ThemeProvider>(context).selectedMode,
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
+                20.0.sizedBoxWidth,
                 CustomSwitchWidget(
                     value: !Provider.of<ThemeProvider>(context).isDarkMode,
                     onChanged: (value) {
@@ -81,9 +80,7 @@ class SettingsView extends StatelessWidget implements BaseView {
                 Text(Provider.of<ChangeTaskTileSizeProvider>(context)
                     .tileSize
                     .toString()),
-                const SizedBox(
-                  width: 20,
-                ),
+                20.0.sizedBoxWidth,
                 CustomSwitchWidget(
                     value: Provider.of<ChangeTaskTileSizeProvider>(context)
                             .tileSize ==

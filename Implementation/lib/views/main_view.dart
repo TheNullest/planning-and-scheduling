@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:zamaan/themes/themes.dart';
 import 'package:zamaan/utilities/my_custom_clipper.dart';
@@ -29,14 +30,14 @@ class _MainViewState extends State<MainView>
     CalendarView(),
     ReminderView(),
     ReportsView(),
-    ActiveTasksView(),
-    TodaysTasksView(),
+    // ActiveTasksView(),
+    // TodaysTasksView(),
   ];
 
   @override
   void initState() {
     _tabController = TabController(length: _views.length, vsync: this);
-    _tabController.index = 5;
+    _tabController.index = _views.length;
 
     super.initState();
   }
@@ -71,89 +72,94 @@ class _MainViewState extends State<MainView>
               initialIndex: _tabController.index,
               length: _views.length,
               child: NestedScrollView(
+                  dragStartBehavior: DragStartBehavior.start,
                   headerSliverBuilder: (context, isScrolled) {
-                    return barsDisplay
-                        ? [
-                            CustomSliverAppBarWidget(
-                                appBarDisplay: barsDisplay,
-                                myTheme: myTheme,
-                                viewTitle:
-                                    (_views[_tabController.index] as BaseView)
-                                        .viewTitle)
-                          ]
-                        : [];
+                    return [
+                      CustomSliverAppBarWidget(
+                          appBarDisplay: barsDisplay,
+                          myTheme: myTheme,
+                          viewTitle: (_views[_tabController.index] as BaseView)
+                              .viewTitle)
+                    ];
                   },
-                  body: Stack(children: [
-                    Scaffold(
-                      backgroundColor: myTheme.backgroundColor,
-                      body:
-                          // The key to move between tabs and windows just by using scrolling
-                          // is the TabBarView
-                          TabBarView(
-                        physics: barsDisplay
-                            ? const AlwaysScrollableScrollPhysics()
-                            : const NeverScrollableScrollPhysics(),
-                        controller: _tabController,
-                        children: _views,
+                  body: NotificationListener<UserScrollNotification>(
+                    onNotification: (UserScrollNotification notification) {
+                      setState(() {});
+                      return true;
+                    },
+                    child: Stack(children: [
+                      Scaffold(
+                        backgroundColor: myTheme.backgroundColor,
+                        body:
+                            // The key to move between tabs and windows just by using scrolling
+                            // is the TabBarView
+                            TabBarView(
+                          physics: barsDisplay
+                              ? const AlwaysScrollableScrollPhysics()
+                              : const NeverScrollableScrollPhysics(),
+                          controller: _tabController,
+                          children: _views,
+                        ),
+
+                        // return IndexedStack(
+
+                        //   index: _tabController.index,
+
+                        //   /// Reversed for the Persian language
+                        //   /// It can be adjusted for English language later
+                        //   children: _views,
+                        // );
+
+                        bottomNavigationBar:
+                            !ResponsiveHelper.largeScreenSize(context)
+                                ? CustomTabBarWidget(
+                                    bottomBarDisplay: barsDisplay,
+                                    tabController: _tabController,
+
+                                    /// Reversed for the Persian language
+                                    /// It can be adjusted for English language later
+                                    icons: _views
+                                        .map<IconData>(
+                                            (view) => (view as BaseView).icon)
+                                        .toList(),
+                                    onTap: (index) => setState(() {
+                                      _tabController.index = index;
+                                    }),
+
+                                    selectedIndex: _tabController.index,
+                                  )
+                                : const SizedBox.shrink(),
                       ),
-
-                      // return IndexedStack(
-
-                      //   index: _tabController.index,
-
-                      //   /// Reversed for the Persian language
-                      //   /// It can be adjusted for English language later
-                      //   children: _views,
-                      // );
-
-                      bottomNavigationBar:
-                          !ResponsiveHelper.largeScreenSize(context)
-                              ? CustomTabBarWidget(
-                                  bottomBarDisplay: barsDisplay,
-                                  tabController: _tabController,
-
-                                  /// Reversed for the Persian language
-                                  /// It can be adjusted for English language later
-                                  icons: _views
-                                      .map<IconData>(
-                                          (view) => (view as BaseView).icon)
-                                      .toList(),
-                                  onTap: (index) => setState(() {
-                                    _tabController.index = index;
-                                  }),
-
-                                  selectedIndex: _tabController.index,
-                                )
-                              : const SizedBox.shrink(),
-                    ),
-                    AnimatedPositioned(
-                        duration: const Duration(milliseconds: 200),
-                        bottom: barsDisplay ? 40 : -40,
-                        left:
-                            ResponsiveHelper.screenSizeWidth(context) / 2 - 25,
-                        child: ClipPath(
-                          clipper: MyCustomClipper(top: 40, left: 40),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              color: myTheme.backgroundColor,
-                              shape: BoxShape.circle,
+                      AnimatedPositioned(
+                          duration: const Duration(milliseconds: 200),
+                          bottom: barsDisplay ? 40 : -40,
+                          left: ResponsiveHelper.screenSizeWidth(context) / 2 -
+                              20,
+                          child: ClipPath(
+                            clipper: MyCustomClipper(top: 40, left: 40),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                color: myTheme.backgroundColor,
+                                shape: BoxShape.circle,
+                              ),
                             ),
-                          ),
-                        )),
-                    AnimatedPositioned(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.bounceOut,
-                        bottom: barsDisplay ? 45 : -40,
-                        left:
-                            ResponsiveHelper.screenSizeWidth(context) / 2 - 20,
-                        child: CustomAddNewTaskButtonWidget(
-                          taskNameTextController: _taskNameTextController,
-                          descriptionTextController: _descriptionTextController,
-                        )),
-                  ])),
+                          )),
+                      // AnimatedPositioned(
+                      //     duration: const Duration(milliseconds: 500),
+                      //     curve: Curves.bounceOut,
+                      //     bottom: barsDisplay ? 45 : -40,
+                      //     left: ResponsiveHelper.screenSizeWidth(context) / 2 -
+                      //         15,
+                      //     child: CustomAddNewTaskButtonWidget(
+                      //       taskNameTextController: _taskNameTextController,
+                      //       descriptionTextController:
+                      //           _descriptionTextController,
+                      //     )),
+                    ]),
+                  )),
             );
           },
         ),

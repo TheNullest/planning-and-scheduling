@@ -10,3 +10,4 @@ export 'custom_task_button_widget_components/custom_task_button_widget.dart';
 export 'custom_switch_widget.dart';
 export 'custom_section_widget.dart';
 export 'raws/raw_custom_button_widget.dart';
+export 'report_widgets/reporter_time_frame_button_widget.dart';

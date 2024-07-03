@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/constants/lottie_constants.dart';
+import 'package:zamaan/utilities/constants/text_constants.dart';
+import 'package:zamaan/utilities/utilities.dart';
 import 'package:zamaan/widgets/custom_widgets.dart';
-import 'package:zamaan/data/data.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
 
 import '../routes/views_route.dart';
@@ -16,8 +19,9 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -45,23 +49,19 @@ class _LoginViewState extends State<LoginView> {
                     // avatar or logo
                     Container(
                       margin: const EdgeInsets.only(bottom: 50),
-                      width: 150,
-                      height: 150,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(users[0].profileImagePath),
-                      ),
+                      child: Lottie.asset(LottieConstants.lottieLogin),
                     ),
 
                     // UserName input field
                     CustomTextFieldWidget(
-                      controller: userNameController,
-                      hintText: 'نام کاربری',
+                      controller: _userNameController,
+                      hintText: TextConstants.userNameHintTextPersian,
                     ),
 
                     // password input field
                     CustomTextFieldWidget(
-                      controller: passwordController,
-                      hintText: 'گذرواژه',
+                      controller: _passwordController,
+                      hintText: TextConstants.passwordHintTextPersian,
                       isObscureText: true,
                       margin: const EdgeInsets.symmetric(vertical: 20),
                     ),
@@ -104,16 +104,12 @@ List<Widget> _createAccoutnButton(
     [
       CustomNoFieldTextButtonWidget(
           onTap: () => ViewsRoute.goToSelectedView(context, view: 'register'),
-          name: 'ایجاد حساب کاربری جدید'),
-      const SizedBox(
-        width: 10,
-      ),
-      SizedBox(
-        height: height,
-      ),
+          name: TextConstants.askForCreateAccount),
+      10.0.sizedBoxWidth,
+      height.sizedBoxHeight,
       const Text(
         textDirection: TextDirection.rtl,
-        'حســـاب کاربـــری ندارم؟',
+        TextConstants.askForAccount,
         textAlign: TextAlign.justify,
         style: TextStyle(
           fontSize: 13,

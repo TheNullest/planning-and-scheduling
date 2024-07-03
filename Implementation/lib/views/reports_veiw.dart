@@ -7,17 +7,13 @@ class ReportsView extends StatelessWidget implements BaseView {
   static String routeName = 'reports-view';
 
   @override
-  String get viewTitle => 'Reports';
+  String get viewTitle => 'گزارش ها';
 
   @override
   IconData get icon => Icons.bar_chart;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Expanded(
-        child: Container(color: Colors.red),
-      ),
-    );
+    return Container(color: Colors.redAccent);
   }
 }

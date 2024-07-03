@@ -1,23 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:zamaan/data/models.dart';
 import 'package:zamaan/utilities/utilities.dart';
 
 class CustomTaskButtonPercentageIcon extends StatefulWidget {
   final Color foreground;
-  final Color iconColor;
+  final Color taskColor;
   final IconData icon;
   final double donePercentage;
-  final DateTime doneTime;
+  final GoalModel goal;
+  final Duration spentTime;
 
   const CustomTaskButtonPercentageIcon(
       {super.key,
       required this.foreground,
-      required this.iconColor,
+      required this.taskColor,
       required this.icon,
       required this.donePercentage,
-      required this.doneTime});
+      required this.spentTime,
+      required this.goal});
   @override
   State<CustomTaskButtonPercentageIcon> createState() =>
       _CustomTaskButtonPercentageIconState();
@@ -28,6 +30,8 @@ class _CustomTaskButtonPercentageIconState
   late double animateShadow = 10;
   @override
   Widget build(BuildContext context) {
+    final DevicePlatform device =
+        ResponsiveHelper.currentDevicePlatform(context);
     if (widget.donePercentage * 100 > 90) {
       Timer(
           const Duration(milliseconds: 500),
@@ -35,13 +39,11 @@ class _CustomTaskButtonPercentageIconState
                 animateShadow = animateShadow == 7.0 ? 2.0 : 7.0;
               }));
     }
+    // Main Container and Golden Glow
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      height: 50,
-      width: 170,
+      duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: widget.donePercentage * 100 > 90
             ? [
                 BoxShadow(
@@ -62,13 +64,13 @@ class _CustomTaskButtonPercentageIconState
               ]
             : null,
         color: WidgetActivitiesColorMode(
-                color: widget.iconColor.computeLuminance() < .1
+                color: widget.taskColor.computeLuminance() < .1
                     ? Colors.grey.shade800
-                    : widget.iconColor)
+                    : widget.taskColor)
             .disabled,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         child: LayoutBuilder(
           builder: (context, constraints) => Stack(children: [
             // Percentage color container
@@ -76,55 +78,116 @@ class _CustomTaskButtonPercentageIconState
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: constraints.maxHeight * widget.donePercentage,
-                width: constraints.maxWidth,
-                color: widget.iconColor,
+                color: widget.taskColor,
               ),
             ),
 
-            // icon, done time and percentage,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  DateFormat('HH:mm:ss').format(DateTime.now()),
-                  style: TextStyle(
-                      height: 0,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: widget.foreground,
-                      shadows: const [
-                        Shadow(
-                            color: Colors.black,
-                            blurRadius: 2,
-                            offset: Offset(1, 1))
-                      ]),
-                ),
-                Text(
-                  ' %${(widget.donePercentage * 100).toStringAsFixed(1)}',
-                  style: TextStyle(
-                      height: 0,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: widget.foreground,
-                      shadows: const [
-                        Shadow(
-                            color: Colors.black,
-                            blurRadius: 2,
-                            offset: Offset(1, 1))
-                      ]),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Icon(
-                    widget.icon,
-                    color: widget.iconColor.computeLuminance() > .5
-                        ? Colors.black
-                        : Colors.white,
-                    size: 25,
+            // spent and remaining times and percentage,
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              // Percentage text
+              Text(
+                ' ${(widget.donePercentage * 100).toStringAsFixed(1)}%',
+                style: TextStyle(
+                    fontSize: device == DevicePlatform.desktop ? 25 : 35,
+                    fontWeight: FontWeight.bold,
+                    color: widget.foreground,
+                    shadows: const [
+                      Shadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                          offset: Offset(1, 1))
+                    ]),
+              ),
+
+              // spent and remaining times
+              Column(
+                mainAxisAlignment: widget.goal.custom
+                    ? MainAxisAlignment.spaceEvenly
+                    : MainAxisAlignment.center,
+                children: [
+                  // Time spent
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        DateTimeToString().durationToTimeWithSecond(
+                            duration: widget.spentTime),
+                        style: TextStyle(
+                            height: 1,
+                            fontSize:
+                                device == DevicePlatform.desktop ? 12 : 15,
+                            fontWeight: FontWeight.bold,
+                            color: widget.foreground,
+                            shadows: const [
+                              Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 2,
+                                  offset: Offset(1, 1))
+                            ]),
+                      ),
+                      Text(
+                        'گذرانده :  ',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            height: 1,
+                            fontSize:
+                                device == DevicePlatform.desktop ? 12 : 15,
+                            color: widget.foreground,
+                            shadows: const [
+                              Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 2,
+                                  offset: Offset(1, 1))
+                            ]),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
+
+                  // Remaining time
+                  widget.goal.custom
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateTimeToString().durationToTimeWithSecond(
+                                  duration:
+                                      widget.goal.daily - widget.spentTime),
+                              style: TextStyle(
+                                  height: 1,
+                                  fontSize: device == DevicePlatform.desktop
+                                      ? 12
+                                      : 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: widget.foreground,
+                                  shadows: const [
+                                    Shadow(
+                                        color: Colors.black,
+                                        blurRadius: 2,
+                                        offset: Offset(1, 1))
+                                  ]),
+                            ),
+                            Text(
+                              'مانده    :  ',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                  height: 1.5,
+                                  fontSize: device == DevicePlatform.desktop
+                                      ? 12
+                                      : 15,
+                                  color: widget.foreground,
+                                  shadows: const [
+                                    Shadow(
+                                        color: Colors.black,
+                                        blurRadius: 2,
+                                        offset: Offset(1, 1))
+                                  ]),
+                            ),
+                          ],
+                        )
+                      : const SizedBox.shrink()
+                ],
+              ),
+            ]),
           ]),
         ),
       ),

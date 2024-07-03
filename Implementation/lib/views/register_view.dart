@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/constants/lottie_constants.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
 import 'package:zamaan/widgets/custom_widgets.dart';
-import 'package:zamaan/data/data.dart';
 import 'package:zamaan/routes/views_route.dart';
 
 class RegisterView extends StatefulWidget {
@@ -47,13 +48,10 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   // avatar or logo
                   Container(
-                    margin: const EdgeInsets.only(bottom: 50),
-                    width: 150,
-                    height: 150,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(users[0].profileImagePath),
-                    ),
-                  ),
+                      margin: const EdgeInsets.only(bottom: 50),
+                      width: 150,
+                      height: 150,
+                      child: Lottie.asset(LottieConstants.lottieRegistration)),
 
                   // UserName input field
                   CustomTextFieldWidget(
