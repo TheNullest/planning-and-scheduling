@@ -19,7 +19,7 @@ Future<void> main() async {
     ],
     child: Zamaan(
       initialRoute:
-          users.isEmpty ? LoginView.routeName : RegisterView.routeName,
+          users.isEmpty ? RegisterView.routeName : LoginView.routeName,
     ),
   ));
 }
@@ -38,3 +38,9 @@ class Zamaan extends StatelessWidget {
             initialRoute: initialRoute));
   }
 }
+
+
+//TODO Ask about git versioning from Gemini
+
+//TODO Implement a versioning system within your models (e.g., an additional field) to track changes over time. 
+//This allows you to differentiate between data stored under different model versions.

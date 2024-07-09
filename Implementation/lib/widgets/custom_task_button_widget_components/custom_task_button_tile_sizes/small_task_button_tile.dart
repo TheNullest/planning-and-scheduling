@@ -55,7 +55,9 @@ class _BigTaskButtonTileState extends State<SmallTaskButtonTile> {
           border: !widget.canOpenOptionsSection
               ? Border(
                   bottom: BorderSide(
-                      width: 2, color: widget.myTheme.taskButtonBorderColor),
+                      width: 2,
+                      color: widget
+                          .myTheme.taskButtonColors.taskButtonBorderColor),
                 )
               : null,
         ),
@@ -67,7 +69,8 @@ class _BigTaskButtonTileState extends State<SmallTaskButtonTile> {
             opacity: donePercentage == 1 && widget.isDisplayed ? .7 : 0,
             curve: Curves.easeInOutCirc,
             child: ColoredBox(
-              color: widget.myTheme.taskButtonDoneBackgroundColor,
+              color:
+                  widget.myTheme.taskButtonColors.taskButtonDoneBackgroundColor,
               child: const SizedBox(
                 height: 80,
                 width: double.infinity,
@@ -107,8 +110,8 @@ class _BigTaskButtonTileState extends State<SmallTaskButtonTile> {
                           width: 110,
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
-                              color: widget
-                                  .myTheme.taskButtonActivatedBackgroundColor,
+                              color: widget.myTheme.taskButtonColors
+                                  .taskButtonActivatedBackgroundColor,
                               borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(10),
                                 bottomRight: Radius.circular(10),

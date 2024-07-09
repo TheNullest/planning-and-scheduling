@@ -21,7 +21,7 @@ class ReporterTimeFrameButtonWidget extends StatelessWidget {
         margin: const EdgeInsets.all(5),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-            color: myTheme.sectionColor,
+            color: myTheme.environmentColors.sectionBackgroundColor,
             borderRadius: BorderRadius.circular(10)),
         child: IntrinsicHeight(
           child: Row(
@@ -53,7 +53,7 @@ class ReporterTimeFrameButtonWidget extends StatelessWidget {
               //To resolve it, you have a couple of options :
               // Wrap your Row with IntrinsicHeight or SizedBox with a fixed hight
               VerticalDivider(
-                color: myTheme.backgroundColor,
+                color: myTheme.environmentColors.sectionDividerColor,
                 indent: 10,
                 endIndent: 10,
                 width: 20,
@@ -72,7 +72,7 @@ class ReporterTimeFrameButtonWidget extends StatelessWidget {
                   SizedBox(
                     width: 50,
                     child: Divider(
-                      color: myTheme.backgroundColor,
+                      color: myTheme.environmentColors.sectionBackgroundColor,
                       endIndent: 10,
                       indent: 10,
                       height: 10,

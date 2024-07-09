@@ -24,7 +24,7 @@ class CustomNormalButtonWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        fillColor: myTheme.buttonBackgroundColor,
+        fillColor: myTheme.buttonColors.buttonBackgroundColor,
         onPressed: onPressed,
         child: Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
@@ -32,7 +32,7 @@ class CustomNormalButtonWidget extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 15,
-              color: myTheme.buttonForegroundColor,
+              color: myTheme.buttonColors.buttonForegroundColor,
             ),
           ),
         ),

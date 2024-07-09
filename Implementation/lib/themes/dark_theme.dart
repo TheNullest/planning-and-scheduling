@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zamaan/themes/custom_theme_extension.dart';
+import 'package:zamaan/themes/types/theme_types.dart';
 
 final darkTheme = ThemeData(
   textTheme: const TextTheme(
@@ -12,60 +13,81 @@ final darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       foregroundColor: Color.fromARGB(255, 231, 231, 231)),
-  dividerTheme: const DividerThemeData(
-    thickness: .3,
-    indent: 50,
-    endIndent: 50,
-    space: 20,
-    color: Color.fromARGB(255, 255, 255, 255),
-  ),
-).copyWith(extensions: <ThemeExtension<dynamic>>[
+).copyWith(extensions: <ThemeExtension<CustomThemeExtension>>[
   CustomThemeExtension(
-    backgroundColor: const Color.fromARGB(255, 22, 22, 22),
-    sectionColor: const Color.fromRGBO(45, 45, 45, 1),
-    sectionBorderColor: const Color.fromARGB(255, 70, 70, 70),
-
-    //text
-    textColor: const Color.fromARGB(255, 231, 231, 231),
+    environmentColors: EnvironmentThemeColors(
+        mainBackgroundColor: const Color.fromARGB(255, 22, 22, 22),
+        mainTextColor: const Color.fromARGB(255, 231, 231, 231),
+        mainDividerColor: const Color.fromARGB(255, 231, 231, 231),
+        sectionBackgroundColor: const Color.fromRGBO(45, 45, 45, 1),
+        sectionShadowColor: const Color.fromRGBO(234, 234, 243, 1),
+        sectionTextColor: const Color.fromARGB(255, 231, 231, 231),
+        sectionDividerColor: const Color.fromARGB(255, 231, 231, 231),
+        sectionBorderColor: const Color.fromARGB(255, 70, 70, 70),
+        widgetBackgroundColor: const Color.fromARGB(255, 65, 64, 64),
+        widgetShadowColor: const Color.fromRGBO(244, 244, 250, 1),
+        widgetTextColor: const Color.fromARGB(255, 231, 231, 231),
+        widgetBorderColor: const Color.fromARGB(255, 70, 70, 70)),
 
     //textField
-    textFieldBackgroundColor: const Color.fromRGBO(66, 66, 66, 1),
-    textFieldForegroundColor: const Color.fromARGB(255, 231, 231, 231),
-    textFieldHintColor: const Color.fromRGBO(244, 244, 250, .5),
-    textFieldCursorColor: const Color.fromARGB(126, 250, 250, 252),
-    textFieldEnabledBorderColor: const Color.fromARGB(125, 255, 255, 255),
-    textFieldFocusedBorderColor: const Color.fromRGBO(45, 143, 143, 1),
+    textFieldColors: TextFieldThemeColors(
+      textFieldBackgroundColor: const Color.fromRGBO(66, 66, 66, 1),
+      textFieldForegroundColor: const Color.fromARGB(255, 231, 231, 231),
+      textFieldHintColor: const Color.fromRGBO(244, 244, 250, .5),
+      textFieldCursorColor: const Color.fromARGB(126, 250, 250, 252),
+      textFieldEnabledBorderColor: const Color.fromARGB(125, 255, 255, 255),
+      textFieldFocusedBorderColor: const Color.fromRGBO(45, 143, 143, 1),
+    ),
 
     //button
-    buttonForegroundColor: const Color.fromRGBO(255, 255, 255, 1),
-    buttonBackgroundColor: const Color.fromARGB(255, 16, 77, 231),
-    buttonHoverdBackgroundColor: const Color.fromARGB(255, 7, 68, 224),
-    buttonPressedBackgroundColor: const Color.fromARGB(255, 4, 62, 209),
+    buttonColors: ButtonThemeColors(
+        buttonForegroundColor: const Color.fromRGBO(255, 255, 255, 1),
+        buttonBackgroundColor: const Color.fromARGB(255, 16, 77, 231),
+        buttonHoverdBackgroundColor: const Color.fromARGB(255, 7, 68, 224),
+        buttonPressedBackgroundColor: const Color.fromARGB(255, 4, 62, 209)),
 
     //task button
-    taskButtonForegroundColor: const Color.fromRGBO(255, 255, 255, 1),
-    taskButtonBackgroundColor: const Color.fromARGB(255, 60, 60, 60),
-    taskButtonHoverdBackgroundColor: const Color.fromARGB(255, 50, 50, 50),
-    taskButtonActivatedBackgroundColor: const Color.fromARGB(255, 35, 35, 35),
-    taskButtonDoneBackgroundColor: const Color.fromARGB(255, 18, 77, 126),
-    taskButtonBorderColor: const Color.fromARGB(255, 22, 22, 22),
+    taskButtonColors: TaskButtonThemeColors(
+      taskButtonForegroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      taskButtonBackgroundColor: const Color.fromARGB(255, 60, 60, 60),
+      taskButtonHoverdBackgroundColor: const Color.fromARGB(255, 50, 50, 50),
+      taskButtonActivatedBackgroundColor: const Color.fromARGB(255, 35, 35, 35),
+      taskButtonDoneBackgroundColor: const Color.fromARGB(255, 18, 77, 126),
+      taskButtonBorderColor: const Color.fromARGB(255, 22, 22, 22),
+    ),
 
     // text button without field
-    textButtonColor: const Color.fromARGB(255, 235, 248, 248),
-    textButtonHoveredColor: const Color.fromARGB(255, 165, 243, 243),
-    textButtonPressedColor: const Color.fromARGB(255, 122, 233, 233),
+    textButtonColors: TextButtonThemeColors(
+      textButtonColor: const Color.fromARGB(255, 235, 248, 248),
+      textButtonHoveredColor: const Color.fromARGB(255, 165, 243, 243),
+      textButtonPressedColor: const Color.fromARGB(255, 122, 233, 233),
+    ),
 
-    //shadows
-    shadowOnBackgroundColor: const Color.fromRGBO(234, 234, 243, 1),
-    shadowOnSurfaceColor: const Color.fromRGBO(244, 244, 250, 1),
+    tabColors: TabThemeColors(
+      selectedTabColor: const Color.fromRGBO(127, 177, 252, 1),
+      unSelectedTabColor: const Color.fromRGBO(104, 103, 103, 1),
+      tabIconShadowColor: const Color.fromRGBO(255, 255, 255, .3),
+    ),
 
-    //tabBars
-    selectedTabColor: const Color.fromRGBO(127, 177, 252, 1),
-    unSelectedTabColor: const Color.fromRGBO(104, 103, 103, 1),
-    tabIconShadowColor: const Color.fromRGBO(255, 255, 255, .3),
+    questionBoxColors: ToastQuestionBoxThemeColors(
+        headerColor: const Color.fromRGBO(197, 70, 70, 1),
+        titleColor: const Color.fromRGBO(197, 70, 70, 1),
+        backgroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        foregroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        confirmButtonBackgroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        cancelButtonForegroundColor: const Color.fromRGBO(197, 70, 70, 1)),
+    successBoxColors: ToastSuccessBoxThemeColors(
+        headerColor: const Color.fromRGBO(197, 70, 70, 1),
+        titleColor: const Color.fromRGBO(197, 70, 70, 1),
+        backgroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        foregroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        confirmButtonBackgroundColor: const Color.fromRGBO(197, 70, 70, 1)),
 
-    //errors
-    errorTextColor: const Color.fromRGBO(197, 70, 70, 1),
-    errorFieldColor: const Color.fromRGBO(197, 70, 70, 1),
+    errorBoxColors: ToastErrorBoxThemeColors(
+        headerColor: const Color.fromRGBO(197, 70, 70, 1),
+        titleColor: const Color.fromRGBO(197, 70, 70, 1),
+        backgroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        foregroundColor: const Color.fromRGBO(197, 70, 70, 1),
+        confirmButtonBackgroundColor: const Color.fromRGBO(197, 70, 70, 1)),
   )
 ]);

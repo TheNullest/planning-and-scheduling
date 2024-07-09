@@ -1,30 +1,48 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:zamaan/data/models/user_model.dart';
 import 'package:zamaan/data/repositories.dart';
+import 'package:zamaan/routes/views_route.dart';
+import 'package:zamaan/utilities/constants/toast_dialog_constants.dart';
 
 class LocalAuthService {
   final LocalAuthentication _auth = LocalAuthentication();
-  Future<bool> canCheckBiometrics() async => _auth.canCheckBiometrics;
+  Future<bool> canCheckBiometrics() async =>
+      await _auth.canCheckBiometrics || await _auth.isDeviceSupported();
 
-  Future<bool> authenticateWithBiometrics() async {
+  Future<void> authenticateWithBiometrics(
+      {required BuildContext context}) async {
     final availableBiometrics = await _auth.getAvailableBiometrics();
-    if (availableBiometrics.isEmpty) return false;
-    return await _auth.authenticate(
+    log(availableBiometrics.toString());
+    if (availableBiometrics.isEmpty) return;
+    final bool didAuthenticate = await _auth.authenticate(
         localizedReason: 'Please authenticate to access the app',
-        options: const AuthenticationOptions(stickyAuth: true));
+        options: const AuthenticationOptions(
+            stickyAuth: true, useErrorDialogs: true));
+
+    if (didAuthenticate && context.mounted) {
+      ViewsRoute.goToSelectedView(context, view: 'main');
+    }
   }
 
-  Future<bool> loginWithUserPass(String userName, String password) async {
+  Future<void> loginWithUserPass({
+    required BuildContext context,
+    required String userName,
+    required String password,
+  }) async {
     final List<UserModel> users = await UsersRepo().getAll();
-    for (UserModel user in users) {
-      if (user.userName == userName) {
-        if (user.password == password) {
-          return true;
-        } else {
-          return false;
-        }
+    UserModel? user =
+        users.where((user) => user.userName == userName).firstOrNull;
+    if (context.mounted) {
+      if (user == null || user.password != password) {
+        ToastDialogConstants.loginFailed(context);
+      } else {
+        ToastDialogConstants.loginSuccessfully(context);
+        ViewsRoute.goToSelectedView(context, view: 'main');
       }
     }
-    return false;
   }
 }

@@ -21,8 +21,9 @@ class CustomSectionWidget extends StatelessWidget {
             BoxConstraints(minHeight: minHeight, minWidth: double.maxFinite),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: myTheme.sectionBorderColor, width: 2),
-          color: myTheme.sectionColor,
+          border: Border.all(
+              color: myTheme.environmentColors.sectionBorderColor, width: 2),
+          color: myTheme.environmentColors.sectionBackgroundColor,
         ),
         child: child);
   }

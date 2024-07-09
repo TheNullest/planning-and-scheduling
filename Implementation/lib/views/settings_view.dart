@@ -21,9 +21,9 @@ class SettingsView extends StatelessWidget implements BaseView {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: myTheme.sectionBorderColor,
+        backgroundColor: myTheme.environmentColors.sectionBorderColor,
       ),
-      backgroundColor: myTheme.backgroundColor,
+      backgroundColor: myTheme.environmentColors.mainBackgroundColor,
       body: Column(
         children: [
           Container(
@@ -31,7 +31,7 @@ class SettingsView extends StatelessWidget implements BaseView {
             margin: const EdgeInsets.all(50),
             padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-                color: myTheme.sectionColor,
+                color: myTheme.environmentColors.sectionBackgroundColor,
                 borderRadius: BorderRadius.circular(10)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -46,7 +46,7 @@ class SettingsView extends StatelessWidget implements BaseView {
             margin: const EdgeInsets.all(50),
             padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-                color: myTheme.sectionColor,
+                color: myTheme.environmentColors.sectionBackgroundColor,
                 borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +72,7 @@ class SettingsView extends StatelessWidget implements BaseView {
             ),
             padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-                color: myTheme.sectionColor,
+                color: myTheme.environmentColors.sectionBackgroundColor,
                 borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

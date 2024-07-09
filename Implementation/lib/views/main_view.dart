@@ -30,14 +30,14 @@ class _MainViewState extends State<MainView>
     CalendarView(),
     ReminderView(),
     ReportsView(),
-    // ActiveTasksView(),
-    // TodaysTasksView(),
+    ActiveTasksView(),
+    TodaysTasksView(),
   ];
 
   @override
   void initState() {
     _tabController = TabController(length: _views.length, vsync: this);
-    _tabController.index = _views.length;
+    _tabController.index = _views.length - 1;
 
     super.initState();
   }
@@ -89,7 +89,8 @@ class _MainViewState extends State<MainView>
                     },
                     child: Stack(children: [
                       Scaffold(
-                        backgroundColor: myTheme.backgroundColor,
+                        backgroundColor:
+                            myTheme.environmentColors.mainBackgroundColor,
                         body:
                             // The key to move between tabs and windows just by using scrolling
                             // is the TabBarView
@@ -142,22 +143,23 @@ class _MainViewState extends State<MainView>
                               width: 40,
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
-                                color: myTheme.backgroundColor,
+                                color: myTheme
+                                    .environmentColors.mainBackgroundColor,
                                 shape: BoxShape.circle,
                               ),
                             ),
                           )),
-                      // AnimatedPositioned(
-                      //     duration: const Duration(milliseconds: 500),
-                      //     curve: Curves.bounceOut,
-                      //     bottom: barsDisplay ? 45 : -40,
-                      //     left: ResponsiveHelper.screenSizeWidth(context) / 2 -
-                      //         15,
-                      //     child: CustomAddNewTaskButtonWidget(
-                      //       taskNameTextController: _taskNameTextController,
-                      //       descriptionTextController:
-                      //           _descriptionTextController,
-                      //     )),
+                      AnimatedPositioned(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.bounceOut,
+                          bottom: barsDisplay ? 45 : -40,
+                          left: ResponsiveHelper.screenSizeWidth(context) / 2 -
+                              15,
+                          child: CustomAddNewTaskButtonWidget(
+                            taskNameTextController: _taskNameTextController,
+                            descriptionTextController:
+                                _descriptionTextController,
+                          )),
                     ]),
                   )),
             );

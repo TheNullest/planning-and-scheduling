@@ -21,16 +21,17 @@ class _CustomNoFieldTextButtonWidgetState
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
       final CustomThemeExtension myTheme = themeProvider.myTheme(context);
-      late Color textColor = myTheme.textButtonColor;
+      late Color textColor = myTheme.textButtonColors.textButtonColor;
       return InkWell(
           onTap: widget.onTap,
 
           // changing the text color when mouse is hover
           onHover: (isHover) => setState(() => isHover
-              ? textColor = myTheme.textButtonHoveredColor
-              : textColor = myTheme.textButtonColor),
+              ? textColor = myTheme.textButtonColors.textButtonHoveredColor
+              : textColor = myTheme.textButtonColors.textButtonColor),
           onTapDown: (tapDownDetails) {
-            setState(() => textColor = myTheme.textButtonPressedColor);
+            setState(() =>
+                textColor = myTheme.textButtonColors.textButtonPressedColor);
           },
           child: Text(
             widget.name,

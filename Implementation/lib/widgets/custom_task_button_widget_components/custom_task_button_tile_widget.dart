@@ -39,8 +39,10 @@ class CustomTaskButtonTileWidget extends StatefulWidget {
 
 class _CustomTaskButtonTileWidgetState
     extends State<CustomTaskButtonTileWidget> {
-  late Color backgroundColor = widget.myTheme.taskButtonBackgroundColor;
-  late Color foregroundColor = widget.myTheme.taskButtonForegroundColor;
+  late Color backgroundColor =
+      widget.myTheme.taskButtonColors.taskButtonBackgroundColor;
+  late Color foregroundColor =
+      widget.myTheme.taskButtonColors.taskButtonForegroundColor;
   late bool taskActivated = false;
   late bool isStillHovered = false;
   late MouseCursor cursor = SystemMouseCursors.click;
@@ -102,14 +104,16 @@ class _CustomTaskButtonTileWidgetState
           case ButtonStates.exited:
             {
               backgroundColor = taskActivated
-                  ? widget.myTheme.taskButtonActivatedBackgroundColor
-                  : widget.myTheme.taskButtonBackgroundColor;
+                  ? widget.myTheme.taskButtonColors
+                      .taskButtonActivatedBackgroundColor
+                  : widget.myTheme.taskButtonColors.taskButtonBackgroundColor;
               isStillHovered = false;
               break;
             }
           case ButtonStates.hoverd:
             {
-              backgroundColor = widget.myTheme.taskButtonHoverdBackgroundColor;
+              backgroundColor = widget
+                  .myTheme.taskButtonColors.taskButtonHoverdBackgroundColor;
               isStillHovered = true;
               break;
             }
@@ -119,12 +123,13 @@ class _CustomTaskButtonTileWidgetState
               if (taskActivated) {
                 taskActivated = !taskActivated;
                 backgroundColor = isStillHovered
-                    ? widget.myTheme.taskButtonHoverdBackgroundColor
-                    : widget.myTheme.taskButtonBackgroundColor;
+                    ? widget.myTheme.taskButtonColors
+                        .taskButtonHoverdBackgroundColor
+                    : widget.myTheme.taskButtonColors.taskButtonBackgroundColor;
               } else {
                 taskActivated = !taskActivated;
-                backgroundColor =
-                    widget.myTheme.taskButtonActivatedBackgroundColor;
+                backgroundColor = widget.myTheme.taskButtonColors
+                    .taskButtonActivatedBackgroundColor;
               }
               widget.onTaskActivated.call(taskActivated);
               break;

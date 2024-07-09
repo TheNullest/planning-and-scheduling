@@ -46,29 +46,32 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
         child: TextField(
           maxLines: widget.isExpandable ? null : 1,
           onSubmitted: widget.onSubmitted,
-          cursorColor: myTheme.textFieldCursorColor,
+          cursorColor: myTheme.textFieldColors.textFieldCursorColor,
           obscureText: widget.isObscureText,
           controller: widget.controller,
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,
-          style: TextStyle(color: myTheme.textFieldForegroundColor),
+          style: TextStyle(
+              color: myTheme.textFieldColors.textFieldForegroundColor),
           decoration: InputDecoration(
               filled: true,
-              fillColor: myTheme.textFieldBackgroundColor,
+              fillColor: myTheme.textFieldColors.textFieldBackgroundColor,
               hintText: widget.hintText,
               hintStyle: TextStyle(
-                color: myTheme.textFieldHintColor,
+                color: myTheme.textFieldColors.textFieldHintColor,
                 fontSize: 13,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
-                    width: 0, color: myTheme.textFieldEnabledBorderColor),
+                    width: 0,
+                    color: myTheme.textFieldColors.textFieldEnabledBorderColor),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
-                    width: .7, color: myTheme.textFieldFocusedBorderColor),
+                    width: .7,
+                    color: myTheme.textFieldColors.textFieldFocusedBorderColor),
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

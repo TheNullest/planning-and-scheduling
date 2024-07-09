@@ -36,10 +36,10 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
-        color: myTheme.sectionColor,
+        color: myTheme.environmentColors.sectionBackgroundColor,
         boxShadow: [
           BoxShadow(
-            color: myTheme.backgroundColor,
+            color: myTheme.environmentColors.mainBackgroundColor,
             blurRadius: 15,
           ),
         ],
@@ -54,12 +54,12 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
           border: widget.isBottomIndicator
               ? Border(
                   bottom: BorderSide(
-                  color: myTheme.selectedTabColor,
+                  color: myTheme.tabColors.selectedTabColor,
                   width: 3,
                 ))
               : Border(
                   top: BorderSide(
-                    color: myTheme.selectedTabColor,
+                    color: myTheme.tabColors.selectedTabColor,
                     width: 3,
                   ),
                 ),
@@ -74,7 +74,7 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                     shadows: index == widget.selectedIndex
                         ? [
                             Shadow(
-                              color: myTheme.tabIconShadowColor,
+                              color: myTheme.tabColors.tabIconShadowColor,
                               offset: const Offset(0, 1),
                               blurRadius: 3,
                             ),
@@ -82,8 +82,8 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                         : null,
                     icon,
                     color: index == widget.selectedIndex
-                        ? myTheme.selectedTabColor
-                        : myTheme.unSelectedTabColor,
+                        ? myTheme.tabColors.selectedTabColor
+                        : myTheme.tabColors.unSelectedTabColor,
                   ),
                 ),
               ),

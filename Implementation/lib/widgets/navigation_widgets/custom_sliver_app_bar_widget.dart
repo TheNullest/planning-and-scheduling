@@ -53,7 +53,7 @@ class _CustomSliverAppBarWidgetState extends State<CustomSliverAppBarWidget>
     return SliverAppBar(
       // for removing the back button on the app bar
       automaticallyImplyLeading: false,
-      backgroundColor: widget.myTheme.sectionColor,
+      backgroundColor: widget.myTheme.environmentColors.sectionBackgroundColor,
       scrolledUnderElevation: 15,
       leadingWidth: 100,
 
@@ -64,8 +64,8 @@ class _CustomSliverAppBarWidgetState extends State<CustomSliverAppBarWidget>
         ),
       ),
       elevation: 5,
-      surfaceTintColor: widget.myTheme.sectionColor,
-      shadowColor: widget.myTheme.backgroundColor,
+      surfaceTintColor: widget.myTheme.environmentColors.sectionBackgroundColor,
+      shadowColor: widget.myTheme.environmentColors.sectionShadowColor,
       floating: true,
       toolbarHeight: headerSizeAnimation.value,
       primary: true,
@@ -87,7 +87,8 @@ class _CustomSliverAppBarWidgetState extends State<CustomSliverAppBarWidget>
       ],
       title: Text(
         widget.viewTitle,
-        style: TextStyle(color: widget.myTheme.textColor),
+        style:
+            TextStyle(color: widget.myTheme.environmentColors.sectionTextColor),
       ),
     );
   }
