@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lottie/lottie.dart';
-import 'package:zamaan/data/services/local_auth_service.dart';
-import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/services/authentications/local_auth_service.dart';
+import 'package:zamaan/utilities/themes/themes.dart';
 import 'package:zamaan/utilities/constants/asset_urls/lottie_constants.dart';
 import 'package:zamaan/utilities/constants/text_constants.dart';
-import 'package:zamaan/utilities/utilities.dart';
-import 'package:zamaan/widgets/custom_widgets.dart';
+import 'package:zamaan/views/widgets/custom_widgets.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
-import 'package:zamaan/routes/views_route.dart';
+import 'package:zamaan/utilities/routes/views_route.dart';
 
 class LoginView extends StatefulWidget {
   static String routeName = 'login-view';
@@ -52,53 +51,70 @@ class _LoginViewState extends State<LoginView> {
                     border: Border.all(
                         color: myTheme.environmentColors.sectionBorderColor),
                     color: myTheme.environmentColors.sectionBackgroundColor),
-                child: Column(
+                child: OverflowBar(
+                  overflowAlignment: OverflowBarAlignment.center,
+                  alignment: MainAxisAlignment.center,
+                  overflowSpacing: 15,
                   children: [
                     // avatar or logo
-                    Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 50, left: 30, right: 30),
-                      child: Lottie.asset(LottieConstants.lottieLogin),
+                    Lottie.asset(
+                      LottieConstants.lottieLogin,
                     ),
 
                     // UserName input field
-                    CustomTextFieldWidget(
-                      controller: _userNameController,
-                      hintText: TextConstants.userNameHintTextPersian,
-                    ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 400),
+                      child: Column(
+                        children: [
+                          CustomTextFieldWidget(
+                            controller: _userNameController,
+                            hintText: TextConstants.userNameHintTextPersian,
+                          ),
 
-                    // password input field
-                    CustomTextFieldWidget(
-                      controller: _passwordController,
-                      hintText: TextConstants.passwordHintTextPersian,
-                      isObscureText: true,
-                      margin: const EdgeInsets.symmetric(vertical: 20),
-                    ),
+                          // password input field
+                          CustomTextFieldWidget(
+                            controller: _passwordController,
+                            hintText: TextConstants.passwordHintTextPersian,
+                            isObscureText: true,
+                            margin: const EdgeInsets.symmetric(vertical: 20),
+                          ),
 
-                    // login and go to home view
-                    CustomNormalButtonWidget(
-                        onPressed: () async {
-                          LocalAuthService()
-                              .authenticateWithBiometrics(context: context);
-                        },
-                        text: 'ورود'),
+                          // login and go to home view
+                          CustomNormalButtonWidget(
+                              onPressed: () async {
+                                LocalAuthService().authenticateWithBiometrics(
+                                    context: context);
+                              },
+                              text: 'ورود'),
 
-                    // got ot register view
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: size.width > 500
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:
-                                  _goToRegisterViewButton(context, myTheme),
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              verticalDirection: VerticalDirection.up,
-                              children: _goToRegisterViewButton(
-                                  context, myTheme,
-                                  height: 10),
+                          // got ot register view
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: OverflowBar(
+                              overflowAlignment: OverflowBarAlignment.center,
+                              overflowSpacing: 10,
+                              spacing: 10,
+                              alignment: MainAxisAlignment.center,
+                              overflowDirection: VerticalDirection.up,
+                              children: [
+                                CustomNoFieldTextButtonWidget(
+                                    onTap: () => ViewsRoute.goToSelectedView(
+                                        context,
+                                        view: 'register'),
+                                    name: TextConstants.askForCreateAccount),
+                                const Text(
+                                  textDirection: TextDirection.rtl,
+                                  TextConstants.askForAccount,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -109,23 +125,4 @@ class _LoginViewState extends State<LoginView> {
       );
     });
   }
-
-  List<Widget> _goToRegisterViewButton(
-          BuildContext context, CustomThemeExtension myTheme,
-          {double height = 0}) =>
-      [
-        CustomNoFieldTextButtonWidget(
-            onTap: () => ViewsRoute.goToSelectedView(context, view: 'register'),
-            name: TextConstants.askForCreateAccount),
-        10.0.sizedBoxWidth,
-        height.sizedBoxHeight,
-        const Text(
-          textDirection: TextDirection.rtl,
-          TextConstants.askForAccount,
-          textAlign: TextAlign.justify,
-          style: TextStyle(
-            fontSize: 13,
-          ),
-        ),
-      ];
 }

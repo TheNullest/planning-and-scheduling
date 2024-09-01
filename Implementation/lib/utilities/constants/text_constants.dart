@@ -10,5 +10,5 @@ class TextConstants {
   static const String loginSuccessFull = 'خوش آمدید';
   static const String loginFailed = 'نام کاربری با این گذرواژه یافت نشد!';
   static const String itemExistCantCreateNewer =
-      'نمی توانید با این مشخصات موجودیت جدیدی ایجاد کنید!';
+      'نمی توانید با این مشخصات، موجودیت جدیدی ایجاد کنید!';
 }

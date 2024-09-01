@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/themes/themes.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeProvider() {

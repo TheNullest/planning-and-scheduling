@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zamaan/data/models.dart';
-import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/models/models.dart';
+import 'package:zamaan/utilities/themes/themes.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
 import 'package:zamaan/views/abstracts/asbtract_base_view.dart';
-import 'package:zamaan/widgets/custom_widgets.dart';
+import 'package:zamaan/views/widgets/custom_widgets.dart';
 
 /// All active tasks, works, projects, plans, etc. will be displayed on this view
 class ActiveTasksView extends StatefulWidget implements BaseView {
@@ -40,7 +40,7 @@ class _ActiveTasksViewState extends State<ActiveTasksView> {
         itemBuilder: (context, index) {
           final task = mainTasksProvider[index];
           return Visibility(
-            visible: !task.isDone!,
+            visible: !task.completed,
             child: CustomTaskButtonWidget(
               task: task,
               donePercentage: Random().nextDouble() * 1,

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:zamaan/data/models/user_model.dart';
-import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/models/user_model.dart';
+import 'package:zamaan/utilities/themes/themes.dart';
 import 'package:zamaan/utilities/constants/asset_urls/lottie_constants.dart';
 import 'package:zamaan/utilities/constants/toast_dialog_constants.dart';
 import 'package:zamaan/utilities/providers/theme_provider.dart';
-import 'package:zamaan/data/repositories.dart';
-import 'package:zamaan/widgets/custom_widgets.dart';
-import 'package:zamaan/routes/views_route.dart';
+import 'package:zamaan/repositories/hive_repositories.dart';
+import 'package:zamaan/view_models/user_view_model.dart';
+import 'package:zamaan/views/widgets/custom_widgets.dart';
+import 'package:zamaan/utilities/routes/views_route.dart';
 
 class RegisterView extends StatefulWidget {
   static String routeName = 'register-view';
@@ -38,7 +39,6 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-
     return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
       final CustomThemeExtension myTheme = themeProvider.myTheme(context);
       return Scaffold(
@@ -93,8 +93,9 @@ class _RegisterViewState extends State<RegisterView> {
 
                   // log in and go to home view
                   CustomNormalButtonWidget(
-                      onPressed: () => _registerButton(),
-                      text: 'ایجاد حساب کاربری'),
+                    onPressed: _registerButton,
+                    text: 'ایجاد حساب کاربری',
+                  ),
 
                   // got to login view
                   Padding(
@@ -114,7 +115,7 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   Future<void> _registerButton() async {
-    BuildContext thisContext = context;
+    UserViewModel userVM = Provider.of<UserViewModel>(context, listen: false);
     if (_userNameController.text.isEmpty ||
         _phoneNumberController.text.isEmpty ||
         _passwordController.text.isEmpty ||
@@ -123,24 +124,25 @@ class _RegisterViewState extends State<RegisterView> {
     } else if (_passwordController.text != _confirmPasswordController.text) {
       ToastDialogConstants.passwordNotMatch(context);
     } else {
-      bool result = await UsersRepo().save(
-          item: UserModel.create(
-            userName: _userNameController.text,
-            password: _passwordController.text,
-            firstName: 'firstName',
-            lastName: 'lastName',
-            birthDate: DateTime.now(),
-            emailAddress: 'emailAddress',
-            profileImagePath: 'profileImagePath',
-          ),
-          callback: (UserModel entity) =>
-              entity.userName == _userNameController.text);
-      if (thisContext.mounted) {
+      bool result = await userVM.addEntity(
+        newEntity: UserModel.create(
+          userName: _userNameController.text,
+          password: _passwordController.text,
+          firstName: 'firstName',
+          lastName: 'lastName',
+          birthDate: DateTime.now(),
+          emailAddress: 'emailAddress',
+          profileImagePath: 'profileImagePath',
+        ),
+        // entityExistCallback: (UserModel entity) =>
+        //     entity.userName == _userNameController.text,
+      );
+      if (mounted) {
         if (result) {
-          ToastDialogConstants.successFullPutToDB(thisContext);
-          ViewsRoute.goToSelectedView(thisContext, view: 'login');
+          ToastDialogConstants.successFullPutToDB(context);
+          ViewsRoute.goToSelectedView(context, view: 'login');
         } else {
-          ToastDialogConstants.itemExistCantCreateNewer(thisContext);
+          ToastDialogConstants.itemExistCantCreateNewer(context);
         }
       }
     }

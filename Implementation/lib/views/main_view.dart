@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:zamaan/themes/themes.dart';
+import 'package:zamaan/utilities/themes/themes.dart';
 import 'package:zamaan/utilities/my_custom_clipper.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
 import 'package:zamaan/utilities/utilities.dart';
 import 'package:zamaan/views/abstracts/asbtract_base_view.dart';
-import 'package:zamaan/widgets/custom_widgets.dart';
+import 'package:zamaan/views/widgets/custom_widgets.dart';
 import 'package:zamaan/utilities/responsive_helper.dart';
 import 'package:zamaan/views/views.dart';
 
@@ -155,10 +155,31 @@ class _MainViewState extends State<MainView>
                           bottom: barsDisplay ? 45 : -40,
                           left: ResponsiveHelper.screenSizeWidth(context) / 2 -
                               15,
-                          child: CustomAddNewTaskButtonWidget(
-                            taskNameTextController: _taskNameTextController,
-                            descriptionTextController:
-                                _descriptionTextController,
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.add,
+                                color:
+                                    myTheme.buttonColors.buttonForegroundColor,
+                                size: 15,
+                              ),
+                              style: ButtonStyle(
+                                  elevation: const WidgetStatePropertyAll(10),
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      myTheme
+                                          .buttonColors.buttonBackgroundColor)),
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (context) => AddTaskDialog(
+                                  descriptionTextController:
+                                      TextEditingController(),
+                                  taskNameTextController:
+                                      TextEditingController(),
+                                ),
+                              ),
+                            ),
                           )),
                     ]),
                   )),

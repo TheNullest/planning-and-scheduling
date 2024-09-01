@@ -1,9 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_persian_calendar/flutter_persian_calendar.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:provider/provider.dart';
+import 'package:zamaan/models/task_category_model.dart';
+import 'package:zamaan/models/main_task_model.dart';
+import 'package:zamaan/repositories/hive_task_category_repo.dart';
+import 'package:zamaan/repositories/hive_main_task_repo.dart';
+import 'package:zamaan/utilities/date_time_helper.dart';
 import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/utilities/utilities.dart';
-import 'package:zamaan/widgets/custom_widgets.dart';
+import 'package:zamaan/view_models/main_task_view_model.dart';
+import 'package:zamaan/views/widgets/custom_widgets.dart';
 
 class AddTaskDialog extends StatefulWidget {
   final TextEditingController taskNameTextController;
@@ -19,20 +26,34 @@ class AddTaskDialog extends StatefulWidget {
 }
 
 class _AddTaskDialogState extends State<AddTaskDialog> {
-  @override
-  void initState() {
-    setCreationDate(Jalali.now());
-    setSelectedDate(Jalali.now().addDays(1));
-    super.initState();
-  }
+  late MainTaskViewModel mainTaskProvider;
 
-  late Jalali creationDate;
-  late Jalali dueDate;
+  final DateTimeHelper selectedCreationDateTime = DateTimeHelper();
+  final DateTimeHelper selectedDueDateTime = DateTimeHelper.customDateTime(
+      DateTime.now().add(const Duration(days: 1)));
+
+  late DateTime creationDateTime;
+  late DateTime dueDate;
 
   String? creationDateToString;
-  String? dueDateToString;
+  String? dueDateTimeToString;
 
   RepetitionInterval? selectedRepetition = RepetitionInterval.daily;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    mainTaskProvider = Provider.of<MainTaskViewModel>(context, listen: false);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future<List<TaskCategoryModel>> _getGroups() async =>
+      await HiveCategoryRepo().getAll();
 
   @override
   Widget build(BuildContext context) {
@@ -53,54 +74,17 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       const EdgeInsets.only(left: 15, right: 15, bottom: 25),
                   child: Column(
                     children: [
-                      /// Show Edit CreationDate DialogBox
-                      CustomNormalButtonWidget(
-                          onPressed: () => showDialogBox(
-                                Dialog(
-                                    alignment: Alignment.center,
-                                    insetPadding: const EdgeInsets.all(25),
-                                    backgroundColor:
-                                        Theme.of(context).colorScheme.surface,
-                                    child: PersianCalendar(
-                                        confirmButtonText: 'کانفیرم',
-                                        selectedDate: creationDate,
-                                        calendarStartDate: Jalali(1350),
-                                        calendarEndDate: Jalali(1450),
-                                        onDateChanged: (onSelectedDateChange) =>
-                                            setCreationDate(
-                                                onSelectedDateChange),
-                                        calendarTheme: PersianCalendarTheme(
-                                            textStyle: const TextStyle()),
-                                        onConfirmButtonPressed: () {
-                                          Navigator.pop(context);
-                                        })),
-                              ),
-                          text: 'زمان ایجاد : $creationDateToString'),
-                      15.0.sizedBoxHeight,
+                      /// Creation DateTime
+                      CustomDateTimePickerWidget(
+                        title: 'زمان ایجاد',
+                        selectedDateTime: selectedCreationDateTime,
+                      ),
 
-                      /// Show DueDate Entry DialogBox
-                      CustomNormalButtonWidget(
-                          onPressed: () => showDialogBox(
-                                Dialog(
-                                    alignment: Alignment.center,
-                                    insetPadding: const EdgeInsets.all(25),
-                                    backgroundColor:
-                                        Theme.of(context).colorScheme.surface,
-                                    child: PersianCalendar(
-                                        confirmButtonText: 'کانفیرم',
-                                        selectedDate: dueDate,
-                                        calendarStartDate: Jalali(1350),
-                                        calendarEndDate: Jalali(1450),
-                                        onDateChanged: (onSelectedDateChange) =>
-                                            setSelectedDate(
-                                                onSelectedDateChange),
-                                        calendarTheme: PersianCalendarTheme(
-                                            textStyle: const TextStyle()),
-                                        onConfirmButtonPressed: () {
-                                          Navigator.pop(context);
-                                        })),
-                              ),
-                          text: 'زمان سررسید : $dueDateToString'),
+                      /// Due DateTime
+                      CustomDateTimePickerWidget(
+                        title: 'زمان سررسید',
+                        selectedDateTime: selectedDueDateTime,
+                      ),
 
                       15.0.sizedBoxHeight,
 
@@ -142,58 +126,77 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
                       15.0.sizedBoxHeight,
 
-                      /// Select Contributers
-                      CustomNormalButtonWidget(
-                        text: 'نحوه تکرار',
-                        onPressed: () => showDialogBox(Dialog(
-                          child: Container(
-                              height: 400,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.surface,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: DropdownButton<RepetitionInterval>(
-                                value: selectedRepetition,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    selectedRepetition = newValue;
-                                  });
-                                },
-                                items: RepetitionInterval.values.map((item) {
-                                  return DropdownMenuItem(
-                                    value: item,
-                                    child: Text(item.toString()),
-                                  );
-                                }).toList(),
-                              )),
-                        )),
+                      /// Select repitition interval
+                      DropdownButton<RepetitionInterval>(
+                        value: selectedRepetition,
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedRepetition = newValue;
+                          });
+                        },
+                        items: RepetitionInterval.values.map((item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                            onTap: () {
+                              selectedRepetition = item;
+                            },
+                          );
+                        }).toList(),
                       ),
                       15.0.sizedBoxHeight,
 
                       /// Select groups
                       CustomNormalButtonWidget(
-                        text: 'گروه بندی',
-                        onPressed: () => showDialogBox(Dialog(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          insetPadding: const EdgeInsets.all(25),
-                          child: Container(
-                            height: 400,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.surface,
-                                borderRadius: BorderRadius.circular(5)),
-                            // child: ListView.builder(
-                            //     itemCount: groups.length,
-                            //     itemBuilder: (context, index) {
-                            //       final group = groups[index];
-                            //       return Padding(
-                            //         padding: const EdgeInsets.symmetric(
-                            //             horizontal: 20, vertical: 10),
-                            //         child: Text(group.groupName),
-                            //       );
-                            //     }),
-                          ),
-                        )),
-                      ),
+                          text: 'گروه بندی',
+                          onPressed: () => showDialogBox(
+                                Dialog(
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.surface,
+                                    insetPadding: const EdgeInsets.all(25),
+                                    child: Container(
+                                      height: 400,
+                                      decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+
+                                      /// TODO #5 A separate widget must be created to display, create, edit or delete groups
+                                      child: FutureBuilder<
+                                              List<TaskCategoryModel>>(
+                                          future: _getGroups(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              final List<TaskCategoryModel>
+                                                  groups = snapshot.data!;
+                                              return DropdownButton<
+                                                  TaskCategoryModel>(
+                                                onChanged: (newValue) {
+                                                  setState(() {});
+                                                },
+                                                items: groups
+                                                    .map((group) =>
+                                                        DropdownMenuItem(
+                                                          value: group,
+                                                          child: Text(
+                                                              group.title!),
+                                                        ))
+                                                    .toList(),
+                                              );
+                                            } else if (snapshot.hasError) {
+                                              // Handle any errors that might occur during group retrieval
+                                              return Text(
+                                                  'Error: ${snapshot.error}');
+                                            }
+                                            // Display a loading indicator while waiting for data
+                                            return const Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          }),
+                                    )),
+                              )),
                       15.0.sizedBoxHeight,
 
                       /// Select tags
@@ -208,6 +211,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                             decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.surface,
                                 borderRadius: BorderRadius.circular(5)),
+
+                            /// TODO #6 A separate widget must be created to display, create, edit or delete tags
                             // child: ListView.builder(
                             //     itemCount: tags.length,
                             //     itemBuilder: (context, index) {
@@ -238,24 +243,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   minWidth: 100,
                 ),
                 CustomNormalButtonWidget(
-                  onPressed: () {
-                    // mainTaskProvider.addTask(
-                    //   MainTaskModel.create(
-                    //     creator: users[01],
-                    //     title: widget.taskNameTextController.text,
-                    //     memberOfGroup: groups[01],
-                    //     creationDate: DateTime.now(),
-                    //     color: Colors.red,
-                    //     icon: Icons.groups,
-                    //     repeat: selectedRepetition,
-                    //     importance: Importance.important,
-                    //     totalSpentTime: const Duration(),
-                    //     goal: GoalModel(id: '12', mainTaskModelId: Uuid().v4()),
-                    //   ),
-                    // );
-                    widget.taskNameTextController.clear();
-                    Navigator.pop(context);
-                  },
+                  onPressed: _createNewTask,
                   text: 'تایید',
                   minWidth: 100,
                 ),
@@ -267,6 +255,34 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     );
   }
 
+  Future<void> _createNewTask() async {
+    try {
+      await mainTaskProvider.addEntity(
+        newEntity: MainTaskModel.create(
+          title: widget.taskNameTextController.text,
+          description: widget.descriptionTextController.text,
+          taskCategories: [],
+          timeIntervals: [],
+          creationDate: selectedCreationDateTime.dateTime,
+          deadline: selectedDueDateTime.dateTime,
+          colorCode: Colors.red.value,
+          iconCode: Icons.groups.codePoint,
+          repeat: selectedRepetition!.index,
+          importance: Importance.important.index,
+        ),
+      );
+
+      // Perform any cleanup actions (optional)
+      widget.taskNameTextController
+          .clear(); // Clear text controller after saving
+      widget.descriptionTextController.clear();
+      if (mounted) Navigator.pop(context);
+    } catch (error) {
+      // Handle errors (e.g., display error message)
+      log('Error saving task: $error');
+    }
+  }
+
   void exitDialog() {
     Navigator.pop(context);
     widget.taskNameTextController.clear();
@@ -274,16 +290,4 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   void showDialogBox(Dialog dialog) =>
       showDialog(context: context, builder: (context) => dialog);
-
-  void setCreationDate(Jalali selectedDateChanged) => setState(() {
-        creationDate = selectedDateChanged;
-        creationDateToString =
-            '${selectedDateChanged.year}/${selectedDateChanged.month}/${selectedDateChanged.day}';
-      });
-
-  void setSelectedDate(Jalali selectedDateChanged) => setState(() {
-        dueDate = selectedDateChanged;
-        dueDateToString =
-            '${selectedDateChanged.year}/${selectedDateChanged.month}/${selectedDateChanged.day}';
-      });
 }
