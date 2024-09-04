@@ -5,11 +5,8 @@ import 'package:zamaan/models/models.dart';
 part 'task_doing_time_interval_model.g.dart';
 
 @HiveType(typeId: 3)
-class TaskDoingTimeIntervalModel extends BaseModelAbstract {
-  @HiveField(1)
-  final String creatorId;
-
-  @HiveField(2)
+class TaskDoingTimeIntervalModel extends BaseModelAbstraction {
+  @HiveField(7)
   final String mainTaskId;
 
   @HiveField(3)
@@ -26,7 +23,8 @@ class TaskDoingTimeIntervalModel extends BaseModelAbstract {
 
   TaskDoingTimeIntervalModel({
     required super.id,
-    required this.creatorId,
+    super.creatorId,
+    super.description,
     required this.mainTaskId,
     required this.subTaskId,
     required this.startAt,

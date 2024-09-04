@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 import 'package:zamaan/models/main_task_model.dart';
+import 'package:zamaan/utilities/enums.dart';
 import 'package:zamaan/view_models/dtos/dto_abstract.dart';
 import 'package:zamaan/view_models/dtos/dtos.dart';
 
-class MainTaskDTO extends DTOAbstract<MainTaskModel> {
-  final String creatorId;
-
+class MainTaskDTO extends DTOAbstraction<MainTaskModel> {
   final String title;
 
   final DateTime creationDate;
@@ -16,37 +16,30 @@ class MainTaskDTO extends DTOAbstract<MainTaskModel> {
   ///Instead of saving the entire icon, save its IconData
   final Color icon;
 
-  final int importance;
+  final Priority priority;
 
-  final String? description;
+  final DateTime? dueTime;
 
-  final DateTime? deadline;
-
-  final int? repeat;
-
-  List<ScheduledTaskTimeIntervalDTO>? scheduledTimeFrames;
-
-  List<TaskDoingTimeIntervalDTO>? timeIntervals;
+  final RepetitionInterval? repetitionInterval;
 
   /// Groups such as : sport, reading, working, fun ,...
-  final List<TaskCategoryDTO>? taskCategories;
+  final List<String>? taskCategoriesId;
 
-  final List<TagDTO>? fixedTags;
+  final List<String>? fixedTagsId;
 
-  final List<TagDTO>? tags;
+  final List<String>? tagsId;
 
   /// Doing work with the presence and help of other people
-  final List<UserDTO>? contributors;
+  final List<String>? contributorsId;
 
   /// When a project is planned and divided into smaller tasks
-  final List<MainTaskDTO>? subMainTasks;
-  final List<SubTaskDTO>? subTasks;
+  final String? superMainTaskId;
 
   /// Selected days of the week to repeat the task
   final SelectedWeekDaysDTO? repititionOnWeekDays;
 
   /// Store all time spent based on miliseconds in TaskDoingTimFrameModels
-  int? totalSpentTime;
+  Duration? totalSpentTime = const Duration(microseconds: 0);
 
   /// If the task is completed\
   /// and there is no need to repeat it
@@ -54,58 +47,66 @@ class MainTaskDTO extends DTOAbstract<MainTaskModel> {
 
   MainTaskDTO(
       {required super.id,
-      required this.creatorId,
+      super.creatorId,
+      super.description,
       required this.title,
-      required this.taskCategories,
+      required this.taskCategoriesId,
       required this.creationDate,
       required this.color,
       required this.icon,
-      required this.importance,
-      this.timeIntervals,
-      this.fixedTags,
-      this.tags,
-      this.contributors,
-      this.description,
-      this.subMainTasks,
-      this.subTasks,
-      this.deadline,
-      this.repeat,
+      required this.priority,
+      this.fixedTagsId,
+      this.tagsId,
+      this.contributorsId,
+      this.superMainTaskId,
+      this.dueTime,
+      this.repetitionInterval,
       this.repititionOnWeekDays,
-      this.totalSpentTime = 0,
-      this.scheduledTimeFrames,
+      this.totalSpentTime,
       this.completed = false});
 
-  factory MainTaskDTO.fromModel({
-    required MainTaskModel mainTaskModel,
-    List<ScheduledTaskTimeIntervalDTO>? scheduledTimeFrames,
-    List<TaskDoingTimeIntervalDTO>? timeIntervals,
-    List<TaskCategoryDTO>? taskCategories,
-    List<TagDTO>? fixedTags,
-    List<TagDTO>? tags,
-    List<UserDTO>? contributorsId,
-    List<MainTaskDTO>? subMainTasks,
-    List<SubTaskDTO>? subTasks,
-    SelectedWeekDaysDTO? repititionOnWeekDays,
-  }) =>
+  var d = Priority.critical.index;
+
+  factory MainTaskDTO.fromModel({required MainTaskModel mainTaskModel}) =>
       MainTaskDTO(
-          id: mainTaskModel.id,
-          creatorId: mainTaskModel.creatorId,
-          title: mainTaskModel.title,
-          taskCategories: taskCategories,
-          creationDate: mainTaskModel.creationDate,
-          color: IconData(mainTaskModel.colorCode),
-          icon: Color(mainTaskModel.iconCode),
-          importance: mainTaskModel.importance);
+        id: mainTaskModel.id,
+        description: mainTaskModel.description,
+        creatorId: mainTaskModel.creatorId,
+        title: mainTaskModel.title,
+        taskCategoriesId: mainTaskModel.taskCategoriesId,
+        creationDate: mainTaskModel.creationDate,
+        color: IconData(mainTaskModel.colorCode),
+        icon: Color(mainTaskModel.iconCode),
+        priority: Priority.fromIndex(mainTaskModel.priority),
+        completed: mainTaskModel.completed,
+        contributorsId: mainTaskModel.contributorsId,
+        dueTime: mainTaskModel.dueTime,
+        fixedTagsId: mainTaskModel.fixedTagsId,
+        repetitionInterval:
+            RepetitionInterval.fromIndex(mainTaskModel.repetitionInterval!),
+        superMainTaskId: mainTaskModel.superMainTaskId,
+        tagsId: mainTaskModel.tagsId,
+        totalSpentTime: Duration(milliseconds: mainTaskModel.totalSpentTime!),
+      );
 
   @override
   MainTaskModel toModel() => MainTaskModel(
-      id: id,
-      creatorId: creatorId,
-      title: title,
-      taskCategoriesId: taskCategories?.map((category) => category.id).toList(),
-      contributorsId: contributors?.map((category) => category.id).toList(),
-      creationDate: creationDate,
-      colorCode: color.codePoint,
-      iconCode: icon.value,
-      importance: importance);
+        id: const Uuid().v4(),
+        creatorId: creatorId,
+        description: description,
+        title: title,
+        taskCategoriesId: taskCategoriesId,
+        contributorsId: contributorsId,
+        creationDate: creationDate,
+        colorCode: color.codePoint,
+        iconCode: icon.value,
+        priority: priority.index,
+        repetitionInterval: repetitionInterval!.index,
+        superMainTaskId: superMainTaskId,
+        totalSpentTime: totalSpentTime!.inMilliseconds,
+        tagsId: tagsId,
+        fixedTagsId: fixedTagsId,
+        completed: completed,
+        dueTime: dueTime,
+      );
 }

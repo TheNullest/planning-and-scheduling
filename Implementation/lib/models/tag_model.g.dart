@@ -6,8 +6,7 @@ part of 'tag_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TagModelAdapter
-    extends BaseTypeAdapterAbstract<TypeAdapter<TagModel>, TagModel> {
+class TagModelAdapter extends BaseTypeAdapterAbstract<TagModel> {
   @override
   final int typeId = 7;
 
@@ -19,9 +18,9 @@ class TagModelAdapter
     };
     return TagModel(
       id: fields[0] as String,
-      creatorId: fields[1] as String?,
-      tagName: fields[2] as String,
-      description: fields[3] as String?,
+      creatorId: fields[24] as String?,
+      description: fields[25] as String?,
+      title: fields[3] as String,
       colorCode: fields[4] as int,
       iconCode: fields[5] as int,
     );
@@ -31,18 +30,18 @@ class TagModelAdapter
   void write(BinaryWriter writer, TagModel obj) {
     writer
       ..writeByte(6)
-      ..writeByte(1)
-      ..write(obj.creatorId)
-      ..writeByte(2)
-      ..write(obj.tagName)
       ..writeByte(3)
-      ..write(obj.description)
+      ..write(obj.title)
       ..writeByte(4)
       ..write(obj.colorCode)
       ..writeByte(5)
       ..write(obj.iconCode)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

@@ -268,7 +268,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
           colorCode: Colors.red.value,
           iconCode: Icons.groups.codePoint,
           repeat: selectedRepetition!.index,
-          importance: Importance.important.index,
+          importance: Priority.important.index,
         ),
       );
 

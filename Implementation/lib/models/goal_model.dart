@@ -5,7 +5,7 @@ import 'package:zamaan/models/models.dart';
 part 'goal_model.g.dart';
 
 @HiveType(typeId: 8)
-class GoalModel extends BaseModelAbstract {
+class GoalModel extends BaseModelAbstraction {
   @HiveField(5)
   final String mainTaskId;
 
@@ -28,6 +28,8 @@ class GoalModel extends BaseModelAbstract {
   GoalModel({
     required super.id,
     required this.mainTaskId,
+    super.creatorId,
+    super.description,
     this.perDay,
     this.perWeek,
     this.perMonth,

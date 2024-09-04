@@ -1,7 +1,7 @@
 import 'package:zamaan/models/user_model.dart';
 import 'package:zamaan/view_models/dtos/dto_abstract.dart';
 
-class UserDTO extends DTOAbstract<UserModel> {
+class UserDTO extends DTOAbstraction<UserModel> {
   final String userName;
 
   final String password;
@@ -18,6 +18,7 @@ class UserDTO extends DTOAbstract<UserModel> {
 
   UserDTO({
     required super.id,
+    super.description,
     required this.userName,
     required this.password,
     required this.firstName,
@@ -31,6 +32,7 @@ class UserDTO extends DTOAbstract<UserModel> {
   }) =>
       UserDTO(
           id: userModel.id,
+          description: userModel.description,
           userName: userModel.userName,
           password: userModel.password,
           firstName: userModel.firstName,
@@ -38,4 +40,16 @@ class UserDTO extends DTOAbstract<UserModel> {
           birthDate: userModel.birthDate,
           emailAddress: userModel.emailAddress,
           profileImagePath: userModel.profileImagePath);
+
+  @override
+  UserModel toModel() => UserModel(
+      id: id,
+      description: description,
+      userName: userName,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      birthDate: birthDate,
+      emailAddress: emailAddress,
+      profileImagePath: profileImagePath);
 }

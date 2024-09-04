@@ -6,8 +6,7 @@ part of 'main_task_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MainTaskModelAdapter
-    extends BaseTypeAdapterAbstract<TypeAdapter<MainTaskModel>, MainTaskModel> {
+class MainTaskModelAdapter extends BaseTypeAdapterAbstract<MainTaskModel> {
   @override
   final int typeId = 1;
 
@@ -19,30 +18,29 @@ class MainTaskModelAdapter
     };
     return MainTaskModel(
       id: fields[0] as String,
-      creatorId: fields[1] as String,
+      creatorId: fields[24] as String?,
+      description: fields[25] as String?,
       title: fields[2] as String,
-      taskCategoriesId: (fields[13] as List?)?.cast<String>(),
+      taskCategoriesId: (fields[10] as List?)?.cast<String>(),
       creationDate: fields[3] as DateTime,
       colorCode: fields[4] as int,
       iconCode: fields[5] as int,
-      importance: fields[6] as int,
-      fixedTagsId: (fields[14] as List?)?.cast<String>(),
-      tagsId: (fields[15] as List?)?.cast<String>(),
-      contributorsId: (fields[16] as List?)?.cast<String>(),
-      description: fields[7] as String?,
-      deadline: fields[8] as DateTime?,
-      repeat: fields[9] as int?,
-      totalSpentTime: fields[19] as int?,
-      completed: fields[21] as bool,
+      priority: fields[6] as int,
+      contributorsId: (fields[15] as List?)?.cast<String>(),
+      superMainTaskId: fields[16] as String?,
+      fixedTagsId: (fields[11] as List?)?.cast<String>(),
+      tagsId: (fields[12] as List?)?.cast<String>(),
+      dueTime: fields[8] as DateTime?,
+      repetitionInterval: fields[9] as int?,
+      totalSpentTime: fields[13] as int?,
+      completed: fields[14] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, MainTaskModel obj) {
     writer
-      ..writeByte(16)
-      ..writeByte(1)
-      ..write(obj.creatorId)
+      ..writeByte(17)
       ..writeByte(2)
       ..write(obj.title)
       ..writeByte(3)
@@ -52,27 +50,31 @@ class MainTaskModelAdapter
       ..writeByte(5)
       ..write(obj.iconCode)
       ..writeByte(6)
-      ..write(obj.importance)
-      ..writeByte(7)
-      ..write(obj.description)
+      ..write(obj.priority)
       ..writeByte(8)
-      ..write(obj.deadline)
+      ..write(obj.dueTime)
       ..writeByte(9)
-      ..write(obj.repeat)
+      ..write(obj.repetitionInterval)
       ..writeByte(10)
       ..write(obj.taskCategoriesId)
       ..writeByte(11)
       ..write(obj.fixedTagsId)
       ..writeByte(12)
       ..write(obj.tagsId)
-      ..writeByte(15)
-      ..write(obj.contributorsId)
       ..writeByte(13)
       ..write(obj.totalSpentTime)
       ..writeByte(14)
       ..write(obj.completed)
+      ..writeByte(15)
+      ..write(obj.contributorsId)
+      ..writeByte(16)
+      ..write(obj.superMainTaskId)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

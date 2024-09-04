@@ -6,16 +6,11 @@ part 'task_category_model.g.dart';
 
 /// Categories such as : sport, reading, working, fun ,...
 @HiveType(typeId: 2)
-class TaskCategoryModel extends BaseModelAbstract {
+class TaskCategoryModel extends BaseModelAbstraction {
   /// Default and predefined groups don't have creatorId
-  @HiveField(1)
-  final String creatorId;
 
   @HiveField(3)
   final String? title;
-
-  @HiveField(6)
-  final String? description;
 
   /// Store the color value as an integer
   @HiveField(4)
@@ -27,9 +22,9 @@ class TaskCategoryModel extends BaseModelAbstract {
 
   TaskCategoryModel({
     required super.id,
-    required this.creatorId,
+    super.creatorId,
     required this.title,
-    required this.description,
+    super.description,
     required this.colorCode,
     required this.iconCode,
   });

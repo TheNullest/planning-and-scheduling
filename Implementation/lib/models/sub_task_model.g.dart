@@ -6,8 +6,7 @@ part of 'sub_task_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SubTaskModelAdapter
-    extends BaseTypeAdapterAbstract<TypeAdapter<SubTaskModel>, SubTaskModel> {
+class SubTaskModelAdapter extends BaseTypeAdapterAbstract<SubTaskModel> {
   @override
   final int typeId = 6;
 
@@ -19,12 +18,12 @@ class SubTaskModelAdapter
     };
     return SubTaskModel(
       id: fields[0] as String,
-      creatorId: fields[1] as String,
-      maintTaskId: fields[2] as String,
-      subTaskName: fields[4] as String,
-      description: fields[5] as String?,
-      importance: fields[3] as int,
-      isDone: fields[6] as bool,
+      creatorId: fields[24] as String?,
+      mainTaskId: fields[3] as String,
+      title: fields[5] as String,
+      description: fields[25] as String?,
+      priority: fields[4] as int,
+      completed: fields[6] as bool,
     );
   }
 
@@ -32,20 +31,20 @@ class SubTaskModelAdapter
   void write(BinaryWriter writer, SubTaskModel obj) {
     writer
       ..writeByte(7)
-      ..writeByte(1)
-      ..write(obj.creatorId)
-      ..writeByte(2)
-      ..write(obj.maintTaskId)
       ..writeByte(3)
-      ..write(obj.importance)
+      ..write(obj.mainTaskId)
       ..writeByte(4)
-      ..write(obj.subTaskName)
+      ..write(obj.priority)
       ..writeByte(5)
-      ..write(obj.description)
+      ..write(obj.title)
       ..writeByte(6)
-      ..write(obj.isDone)
+      ..write(obj.completed)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

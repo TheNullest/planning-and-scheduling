@@ -14,16 +14,11 @@ part 'tag_model.g.dart';
 /// and tags can be used to specify the\
 /// type of language (C#, Pyton, PHP ,...) or work eara
 @HiveType(typeId: 7)
-class TagModel extends BaseModelAbstract {
+class TagModel extends BaseModelAbstraction {
   /// Default and predefined tags don't have creatorId
-  @HiveField(1)
-  final String? creatorId;
-
-  @HiveField(2)
-  final String tagName;
 
   @HiveField(3)
-  final String? description;
+  final String title;
 
   @HiveField(4)
   final int colorCode;
@@ -33,9 +28,9 @@ class TagModel extends BaseModelAbstract {
 
   TagModel(
       {required super.id,
-      required this.creatorId,
-      required this.tagName,
-      required this.description,
+      super.creatorId,
+      super.description,
+      required this.title,
       required this.colorCode,
       required this.iconCode});
 }

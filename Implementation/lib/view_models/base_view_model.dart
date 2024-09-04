@@ -6,8 +6,8 @@ import 'package:zamaan/repositories/hive_base_repository_abstraction.dart';
 import 'package:zamaan/view_models/dtos/dto_abstract.dart';
 
 abstract class BaseViewModel<
-        DTO extends DTOAbstract,
-        Model extends BaseModelAbstract,
+        DTO extends DTOAbstraction,
+        Model extends BaseModelAbstraction,
         HiveModelRepo extends HiveBaseRepositoryAbstraction<Model>>
     extends ChangeNotifier {
   BaseViewModel({required this.repository}) {
@@ -20,7 +20,7 @@ abstract class BaseViewModel<
   //TODO #7 Add and implement error and exception handling
   HiveModelRepo repository;
 
-  late List<DTO>? _entities = [];
+  final List<DTO> _entities = [];
   List<DTO>? get entities => _entities;
 
   late List<DTO> _filteredEntities = [];
@@ -41,7 +41,10 @@ abstract class BaseViewModel<
   Future<List<DTO>?> loadEntities() async {
     try {
       isLoading = true;
-      _entities = await repository.getAll();
+      List<Model> result = await repository.getAll();
+      for (Model entity in result) {
+        _entities.add(modelToDTOConverter(model: entity));
+      }
       log("Loading entities");
     } catch (e) {
       // Handle error
@@ -52,9 +55,11 @@ abstract class BaseViewModel<
     return entities;
   }
 
+  DTO modelToDTOConverter({required Model model});
+
   DTO? getById({required String id}) {
     try {
-      return _entities!.firstWhere((entity) => entity.id == id);
+      return _entities.firstWhere((entity) => entity.id == id);
     } on Exception catch (e) {
       if (e is StateError) {
         // Handle the case where no matching element is found
@@ -66,19 +71,19 @@ abstract class BaseViewModel<
     }
   }
 
-  DTO? getByKey({required dynamic key}) {
-    try {
-      return _entities!.firstWhere((entity) => entity.key == key);
-    } on Exception catch (e) {
-      if (e is StateError) {
-        // Handle the case where no matching element is found
-        return null;
-      } else {
-        // Re-throw if it's not the expected error
-        rethrow;
-      }
-    }
-  }
+  // DTO? getByKey({required dynamic key}) {
+  //   try {
+  //     return _entities!.firstWhere((entity) => entity.key == key);
+  //   } on Exception catch (e) {
+  //     if (e is StateError) {
+  //       // Handle the case where no matching element is found
+  //       return null;
+  //     } else {
+  //       // Re-throw if it's not the expected error
+  //       rethrow;
+  //     }
+  //   }
+  // }
 
   Future<bool> addEntity({
     required DTO newEntity,
@@ -91,7 +96,7 @@ abstract class BaseViewModel<
       return false;
     }
     //TODO Implement appropriate message display
-    await repository.save(item: newEntity);
+    await repository.save(item: newEntity.toModel() as Model);
     await loadEntities();
     return true;
   }

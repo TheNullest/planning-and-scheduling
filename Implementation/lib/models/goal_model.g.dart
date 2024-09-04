@@ -6,8 +6,7 @@ part of 'goal_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GoalModelAdapter
-    extends BaseTypeAdapterAbstract<TypeAdapter<GoalModel>, GoalModel> {
+class GoalModelAdapter extends BaseTypeAdapterAbstract<GoalModel> {
   @override
   final int typeId = 8;
 
@@ -20,6 +19,8 @@ class GoalModelAdapter
     return GoalModel(
       id: fields[0] as String,
       mainTaskId: fields[5] as String,
+      creatorId: fields[24] as String?,
+      description: fields[25] as String?,
       perDay: fields[1] as int?,
       perWeek: fields[2] as int?,
       perMonth: fields[3] as int?,
@@ -30,8 +31,8 @@ class GoalModelAdapter
   @override
   void write(BinaryWriter writer, GoalModel obj) {
     writer
-      ..writeByte(6)
-      ..writeByte(7)
+      ..writeByte(8)
+      ..writeByte(5)
       ..write(obj.mainTaskId)
       ..writeByte(1)
       ..write(obj.perDay)
@@ -42,7 +43,11 @@ class GoalModelAdapter
       ..writeByte(4)
       ..write(obj.perYear)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

@@ -5,11 +5,11 @@ import 'package:zamaan/models/models.dart';
 part 'user_model.g.dart';
 
 @HiveType(typeId: 8)
-class UserModel extends BaseModelAbstract {
-  @HiveField(1)
+class UserModel extends BaseModelAbstraction {
+  @HiveField(2)
   final String userName;
 
-  @HiveField(2)
+  @HiveField(8)
   final String password;
 
   @HiveField(3)
@@ -25,10 +25,11 @@ class UserModel extends BaseModelAbstract {
   final String emailAddress;
 
   @HiveField(7)
-  final String profileImagePath;
+  final String? profileImagePath;
 
   UserModel({
     required super.id,
+    super.description,
     required this.userName,
     required this.password,
     required this.firstName,

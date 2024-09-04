@@ -6,8 +6,8 @@ part of 'task_category_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaskCategoryModelAdapter extends BaseTypeAdapterAbstract<
-    TypeAdapter<TaskCategoryModel>, TaskCategoryModel> {
+class TaskCategoryModelAdapter
+    extends BaseTypeAdapterAbstract<TaskCategoryModel> {
   @override
   final int typeId = 2;
 
@@ -19,9 +19,9 @@ class TaskCategoryModelAdapter extends BaseTypeAdapterAbstract<
     };
     return TaskCategoryModel(
       id: fields[0] as String,
-      creatorId: fields[1] as String,
+      creatorId: fields[24] as String?,
       title: fields[3] as String?,
-      description: fields[6] as String?,
+      description: fields[25] as String?,
       colorCode: fields[4] as int,
       iconCode: fields[5] as int,
     );
@@ -31,18 +31,18 @@ class TaskCategoryModelAdapter extends BaseTypeAdapterAbstract<
   void write(BinaryWriter writer, TaskCategoryModel obj) {
     writer
       ..writeByte(6)
-      ..writeByte(1)
-      ..write(obj.creatorId)
       ..writeByte(3)
       ..write(obj.title)
-      ..writeByte(6)
-      ..write(obj.description)
       ..writeByte(4)
       ..write(obj.colorCode)
       ..writeByte(5)
       ..write(obj.iconCode)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

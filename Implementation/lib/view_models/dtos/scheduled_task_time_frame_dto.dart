@@ -1,18 +1,23 @@
-import 'package:zamaan/models/scheduled_task_time_frame_model.dart';
+import 'package:zamaan/models/scheduled_task_time_interval_model.dart';
 import 'package:zamaan/view_models/dtos/dto_abstract.dart';
 
-class ScheduledTaskTimeIntervalDTO extends DTOAbstract {
+class ScheduledTaskTimeIntervalDTO
+    extends DTOAbstraction<ScheduledTaskTimeIntervalModel> {
+  final String mainTaskId;
+  final String subTaskId;
   final DateTime startDateTime;
 
   final DateTime? endDateTime;
 
-  final bool isDone;
+  final bool completed;
 
   ScheduledTaskTimeIntervalDTO({
     required super.id,
     required this.startDateTime,
+    required this.mainTaskId,
+    required this.subTaskId,
     this.endDateTime,
-    this.isDone = false,
+    this.completed = false,
   });
 
   factory ScheduledTaskTimeIntervalDTO.fromModel(
@@ -20,7 +25,21 @@ class ScheduledTaskTimeIntervalDTO extends DTOAbstract {
               scheduledTaskTimeIntervalModel}) =>
       ScheduledTaskTimeIntervalDTO(
           id: scheduledTaskTimeIntervalModel.id,
+          mainTaskId: scheduledTaskTimeIntervalModel.mainTaskId,
+          subTaskId: scheduledTaskTimeIntervalModel.subTaskId,
           startDateTime: scheduledTaskTimeIntervalModel.startDateTime,
           endDateTime: scheduledTaskTimeIntervalModel.endDateTime,
-          isDone: scheduledTaskTimeIntervalModel.isDone);
+          completed: scheduledTaskTimeIntervalModel.completed);
+
+  @override
+  ScheduledTaskTimeIntervalModel toModel() => ScheduledTaskTimeIntervalModel(
+        id: id,
+        mainTaskId: mainTaskId,
+        subTaskId: subTaskId,
+        startDateTime: startDateTime,
+        completed: completed,
+        creatorId: creatorId,
+        description: description,
+        endDateTime: endDateTime,
+      );
 }

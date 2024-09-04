@@ -6,8 +6,8 @@ part of 'task_doing_time_interval_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaskDoingTimeIntervalModelAdapter extends BaseTypeAdapterAbstract<
-    TypeAdapter<TaskDoingTimeIntervalModel>, TaskDoingTimeIntervalModel> {
+class TaskDoingTimeIntervalModelAdapter
+    extends BaseTypeAdapterAbstract<TaskDoingTimeIntervalModel> {
   @override
   final int typeId = 3;
 
@@ -19,8 +19,9 @@ class TaskDoingTimeIntervalModelAdapter extends BaseTypeAdapterAbstract<
     };
     return TaskDoingTimeIntervalModel(
       id: fields[0] as String,
-      creatorId: fields[1] as String,
-      mainTaskId: fields[2] as String,
+      creatorId: fields[24] as String?,
+      description: fields[25] as String?,
+      mainTaskId: fields[7] as String,
       subTaskId: fields[3] as String?,
       startAt: fields[4] as DateTime,
       spentTime: fields[6] as int,
@@ -31,10 +32,8 @@ class TaskDoingTimeIntervalModelAdapter extends BaseTypeAdapterAbstract<
   @override
   void write(BinaryWriter writer, TaskDoingTimeIntervalModel obj) {
     writer
+      ..writeByte(8)
       ..writeByte(7)
-      ..writeByte(1)
-      ..write(obj.creatorId)
-      ..writeByte(2)
       ..write(obj.mainTaskId)
       ..writeByte(3)
       ..write(obj.subTaskId)
@@ -45,7 +44,11 @@ class TaskDoingTimeIntervalModelAdapter extends BaseTypeAdapterAbstract<
       ..writeByte(6)
       ..write(obj.spentTime)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(24)
+      ..write(obj.creatorId)
+      ..writeByte(25)
+      ..write(obj.description);
   }
 
   @override

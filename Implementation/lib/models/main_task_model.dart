@@ -5,10 +5,7 @@ import 'package:zamaan/models/models.dart';
 part 'main_task_model.g.dart';
 
 @HiveType(typeId: 1)
-class MainTaskModel extends BaseModelAbstract {
-  @HiveField(1)
-  final String creatorId;
-
+class MainTaskModel extends BaseModelAbstraction {
   @HiveField(2)
   final String title;
 
@@ -24,16 +21,13 @@ class MainTaskModel extends BaseModelAbstract {
   final int iconCode;
 
   @HiveField(6)
-  final int importance;
-
-  @HiveField(7)
-  final String? description;
+  final int priority;
 
   @HiveField(8)
-  final DateTime? deadline;
+  final DateTime? dueTime;
 
   @HiveField(9)
-  final int? repeat;
+  final int? repetitionInterval;
 
   /// Groups such as : sport, reading, working, fun ,...
   @HiveField(10)
@@ -58,21 +52,25 @@ class MainTaskModel extends BaseModelAbstract {
   @HiveField(15)
   final List<String>? contributorsId;
 
+  @HiveField(16)
+  final String? superMainTaskId;
+
   MainTaskModel(
       {required super.id,
-      required this.creatorId,
+      super.creatorId,
+      super.description,
       required this.title,
       required this.taskCategoriesId,
       required this.creationDate,
       required this.colorCode,
       required this.iconCode,
-      required this.importance,
+      required this.priority,
       this.contributorsId,
+      this.superMainTaskId,
       this.fixedTagsId,
       this.tagsId,
-      this.description,
-      this.deadline,
-      this.repeat,
+      this.dueTime,
+      this.repetitionInterval,
       this.totalSpentTime = 0,
       this.completed = false});
 }
