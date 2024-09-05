@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/models/bases/base_type_adapter_asbtract.dart';
-import 'package:zamaan/models/models.dart';
+import 'bases/base_type_adapter_asbtraction.dart';
+import 'models.dart';
 
 part 'scheduled_task_time_interval_model.g.dart';
 

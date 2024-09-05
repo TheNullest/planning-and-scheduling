@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/models/bases/base_model_abstract.dart';
-import 'package:zamaan/models/bases/base_type_adapter_asbtract.dart';
+import 'bases/base_model_abstraction.dart';
+import 'bases/base_type_adapter_asbtraction.dart';
 
 part 'sub_task_model.g.dart';
 

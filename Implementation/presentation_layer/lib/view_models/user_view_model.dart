@@ -1,10 +1,13 @@
-import 'package:zamaan/models/models.dart';
-import 'package:zamaan/repositories/hive_repositories.dart';
-import 'package:zamaan/view_models/base_view_model.dart';
-import 'package:zamaan/view_models/dtos/dtos.dart';
+import 'package:presentation_layer/view_models/base_view_model_Abstraction.dart';
+import 'package:domain_layer/use_cases/user_use_case.dart';
+import 'package:domain_layer/dtos/user_dto.dart';
+import 'package:data_layer/models/user_model.dart';
 
-class UserViewModel extends BaseViewModel<UserDTO, UserModel, HiveUsersRepo> {
-  UserViewModel({required super.repository});
+class UserViewModel
+    extends BaseViewModelAbstraction<UserModel, UserDTO, UserUseCase> {
+  UserViewModel() {
+    useCase = UserUseCase();
+  }
 
   @override
   void search({required query}) {
@@ -16,7 +19,4 @@ class UserViewModel extends BaseViewModel<UserDTO, UserModel, HiveUsersRepo> {
         .toList();
     isLoading = false;
   }
-
-  @override
-  modelToDTOConverter({required model}) => UserDTO.fromModel(userModel: model);
 }

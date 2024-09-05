@@ -7,7 +7,7 @@ part of 'selected_week_days_model.dart';
 // **************************************************************************
 
 class SelectedWeekDaysModelAdapter
-    extends BaseTypeAdapterAbstract<SelectedWeekDaysModel> {
+    extends BaseTypeAdapterAbstraction<SelectedWeekDaysModel> {
   @override
   final int typeId = 4;
 

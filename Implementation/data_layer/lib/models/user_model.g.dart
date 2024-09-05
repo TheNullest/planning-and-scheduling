@@ -6,7 +6,7 @@ part of 'user_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserModelAdapter extends BaseTypeAdapterAbstract<UserModel> {
+class UserModelAdapter extends BaseTypeAdapterAbstraction<UserModel> {
   @override
   final int typeId = 8;
 

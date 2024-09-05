@@ -6,7 +6,7 @@ part of 'tag_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TagModelAdapter extends BaseTypeAdapterAbstract<TagModel> {
+class TagModelAdapter extends BaseTypeAdapterAbstraction<TagModel> {
   @override
   final int typeId = 7;
 

@@ -6,7 +6,7 @@ part of 'main_task_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MainTaskModelAdapter extends BaseTypeAdapterAbstract<MainTaskModel> {
+class MainTaskModelAdapter extends BaseTypeAdapterAbstraction<MainTaskModel> {
   @override
   final int typeId = 1;
 

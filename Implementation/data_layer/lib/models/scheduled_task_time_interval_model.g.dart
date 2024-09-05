@@ -7,7 +7,7 @@ part of 'scheduled_task_time_interval_model.dart';
 // **************************************************************************
 
 class ScheduledTaskTimeIntervalModelAdapter
-    extends BaseTypeAdapterAbstract<ScheduledTaskTimeIntervalModel> {
+    extends BaseTypeAdapterAbstraction<ScheduledTaskTimeIntervalModel> {
   @override
   final int typeId = 5;
 

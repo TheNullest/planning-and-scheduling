@@ -2,13 +2,13 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:zamaan/models/bases/base_type_adapter_asbtract.dart';
-import 'package:zamaan/models/models.dart';
+import '../models/bases/base_type_adapter_asbtraction.dart';
+import '../models/models.dart';
 
 /// **[T]** as type of data model
 ///
 /// **[S]** as the query type to search for
-abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
+abstract class HiveBaseRepositoryAbstraction<T extends BaseModelAbstraction> {
   /// Abstract getter for the adapter type
   TypeAdapter<T> get modelAdapter;
 
@@ -18,6 +18,7 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
   /// Abstract methods requiring implementation in subclasses
   Box<T>? _box;
 
+  /// Ensures the Hive box is open and returns it.
   Future<Box<T>> getBox() async {
     if (!Hive.isBoxOpen(boxName) || _box == null) {
       await initializeBox();
@@ -26,12 +27,6 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
   }
 
   /// #### Saves the `[item]` to the Hive box conditionally.
-  ///
-  /// **item** : The `[item]` will only be saved if the `[callback]` returns false (doesn't exist).
-  /// The `[item]` to be saved of type `[T]`, matching your data model).
-  ///
-  /// **callback** : A `[callback]` function that takes an item of type `[T]` and returns a boolean.
-  /// This function defines the criteria for checking if the item already exists.
   Future<bool> save({
     required T item,
   }) async {
@@ -46,6 +41,7 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
     }
   }
 
+  /// Retrieves all items from the Hive box.
   Future<List<T>> getAll() async {
     try {
       return (await getBox()).values.toList();
@@ -55,6 +51,7 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
     }
   }
 
+  /// Updates the `[item]` in the Hive box.
   Future<void> update({required T item}) async {
     try {
       await (await getBox()).put(item.key, item);
@@ -63,15 +60,20 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
     }
   }
 
-  Future<void> delete({required T item}) async {
+  /// Deletes an item from the Hive box by key.
+  Future<void> delete({required String id}) async {
     try {
-      await item.delete();
+      await (await getBox()).delete(id);
     } on Exception catch (e) {
       log("Error on delete : $e");
     }
   }
 
+  //TODO Do we need this method?
+  /// Deletes all items from the Hive box.
   Future<void> deleteAll() async {
+    /// Deletes all items from the Hive box.
+
     try {
       await (await getBox()).clear();
     } on Exception catch (e) {
@@ -79,17 +81,17 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
     }
   }
 
-  /// Separate method for box initialization (can optionally be abstract)
+  /// Initializes the Hive box and registers adapters.
   Future<void> initializeBox() async {
     try {
       final Directory appDocumentsDir =
           Directory('E:\\Flutter.Dart\\HiveFiles\\Zamaan');
       await Hive.initFlutter(appDocumentsDir.path);
 
-      final List<BaseTypeAdapterAbstract> adapters = [
+      final List<BaseTypeAdapterAbstraction> adapters = [
         MainTaskModelAdapter(),
         UserModelAdapter(),
-        TaskDoingTimeIntervalModelAdapter(),
+        TaskTimeIntervalModelAdapter(),
         SelectedWeekDaysModelAdapter(),
         ScheduledTaskTimeIntervalModelAdapter(),
         SubTaskModelAdapter(),
@@ -97,7 +99,7 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
         GoalModelAdapter(),
       ];
 
-      for (BaseTypeAdapterAbstract adapter in adapters) {
+      for (BaseTypeAdapterAbstraction adapter in adapters) {
         adapter.registerAdapter();
       }
 
@@ -112,7 +114,7 @@ abstract class HiveBaseRepositoryAbstraction<T extends HiveObject> {
   // Future<ValueListenable<Box<T>>> listenToModel() async =>
   //     (await getBox()).listenable();
 
-  /// For closing Hive box when the repository is no longer needed.
+  /// Close the Hive box when the repository is no longer needed.
   Future<void> dispose() async {
     if (_box != null) {
       await _box!.close();

@@ -3,13 +3,18 @@ description: "A new Flutter package project."
 version: 0.0.1
 homepage:
 
+publish_to: "none"
+
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  data_layer:
+    path: ../data_layer
+  uuid: ^4.5.0
 
 dev_dependencies:
   flutter_test:

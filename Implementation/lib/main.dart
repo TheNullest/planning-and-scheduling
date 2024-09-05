@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zamaan/repositories/hive_repositories.dart';
+import '../data_layer/lib/repositories/hive_repositories.dart';
 import 'package:zamaan/utilities/routes/views_route.dart';
 import 'package:zamaan/utilities/providers/providers.dart';
 import 'package:zamaan/utilities/utilities.dart';
-import 'package:zamaan/view_models/view_modesl.dart';
-import 'package:zamaan/views/views.dart';
+import '../presentaion_layer/lib/view_models/view_modesl.dart';
+import '../presentaion_layer/lib/views/views.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required for Windows

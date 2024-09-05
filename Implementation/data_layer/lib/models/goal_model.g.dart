@@ -6,7 +6,7 @@ part of 'goal_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GoalModelAdapter extends BaseTypeAdapterAbstract<GoalModel> {
+class GoalModelAdapter extends BaseTypeAdapterAbstraction<GoalModel> {
   @override
   final int typeId = 8;
 
