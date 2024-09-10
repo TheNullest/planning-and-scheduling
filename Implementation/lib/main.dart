@@ -1,35 +1,6 @@
 import 'package:flutter/material.dart';
-import '../data_layer/lib/repositories/hive_repositories.dart';
-import 'package:zamaan/utilities/routes/views_route.dart';
-import 'package:zamaan/utilities/providers/providers.dart';
-import 'package:zamaan/utilities/utilities.dart';
-import '../presentaion_layer/lib/view_models/view_modesl.dart';
-import '../presentaion_layer/lib/views/views.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Required for Windows
-  UserViewModel userVM = UserViewModel(repository: HiveUsersRepo());
-  await userVM.loadEntities();
-
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => ThemeProvider()),
-      ChangeNotifierProvider(create: (context) => ResponsiveHelper()),
-      ChangeNotifierProvider(create: (context) => ChangeTaskTileSizeProvider()),
-      ChangeNotifierProvider(create: (context) => HideUnhideBarsProvider()),
-      ChangeNotifierProvider(
-          create: (context) => UserViewModel(repository: HiveUsersRepo())),
-      ChangeNotifierProvider(
-          create: (context) =>
-              MainTaskViewModel(repository: HiveMainTaskRepo())),
-    ],
-    child: Zamaan(
-      initialRoute: userVM.entities!.isEmpty
-          ? RegisterView.routeName
-          : LoginView.routeName,
-    ),
-  ));
-}
+Future<void> main() async {}
 
 class Zamaan extends StatelessWidget {
   final String initialRoute;
@@ -37,12 +8,7 @@ class Zamaan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-        builder: (context, themeProvider, child) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: themeProvider.currentTheme(context),
-            routes: ViewsRoute.viewsRoute(context),
-            initialRoute: initialRoute));
+    return Placeholder();
   }
 }
 
