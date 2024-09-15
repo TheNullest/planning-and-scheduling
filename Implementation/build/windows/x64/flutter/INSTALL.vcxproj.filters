@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\CMakeFiles\7911fdd35f2b157e7e76264d9d1911a3\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{617F8ECB-9C47-3675-9A8D-39475B0E0E51}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
