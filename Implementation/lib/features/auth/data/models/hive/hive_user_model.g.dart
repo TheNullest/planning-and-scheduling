@@ -6,8 +6,7 @@ part of 'hive_user_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class HiveUserModelAdapter
-    extends HiveBaseTypeAdapterAbstraction<HiveUserModel> {
+class HiveUserModelAdapter extends HiveBaseTypeAdapter<HiveUserModel> {
   @override
   final int typeId = 0;
 
@@ -18,7 +17,7 @@ class HiveUserModelAdapter
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return HiveUserModel(
-      id: fields[0] as String,
+      id: fields[0] as String?,
       description: fields[3] as String?,
       userName: fields[4] as String,
       password: fields[5] as String,

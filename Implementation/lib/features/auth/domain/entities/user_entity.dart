@@ -26,11 +26,11 @@ class UserEntity extends BaseEntityAbstraction {
   UserEntity({
     super.id,
     super.description,
+    super.createdAt,
     required this.userName,
     required this.password,
     required this.firstName,
     required this.lastName,
-    required super.createdAt,
     this.birthDate,
     required this.emailAddress,
     this.avatarPath,
@@ -39,7 +39,6 @@ class UserEntity extends BaseEntityAbstraction {
   // For the purpose of testing
   UserEntity.empty()
       : this(
-            id: '1',
             userName: '_empty.userName',
             firstName: '_empty.firstName',
             lastName: '_empty.lastName',
@@ -47,30 +46,52 @@ class UserEntity extends BaseEntityAbstraction {
             emailAddress: '_empty.emailAddress',
             password: '_empty.password',
             avatarPath: '_empty.avatarPath',
-            createdAt: DateTime.now());
+            birthDate: DateTime(1989, 12, 23, 16, 53, 37, 532, 444));
 
   @override
   List<Object?> get props => [
         id,
-        description,
         userName,
         password,
         firstName,
         lastName,
         birthDate,
         emailAddress,
-        avatarPath
+        description,
+        avatarPath,
+        createdAt
       ];
 
   @override
   BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
     throw UnimplementedError();
   }
 
   @override
   BaseEntityAbstraction toEntity() {
-    // TODO: implement toEntity
     throw UnimplementedError();
   }
+
+  UserEntity copyWith(
+          {String? id,
+          String? userName,
+          String? password,
+          String? firstName,
+          String? lastName,
+          DateTime? birthDate,
+          DateTime? createdAt,
+          String? description,
+          String? avatarPath,
+          String? emailAddress}) =>
+      UserEntity(
+          id: id ?? this.id,
+          userName: userName ?? this.userName,
+          password: password ?? this.password,
+          firstName: firstName ?? this.firstName,
+          lastName: lastName ?? this.lastName,
+          birthDate: birthDate ?? this.birthDate,
+          createdAt: createdAt ?? this.createdAt,
+          description: description ?? this.description,
+          avatarPath: avatarPath ?? this.avatarPath,
+          emailAddress: emailAddress ?? this.emailAddress);
 }

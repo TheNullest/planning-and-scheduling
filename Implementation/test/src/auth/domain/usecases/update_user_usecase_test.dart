@@ -1,6 +1,5 @@
 import 'package:zamaan/core/error/failures/failure.dart';
 import 'package:zamaan/core/error/failures/hive_failure.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/domain/usecases/update_user_usecase.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -9,13 +8,13 @@ import 'authentication_repository.mock.dart';
 void main() {
   // Arrange
   late UpdateUserUseCase useCase;
-  late AuthenticationRepository<HiveUserModel> repository;
+  late AuthenticationRepository repository;
   setUp(() {
     repository = MockAuthRepo();
     useCase = UpdateUserUseCase(repository);
   });
 
-  UserEntity params = userModels[2];
+  UserEntity params = getHiveUserModels()[2];
   // Assert
   test('should update the [RemoteUserModel] with the right data', () async {
     //Arrange

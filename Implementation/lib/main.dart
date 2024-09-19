@@ -1,79 +1,40 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:zamaan/features/auth/data/data_sources/hive_authentication_data_source_iml.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/core/error/failures/failure.dart';
+import 'package:zamaan/core/initializers/hive_initializer.dart';
+import 'package:zamaan/features/auth/data/data_sources/hive_authentication_data_source_impl.dart';
 import 'package:zamaan/features/auth/data/repositories/hive/hive_authentication_repository_impl.dart';
 import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
-import 'package:zamaan/features/auth/domain/usecases/create_user_usecase.dart';
+import 'package:zamaan/features/auth/domain/usecases/delete_all_selected_users_usecase.dart';
 import 'package:zamaan/features/auth/domain/usecases/delete_user_usecase.dart';
 import 'package:zamaan/features/auth/domain/usecases/get_users_usecase.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required for Windows
-
+  await HiveInitializer.init();
   final dataSource = HiveAuthenticationDataSourceImpl();
 
-  await CreateUserUseCase(HiveAuthenticationRepositoryImpl(
-          dataSource: dataSource, hiveModelHelper: HiveUserModel.empty()))
-      .call(UserEntity(
-          password: "vS3xHUyGPMWt1iO",
-          id: "1",
-          userName: "Jaycee49",
-          firstName: "Marvin",
-          birthDate: DateTime.now(),
-          lastName: "Ritchie",
-          emailAddress: "Shaylee.Harber69@yahoo.com",
-          createdAt: DateTime.now(),
-          description:
-              "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
-          avatarPath:
-              "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1041.jpg"));
-  await CreateUserUseCase(HiveAuthenticationRepositoryImpl(
-          dataSource: dataSource, hiveModelHelper: HiveUserModel.empty()))
-      .call(UserEntity(
-          password: "vS3xHUyGPMWt1iO",
-          id: "2",
-          userName: "moien",
-          firstName: "janlou",
-          birthDate: DateTime.now(),
-          lastName: "Ritchie",
-          emailAddress: "Shaylee.Harber69@fffff.com",
-          createdAt: DateTime.now(),
-          description:
-              "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
-          avatarPath:
-              "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1041.jpg"));
+  await DeleteUserUseCase(HiveAuthenticationRepositoryImpl(dataSource))('1');
 
-  final deleteuser = DeleteUserUseCase(HiveAuthenticationRepositoryImpl(
-      dataSource: dataSource, hiveModelHelper: HiveUserModel.empty()));
+  // for (int i = 0; i < 10; i++) {
+  //   await CreateUserUseCase(HiveAuthenticationRepositoryImpl(dataSource))(
+  //       UserEntity.empty());
+  // }
 
-  final getusers = GetUsersUsecase(HiveAuthenticationRepositoryImpl(
-      dataSource: dataSource, hiveModelHelper: HiveUserModel.empty()));
+  final getusers =
+      GetUsersUsecase(HiveAuthenticationRepositoryImpl(dataSource));
 
-  await getusers.call().then((either) {
-    either.fold((failure) {
-      // Handle failure (e.g., show an error message)
-      print('Failure: $failure');
-    }, (users) {
-      // Handle successful result (e.g., update UI with user data)
-      print('Users: ${users.length}');
-    });
-  }).catchError((error) {
-    // Handle unexpected errors
-    print('Error: $error');
-  });
-  await deleteuser.call('2');
+  var users = await getusers();
 
-  await getusers.call().then((either) {
-    either.fold((failure) {
-      // Handle failure (e.g., show an error message)
-      print('Failure: $failure');
-    }, (users) {
-      // Handle successful result (e.g., update UI with user data)
-      print('Users: ${users.length}');
-    });
-  }).catchError((error) {
-    // Handle unexpected errors
-    print('Error: $error');
+  users.fold((Failure Failure) {}, (entities) async {
+    int i = 1;
+    for (UserEntity user in entities) {
+      log('${i++} User: ${user.id}');
+    }
+    await DeleteAllSelectedUsersUsecase(
+            HiveAuthenticationRepositoryImpl(dataSource))(
+        entities.map((entity) => entity.id).toList());
   });
   runApp(const Zamaan());
 }

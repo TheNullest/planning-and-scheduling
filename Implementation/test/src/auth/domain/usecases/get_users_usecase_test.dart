@@ -8,27 +8,27 @@
 import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/domain/usecases/get_users_usecase.dart';
 
-import '../../../../fixtures/fixture_reader.dart';
 import 'authentication_repository.mock.dart';
 
 void main() {
   late GetUsersUsecase useCase;
-  late AuthenticationRepository<HiveUserModel> repository;
-
+  late AuthenticationRepository repository;
+  late List<HiveUserModel> entities;
   setUp(() {
     repository = MockAuthRepo();
     useCase = GetUsersUsecase(repository);
+    entities = [];
   });
 
   test('should call the [AuthRepo.getUsers] and return [List<UserEntity>]',
       () async {
     //Arrange
     when(() => repository.getEntities())
-        .thenAnswer((_) async => Right(userModels));
+        .thenAnswer((_) async => Right(entities));
 
     // Act
     final result = await useCase();
-    expect(result, equals(Right<dynamic, List<UserEntity>>(userModels)));
+    expect(result, equals(Right<dynamic, List<UserEntity>>(entities)));
     verify(() => repository.getEntities()).called(1);
     verifyNoMoreInteractions(repository);
   });
