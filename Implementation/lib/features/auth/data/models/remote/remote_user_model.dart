@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:intl/intl.dart';
 import 'package:zamaan/core/utils/typedef.dart';
-import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
+import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 
-class RemoteUserModel extends UserEntity {
+class RemoteUserModel extends HiveUserModel {
   RemoteUserModel(
-      {required super.id,
+      {super.id,
       required super.userName,
       required super.password,
       required super.firstName,
@@ -17,18 +16,7 @@ class RemoteUserModel extends UserEntity {
       required super.emailAddress});
 
   // For the purpose of testing
-  RemoteUserModel.empty()
-      : this(
-            id: '1',
-            userName: '_empty.userName',
-            firstName: '_empty.firstName',
-            lastName: '_empty.lastName',
-            description: '_empty.description',
-            emailAddress: '_empty.emailAddress',
-            password: '_empty.password',
-            avatarPath: '_empty.avatarPath',
-            createdAt: DateTime.parse('2004-06-22T08:52:57.685Z'),
-            birthDate: DateTime.parse('1966-07-06T07:56:35.764Z'));
+  RemoteUserModel.empty() : super.empty();
 
   factory RemoteUserModel.fromJSON(String source) =>
       RemoteUserModel.fromMap(jsonDecode(source) as JsonDataMap);
@@ -41,12 +29,13 @@ class RemoteUserModel extends UserEntity {
           firstName: map['firstName'] as String,
           lastName: map['lastName'] as String,
           emailAddress: map['emailAddress'] as String,
-          createdAt: DateTime.parse(map['createdAt'] as String),
-          birthDate: DateTime.parse(map['birthDate'] as String) as DateTime?,
+          createdAt: DateTime.parse(map['createdAt']),
+          birthDate: DateTime.parse(map['birthDate']),
           description: map['description'] as String?,
           avatarPath: map['avatarPath'] as String?,
         );
 
+  @override
   RemoteUserModel copyWith(
           {String? id,
           String? userName,
@@ -77,10 +66,8 @@ class RemoteUserModel extends UserEntity {
         'firstName': firstName,
         'lastName': lastName,
         'emailAddress': emailAddress,
-        'createdAt':
-            DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(createdAt),
-        'birthDate':
-            DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(birthDate!),
+        'createdAt': createdAt.toString(),
+        'birthDate': birthDate.toString(),
         'description': description,
         'avatarPath': avatarPath,
       };
