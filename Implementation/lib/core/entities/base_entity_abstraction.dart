@@ -23,9 +23,9 @@ abstract class BaseEntityAbstraction extends HiveObject with EquatableMixin {
   })  : id = id ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now();
 
-  /// Just for the HiveUserModel helper using in the base repository
+  /// Just for the HiveModel helper using in the base repository
   BaseEntityAbstraction toEntity();
 
-  /// Just for the HiveUserModel helper using in the base repository
+  /// Just for the HiveModel helper using in the base repository
   BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity);
 }

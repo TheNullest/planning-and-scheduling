@@ -5,7 +5,6 @@ import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
 import 'package:zamaan/features/auth/domain/repositories/hive/authentication_repository.dart';
 
-//TODO #9 Implement the test HiveAuthenticationRepositoryImpl
 class HiveAuthenticationRepositoryImpl extends AuthenticationRepository {
   final HiveAuthenticationDataSourceImpl _dataSource;
 

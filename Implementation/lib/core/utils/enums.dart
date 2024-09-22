@@ -25,6 +25,11 @@ enum Priority {
   }
 }
 
+/// Status == 0 => notStarted\
+/// Status == 1 => inProgress\
+/// Status == 2 => completed
+enum Status { notStarted, inProgress, completed }
+
 enum RepetitionInterval {
   minutely,
   hourly,
