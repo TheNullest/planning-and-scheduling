@@ -5,6 +5,7 @@ import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 class RemoteUserModel extends HiveUserModel {
   RemoteUserModel(
       {super.id,
+      super.order,
       required super.userName,
       required super.password,
       required super.firstName,
@@ -24,6 +25,7 @@ class RemoteUserModel extends HiveUserModel {
   RemoteUserModel.fromMap(JsonDataMap map)
       : this(
           id: map['id'] as String,
+          order: map['order'] as int,
           password: map['password'] as String,
           userName: map['userName'] as String,
           firstName: map['firstName'] as String,
@@ -38,6 +40,7 @@ class RemoteUserModel extends HiveUserModel {
   @override
   RemoteUserModel copyWith(
           {String? id,
+          int? order,
           String? userName,
           String? password,
           String? firstName,
@@ -49,6 +52,7 @@ class RemoteUserModel extends HiveUserModel {
           String? emailAddress}) =>
       RemoteUserModel(
           id: id ?? this.id,
+          order: order ?? this.order,
           userName: userName ?? this.userName,
           password: password ?? this.password,
           firstName: firstName ?? this.firstName,
@@ -61,6 +65,7 @@ class RemoteUserModel extends HiveUserModel {
 
   JsonDataMap toMap() => {
         'id': id,
+        'order': order,
         'userName': userName,
         'password': password,
         'firstName': firstName,

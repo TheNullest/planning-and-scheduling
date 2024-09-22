@@ -13,18 +13,21 @@ class CategoryEntity extends BaseEntityAbstraction {
   @HiveField(6)
   final int iconCode;
 
-  CategoryEntity(
-      {super.id,
-      super.createdAt,
-      super.creatorId,
-      super.description,
-      required this.title,
-      required this.colorCode,
-      required this.iconCode});
+  CategoryEntity({
+    super.id,
+    super.order,
+    super.createdAt,
+    super.creatorId,
+    super.description,
+    required this.title,
+    required this.colorCode,
+    required this.iconCode,
+  });
 
   /// Creates a copy of this CategoryEntity with potentially modified properties.
   CategoryEntity copyWith(
     String? id,
+    int? order,
     DateTime? createdAt,
     String? creatorId,
     String? description,
@@ -34,6 +37,7 @@ class CategoryEntity extends BaseEntityAbstraction {
   ) =>
       CategoryEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
@@ -45,6 +49,7 @@ class CategoryEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

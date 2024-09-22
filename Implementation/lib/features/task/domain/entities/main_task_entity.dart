@@ -31,13 +31,13 @@ class MainTaskEntity extends BaseEntityAbstraction {
 
   /// Groups such as : sporting, reading, working, fun ,...
   @HiveField(11)
-  final List<String>? taskCategoriesId;
+  final List<String>? taskCategoriyIds;
 
   @HiveField(12)
-  final List<String>? fixedTagsId;
+  final List<String>? fixedTagIds;
 
   @HiveField(13)
-  final List<String>? tagsId;
+  final List<String>? tagIds;
 
   /// When a project is planned and divided into smaller tasks
   @HiveField(14)
@@ -49,7 +49,7 @@ class MainTaskEntity extends BaseEntityAbstraction {
 
   /// Doing work with the presence and help of other people
   @HiveField(16)
-  final List<String>? contributorsId;
+  final List<String>? contributorIds;
 
   /// Status == 0 => notStarted\
   /// Status == 1 => inProgress\
@@ -59,18 +59,19 @@ class MainTaskEntity extends BaseEntityAbstraction {
 
   MainTaskEntity(
       {super.id,
+      super.order,
       super.creatorId,
       super.description,
       required this.title,
-      required this.taskCategoriesId,
+      required this.taskCategoriyIds,
       required super.createdAt,
       required this.colorCode,
       required this.iconCode,
       this.priority = Priority.optional,
       this.status = Status.notStarted,
-      this.fixedTagsId,
-      this.tagsId,
-      this.contributorsId,
+      this.fixedTagIds,
+      this.tagIds,
+      this.contributorIds,
       this.superMainTaskId,
       this.dueTime,
       this.repetitionInterval,
@@ -80,18 +81,19 @@ class MainTaskEntity extends BaseEntityAbstraction {
   /// Creates a copy of this CategoryEntity with potentially modified properties.
   MainTaskEntity copyWith(
           String? id,
+          int? order,
           DateTime? createdAt,
           String? creatorId,
           String? description,
           String? title,
           int? colorCode,
           int? iconCode,
-          List<String>? taskCategoriesId,
+          List<String>? taskCategoriyIds,
           Priority? priority,
           Status? status,
-          List<String>? fixedTagsId,
-          List<String>? tagsId,
-          List<String>? contributorsId,
+          List<String>? fixedTagIds,
+          List<String>? tagIds,
+          List<String>? contributorIds,
           String? superMainTaskId,
           DateTime? dueTime,
           RepetitionInterval? repetitionInterval,
@@ -99,18 +101,19 @@ class MainTaskEntity extends BaseEntityAbstraction {
           List<WeekDays>? selectedWeekDays) =>
       MainTaskEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
         title: title ?? this.title,
         colorCode: colorCode ?? this.colorCode,
         iconCode: iconCode ?? this.iconCode,
-        taskCategoriesId: taskCategoriesId ?? this.taskCategoriesId,
+        taskCategoriyIds: taskCategoriyIds ?? this.taskCategoriyIds,
         priority: priority ?? this.priority,
         status: status ?? this.status,
-        fixedTagsId: fixedTagsId ?? this.fixedTagsId,
-        tagsId: tagsId ?? this.tagsId,
-        contributorsId: contributorsId ?? this.contributorsId,
+        fixedTagIds: fixedTagIds ?? this.fixedTagIds,
+        tagIds: tagIds ?? this.tagIds,
+        contributorIds: contributorIds ?? this.contributorIds,
         superMainTaskId: superMainTaskId ?? this.superMainTaskId,
         dueTime: dueTime ?? this.dueTime,
         repetitionInterval: repetitionInterval ?? this.repetitionInterval,
@@ -121,18 +124,19 @@ class MainTaskEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         creatorId,
         description,
         title,
-        taskCategoriesId,
+        taskCategoriyIds,
         createdAt,
         colorCode,
         iconCode,
         priority,
         status,
-        fixedTagsId,
-        tagsId,
-        contributorsId,
+        fixedTagIds,
+        tagIds,
+        contributorIds,
         superMainTaskId,
         dueTime,
         repetitionInterval,

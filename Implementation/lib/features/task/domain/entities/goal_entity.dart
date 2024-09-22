@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/features/task/domain/entities/measurement_unit_entity.dart';
 
 class GoalEntity extends BaseEntityAbstraction {
   @HiveField(4)
@@ -40,6 +39,7 @@ class GoalEntity extends BaseEntityAbstraction {
 
   GoalEntity({
     super.id,
+    super.order,
     super.createdAt,
     super.creatorId,
     super.description,
@@ -55,6 +55,7 @@ class GoalEntity extends BaseEntityAbstraction {
 
   GoalEntity copyWith(
     String? id,
+    int? order,
     DateTime? createdAt,
     String? creatorId,
     String? description,
@@ -69,6 +70,7 @@ class GoalEntity extends BaseEntityAbstraction {
   ) =>
       GoalEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
@@ -85,6 +87,7 @@ class GoalEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

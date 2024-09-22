@@ -20,6 +20,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
 
   SubTaskEntity({
     super.id,
+    super.order,
     super.createdAt,
     super.creatorId,
     super.description,
@@ -31,6 +32,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
 
   SubTaskEntity copyWith(
     String? id,
+    int? order,
     DateTime? createdAt,
     String? creatorId,
     String? description,
@@ -41,6 +43,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
   ) =>
       SubTaskEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
@@ -53,6 +56,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

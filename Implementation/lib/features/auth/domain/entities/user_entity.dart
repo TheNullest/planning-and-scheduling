@@ -25,6 +25,7 @@ class UserEntity extends BaseEntityAbstraction {
 
   UserEntity({
     super.id,
+    super.order,
     super.description,
     super.createdAt,
     required this.userName,
@@ -51,6 +52,7 @@ class UserEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         userName,
         password,
         firstName,
@@ -74,6 +76,7 @@ class UserEntity extends BaseEntityAbstraction {
 
   UserEntity copyWith(
           {String? id,
+          int? order,
           String? userName,
           String? password,
           String? firstName,
@@ -85,6 +88,7 @@ class UserEntity extends BaseEntityAbstraction {
           String? emailAddress}) =>
       UserEntity(
           id: id ?? this.id,
+          order: order ?? this.order,
           userName: userName ?? this.userName,
           password: password ?? this.password,
           firstName: firstName ?? this.firstName,
