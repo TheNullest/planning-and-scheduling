@@ -1,5 +1,3 @@
-import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
 import 'package:zamaan/features/task/domain/entities/category_entity.dart';
 
 /// The `tags` attribute can be used to categorize or label a task in various ways,\
@@ -14,6 +12,7 @@ import 'package:zamaan/features/task/domain/entities/category_entity.dart';
 class TagEntity extends CategoryEntity {
   TagEntity(
       {super.id,
+      super.order,
       super.createdAt,
       super.creatorId,
       super.description,

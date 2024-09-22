@@ -20,6 +20,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
 
   ScheduledTaskTimeIntervalEntity(
       {super.id,
+      super.order,
       super.createdAt,
       super.creatorId,
       super.description,
@@ -29,6 +30,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
 
   ScheduledTaskTimeIntervalEntity copyWith(
     String? id,
+    int? order,
     DateTime? createdAt,
     String? creatorId,
     String? description,
@@ -38,6 +40,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
   ) =>
       ScheduledTaskTimeIntervalEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
@@ -49,6 +52,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

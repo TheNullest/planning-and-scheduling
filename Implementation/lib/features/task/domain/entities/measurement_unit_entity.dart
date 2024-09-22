@@ -13,6 +13,7 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
 
   MeasurementUnitEntity(
       {super.id,
+      super.order,
       super.createdAt,
       super.creatorId,
       super.description,
@@ -23,6 +24,7 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

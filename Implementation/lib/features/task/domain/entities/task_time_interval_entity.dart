@@ -24,6 +24,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
 
   TaskTimeIntervalEntity({
     super.id,
+    super.order,
     super.createdAt,
     super.creatorId,
     super.description,
@@ -37,6 +38,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
   /// Creates a copy of this CategoryEntity with potentially modified properties.
   TaskTimeIntervalEntity copyWith(
     String? id,
+    int? order,
     DateTime? createdAt,
     String? creatorId,
     String? description,
@@ -48,6 +50,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
   ) =>
       TaskTimeIntervalEntity(
         id: id ?? this.id,
+        order: order ?? this.order,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
         creatorId: creatorId ?? this.creatorId,
@@ -61,6 +64,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
+        order,
         createdAt,
         creatorId,
         description,

@@ -9,6 +9,7 @@ part 'hive_user_model.g.dart';
 class HiveUserModel extends UserEntity {
   HiveUserModel({
     super.id,
+    super.order,
     super.description,
     super.createdAt,
     required super.userName,
@@ -25,6 +26,7 @@ class HiveUserModel extends UserEntity {
 
   factory HiveUserModel.fromEntity(UserEntity entity) => HiveUserModel(
       id: entity.id,
+      order: entity.order,
       userName: entity.userName,
       password: entity.password,
       firstName: entity.firstName,
@@ -38,6 +40,7 @@ class HiveUserModel extends UserEntity {
   @override
   UserEntity toEntity() => UserEntity(
       id: id,
+      order: order,
       userName: userName,
       description: description,
       avatarPath: avatarPath,

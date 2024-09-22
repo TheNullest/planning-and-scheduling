@@ -6,6 +6,13 @@ abstract class BaseEntityAbstraction extends HiveObject with EquatableMixin {
   @HiveField(0)
   final String id;
 
+  /// The [order] field is crucial for organizing and prioritizing sub items.\
+  /// A lower integer value in order indicates a higher priority sub item.\
+  /// This allows to efficiently manage items by sorting or displaying\
+  /// them based on their order values.
+  @HiveField(100)
+  final int? order;
+
   @HiveField(1)
   final String? creatorId;
 
@@ -18,6 +25,7 @@ abstract class BaseEntityAbstraction extends HiveObject with EquatableMixin {
   BaseEntityAbstraction({
     String? id,
     DateTime? createdAt,
+    this.order,
     this.creatorId,
     this.description,
   })  : id = id ?? const Uuid().v4(),
