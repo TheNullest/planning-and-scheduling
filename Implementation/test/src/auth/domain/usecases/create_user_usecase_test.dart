@@ -1,9 +1,10 @@
 // ignore_for_file: void_checks
 
 import 'package:zamaan/core/error/failures/failure.dart';
+import 'package:zamaan/core/error/failures/hive_failure.dart';
 import 'package:zamaan/features/auth/domain/usecases/create_user_usecase.dart';
 
-import 'authentication_repository.mock.dart';
+import '_authentication_repository.mock.dart';
 
 // What does the class depend on
 // Answer -- [AuthenticationRepository]
@@ -25,24 +26,52 @@ void main() {
   });
 
   UserEntity params = UserEntity.empty();
-  test('should call the [AuthRepo.createEntity]', () async {
-    // Arrange
-    // STUB
-    when(
-      () => repository.createEntity(
-        newEntity: any(named: 'newEntity'),
-      ),
-    ).thenAnswer((_) async => const Right(true));
+  group('user.createUsecase', () {
+    test('[user.createUsecase] must call the [AuthRepo.createEntity]',
+        () async {
+      // Arrange
+      // STUB
+      when(
+        () => repository.createEntity(
+          newEntity: any(named: 'newEntity'),
+        ),
+      ).thenAnswer((_) async => const Right(true));
 
-    // Act
-    final actual = await useCase(params);
+      // Act
+      final actual = await useCase(params);
 
-    // Assert
-    expect(actual, equals(const Right<Failure, bool>(true)));
-    verify(
-      () => repository.createEntity(newEntity: params),
-    ).called(1);
+      // Assert
+      expect(actual.isRight(), true);
+      expect(actual, equals(const Right<Failure, bool>(true)));
+      verify(
+        () => repository.createEntity(newEntity: params),
+      ).called(1);
 
-    verifyNoMoreInteractions(repository);
+      verifyNoMoreInteractions(repository);
+    });
+
+    test(
+        '[user.createUsecase.failureTest] must return failure with [Left(HiveFailure("Error"))] data when createUsecase fails',
+        () async {
+      // Arrange
+      // STUB
+      when(
+        () => repository.createEntity(
+          newEntity: any(named: 'newEntity'),
+        ),
+      ).thenAnswer((_) async => const Left(HiveFailure("Error")));
+
+      // Act
+      final actual = await useCase(params);
+
+      // Assert
+      expect(actual.isLeft(), true);
+      expect(actual, equals(const Left<Failure, bool>(HiveFailure("Error"))));
+      verify(
+        () => repository.createEntity(newEntity: params),
+      ).called(1);
+
+      verifyNoMoreInteractions(repository);
+    });
   });
 }

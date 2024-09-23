@@ -53,6 +53,8 @@ class GoalEntity extends BaseEntityAbstraction {
     this.perYear = 0,
   });
 
+  GoalEntity.empty() : this(mainTaskId: '1', measurementUnitId: '2');
+
   GoalEntity copyWith(
     String? id,
     int? order,

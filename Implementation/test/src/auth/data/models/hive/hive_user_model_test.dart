@@ -6,7 +6,7 @@ import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
 void main() {
   final UserEntity entity = UserEntity.empty();
   final HiveUserModel testModel = HiveUserModel.fromEntity(entity);
-  test('should be a subclass of [UserEntity] ', () {
+  test('[hiveUserModel] must be a subclass of [UserEntity] ', () {
     // Arrange => testModel
 
     // Assert
@@ -14,28 +14,30 @@ void main() {
     expect(testModel, isA<BaseEntityAbstraction>());
   });
 
-  group('toEntity', () {
-    test('should return a [UserEntity] with the right data', () {
+  group('hiveUserModel', () {
+    test(
+        '[hiveUserModel.toEntity] must return a [UserEntity] with the right data',
+        () {
       // Arrange => testModel
       // Act
       final actual = testModel.toEntity();
       // Assert
       expect(actual, equals(entity));
     });
-  });
 
-  group('fromEntity', () {
-    test('should return a [HiveUserModel] with the right data', () {
+    test(
+        '[hiveUserModel.fromEntity] must return a [HiveUserModel] with the right data',
+        () {
       // Arrange => testModel
       // Act
       final actual = HiveUserModel.fromEntity(entity);
       // Assert
       expect(actual, testModel);
     });
-  });
 
-  group('copyWith', () {
-    test('should return a customed [RemoteUserModel]with the right data', () {
+    test(
+        '[hiveUserModel.copyWith] must return a customed [RemoteUserModel]with the right data',
+        () {
       // Arrange
 
       // Act

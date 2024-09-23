@@ -21,6 +21,8 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
       required this.iconCode,
       this.isDouble = false});
 
+  MeasurementUnitEntity.empty() : this(title: 'title', iconCode: 2);
+
   @override
   List<Object?> get props => [
         id,

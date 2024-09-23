@@ -30,6 +30,8 @@ class SubTaskEntity extends BaseEntityAbstraction {
     this.status = Status.notStarted,
   });
 
+  SubTaskEntity.empty() : this(mainTaskId: '1', title: 'title');
+
   SubTaskEntity copyWith(
     String? id,
     int? order,

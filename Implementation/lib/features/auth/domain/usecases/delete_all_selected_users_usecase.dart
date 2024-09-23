@@ -1,12 +1,7 @@
-import 'package:zamaan/core/usecases/usecase.dart';
-import 'package:zamaan/core/utils/typedef.dart';
+import 'package:zamaan/core/usecases/delete_entities_usecase.dart';
 import 'package:zamaan/features/auth/domain/repositories/hive/authentication_repository.dart';
 
 class DeleteAllSelectedUsersUsecase
-    extends UseCaseWithParams<AuthenticationRepository, void, List<String>> {
+    extends DeleteEntitiesUseCase<AuthenticationRepository> {
   DeleteAllSelectedUsersUsecase(super.repository);
-
-  @override
-  ResultFutureVoid call(List<String> params) async =>
-      await repository.deleteAllSelected(params);
 }

@@ -24,6 +24,8 @@ class CategoryEntity extends BaseEntityAbstraction {
     required this.iconCode,
   });
 
+  CategoryEntity.empty() : this(title: 'title', colorCode: 1, iconCode: 2);
+
   /// Creates a copy of this CategoryEntity with potentially modified properties.
   CategoryEntity copyWith(
     String? id,
