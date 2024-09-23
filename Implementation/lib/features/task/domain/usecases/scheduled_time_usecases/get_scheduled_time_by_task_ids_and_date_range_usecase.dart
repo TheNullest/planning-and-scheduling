@@ -5,6 +5,7 @@ import 'package:zamaan/features/task/domain/params/get_by_task_ids_and_date_rang
 import 'package:zamaan/features/task/domain/repositories/scheduled_time_repository.dart';
 
 class GetScheduledTimeByTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
+    ScheduledTimeEntity,
     ScheduledTimeRepository,
     List<ScheduledTimeEntity>,
     GetByTaskIdsAndDateRangeParams> {

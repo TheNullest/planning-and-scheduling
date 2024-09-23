@@ -3,7 +3,7 @@ import 'package:zamaan/core/error/failures/hive_failure.dart';
 import 'package:zamaan/features/auth/domain/usecases/update_user_usecase.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
-import 'authentication_repository.mock.dart';
+import '_authentication_repository.mock.dart';
 
 void main() {
   // Arrange
@@ -16,7 +16,9 @@ void main() {
 
   UserEntity params = getHiveUserModels()[2];
   // Assert
-  test('should update the [RemoteUserModel] with the right data', () async {
+  test(
+      '[user.updateUsecase] must update the [RemoteUserModel] with the right data',
+      () async {
     //Arrange
     when(() => repository.updateEntity(entity: params))
         .thenAnswer((_) async => const Right(unit));
@@ -30,7 +32,8 @@ void main() {
     verifyNoMoreInteractions(repository);
   });
 
-  test('should return failure when update fails', () async {
+  test('[user.updateUsecase.failureTest] must return failure when update fails',
+      () async {
     // Arrange
     const failure = HiveFailure('Update failed');
     when(() => repository.updateEntity(entity: params))

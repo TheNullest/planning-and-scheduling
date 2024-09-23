@@ -4,7 +4,7 @@ import 'package:zamaan/features/auth/data/data_sources/hive_authentication_data_
 import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/data/repositories/hive/hive_authentication_repository_impl.dart';
 
-import '../../../domain/usecases/authentication_repository.mock.dart';
+import '../../../domain/usecases/_authentication_repository.mock.dart';
 
 class MockAuthDataSource extends Mock
     implements HiveAuthenticationDataSourceImpl {}
@@ -32,7 +32,7 @@ void main() {
 
   group('createEntity', () {
     test(
-        '[createEntity] in the [authRepo] must call the [createEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.createEntity] must call the [createEntity] of the [dataStore] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.createEntity(
               newEntity: HiveUserModel.fromEntity(entity)))
@@ -51,7 +51,7 @@ void main() {
 
   group('getEntities', () {
     test(
-        '[getEntities] in the [authRepo] must call the [getEntities] of the [dataStore] then returns [Right(List<UserEntity>)] data'
+        '[authRepo.getEntities] must call the [getEntities] of the [dataStore] then returns [Right(List<UserEntity>)] data'
         'wich should be converted into a [Right(List<UserEntity>)] data',
         () async {
       when(() => mockDataSource.getEntities())
@@ -68,7 +68,7 @@ void main() {
   });
   group('getEntity', () {
     test(
-        '[getEntity] in the [authRepo] must call the [getEntity] of the [dataStore] then returns [Right(UserEntity)] data'
+        '[authRepo.getEntity] must call the [getEntity] of the [dataStore] then returns [Right(UserEntity)] data'
         'wich should be converted into a [Right(List<UserEntity>)] data',
         () async {
       when(() => mockDataSource.getEntity(id: model.id))
@@ -85,7 +85,7 @@ void main() {
   });
   group('updateEntity', () {
     test(
-        '[updateEntity] in the [authRepo] must call the [updateEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.updateEntity] must call the [updateEntity] of the [dataStore] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.updateEntity(entity: model))
           .thenAnswer((_) async => const Right(null));
@@ -101,7 +101,7 @@ void main() {
   });
   group('deleteEntity', () {
     test(
-        '[deleteEntity] in the [authRepo] must call the [deleteEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.deleteEntity] must call the [deleteEntity] of the [dataStore] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.deleteEntity(id: model.id))
           .thenAnswer((_) async => const Right(null));
@@ -117,7 +117,7 @@ void main() {
   });
   group('deleteAllSelected', () {
     test(
-        '[deleteAllSelected] in the [authRepo] must call the [deleteAllSelected] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.deleteAllSelected] must call the [deleteAllSelected] of the [dataStore] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.deleteAllSelected([model.id]))
           .thenAnswer((_) async => const Right(null));

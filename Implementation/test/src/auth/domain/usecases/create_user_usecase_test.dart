@@ -3,7 +3,7 @@
 import 'package:zamaan/core/error/failures/failure.dart';
 import 'package:zamaan/features/auth/domain/usecases/create_user_usecase.dart';
 
-import 'authentication_repository.mock.dart';
+import '_authentication_repository.mock.dart';
 
 // What does the class depend on
 // Answer -- [AuthenticationRepository]
@@ -25,7 +25,7 @@ void main() {
   });
 
   UserEntity params = UserEntity.empty();
-  test('should call the [AuthRepo.createEntity]', () async {
+  test('[user.createUsecase] must call the [AuthRepo.createEntity]', () async {
     // Arrange
     // STUB
     when(

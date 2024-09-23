@@ -28,6 +28,12 @@ class ScheduledTimeEntity extends BaseEntityAbstraction {
       required this.willStartAt,
       required this.endAt});
 
+  ScheduledTimeEntity.empty()
+      : this(
+            mainTaskId: '1',
+            willStartAt: DateTime(2024, 08),
+            endAt: DateTime(2024, 10));
+
   ScheduledTimeEntity copyWith(
     String? id,
     int? order,

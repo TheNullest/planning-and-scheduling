@@ -28,8 +28,9 @@ void main() {
     ];
   });
 
-  group('createEntity', () {
-    test('should save entity to the box and returns [Right(null)] data',
+  group('authDataStore', () {
+    test(
+        '[authDataStore.createEntity] must save entity to the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -44,11 +45,8 @@ void main() {
           .called(1); // Verify that get was only called once
       verifyNoMoreInteractions(mockHiveInit);
     });
-  });
-
-  group('getEntities', () {
     test(
-        'getEntities should retrieve all entities from the box [Right([])] data ',
+        '[authDataStore.getEntities] should retrieve all entities from the box [Right([])] data ',
         () async {
       when(() => mockHiveInit.operator<List<HiveUserModel>>(
           job: any(named: 'job'),
@@ -63,11 +61,9 @@ void main() {
           .called(1); // Verify that get was only called once
       verifyNoMoreInteractions(mockHiveInit);
     });
-  });
 
-  group('getEntity', () {
     test(
-        'getEntity should retrieve entity by id from the box and returns [Right(HiveUserModel)] data',
+        '[authDataStore.getEntity] should retrieve entity by id from the box and returns [Right(HiveUserModel)] data',
         () async {
       when(() => mockHiveInit.operator<HiveUserModel>(
           job: any(named: 'job'),
@@ -83,11 +79,9 @@ void main() {
       ).called(1); // Verify that get was only called once with the correct ID
       verifyNoMoreInteractions(mockHiveInit);
     });
-  });
 
-  group('updateEntity', () {
     test(
-        'updateEntity should update entity in the box and returns [Right(null)] data',
+        '[authDataStore.updateEntity] must update entity in the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -102,11 +96,9 @@ void main() {
           .called(1); // Verify that get was only called once
       verifyNoMoreInteractions(mockHiveInit);
     });
-  });
 
-  group('deleteEntity', () {
     test(
-        'deleteEntity should delete entity by id from the box and returns [Right(null)] data',
+        '[authDataStore.deleteEntity] must delete entity by id from the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -122,10 +114,8 @@ void main() {
       ).called(1); // Verify that get was only called once with the correct ID
       verifyNoMoreInteractions(mockHiveInit);
     });
-  });
-  group('deleteAllSelected', () {
     test(
-        'deleteAllSelected should delete from the box all the entities whose [ID] it has received and returns [Right(null)] data',
+        '[authDataStore.deleteAllSelected] should delete from the box all the entities whose [ID] it has received and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),

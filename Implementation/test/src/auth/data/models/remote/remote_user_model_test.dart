@@ -11,7 +11,9 @@ import '../../../../../fixtures/fixture_reader.dart';
 void main() {
   // Arrange
   final testModel = RemoteUserModel.empty();
-  test('should be a subclass of [UserEntity] and [HiveUserModel]', () {
+  test(
+      '[remoteUserModel] must be a subclass of [UserEntity] and [HiveUserModel]',
+      () {
     // Arrange => testModel
 
     // Assert
@@ -20,37 +22,33 @@ void main() {
     expect(testModel, isA<BaseEntityAbstraction>());
   });
 
-  group('fromMap', () {
-    test('should return a [RemoteUserModel] with the right data', () {
+  group('remoteUserModel', () {
+    test(
+        '[remoteUserModel.fromMap] must return a [RemoteUserModel] with the right data',
+        () {
       // Arrange => testModel
       // Act
       final actual = RemoteUserModel.fromMap(getRemoteUserModels()[0].toMap());
       // Assert
       expect(actual, equals(getRemoteUserModels()[0]));
     });
-  });
-
-  group('fromJson', () {
-    test('should return a [RemoteUserModel] with the right data', () {
+    test(
+        '[remoteUserModel.fromJson] must return a [RemoteUserModel] with the right data',
+        () {
       // Arrange => testModel
       // Act
       final testJson = jsonEncode(testModel.toMap());
       final actual = RemoteUserModel.fromJSON(testJson);
       expect(actual, equals(testModel));
     });
-  });
-
-  group('toMap', () {
-    test('should return a [Map] with the right data', () {
+    test('[remoteUserModel.toMap] must return a [Map] with the right data', () {
       // Arrange => testModel
       // Act
       final actual = getRemoteUserModels()[2].toMap();
       expect(actual, equals(testMaps[2]));
     });
-  });
-
-  group('toJson', () {
-    test('should return a [Json] with the right data', () {
+    test('[remoteUserModel.toJson] must return a [Json] with the right data',
+        () {
       // Arrange => testModel
       // Act
       final actual = testModel.toJson();
@@ -58,10 +56,9 @@ void main() {
       // Assert
       expect(actual, equals(tJson));
     });
-  });
-
-  group('copyWith', () {
-    test('should return a customed [RemoteUserModel]with the right data', () {
+    test(
+        '[remoteUserModel.copyWith] must return a customed [RemoteUserModel]with the right data',
+        () {
       // Arrange
 
       // Act

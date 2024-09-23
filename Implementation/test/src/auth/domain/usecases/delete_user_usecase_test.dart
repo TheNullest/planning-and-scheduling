@@ -2,7 +2,7 @@ import 'package:zamaan/core/error/failures/failure.dart';
 import 'package:zamaan/features/auth/domain/usecases/delete_user_usecase.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
-import 'authentication_repository.mock.dart';
+import '_authentication_repository.mock.dart';
 
 void main() {
   late DeleteUserUseCase useCase;
@@ -14,16 +14,16 @@ void main() {
   });
 
   test(
-      'should call the [AuthRepo.deleteEntity] and delete the entity then return the Right value',
+      '[user.deleteUsecase] must call the [AuthRepo.deleteEntity] and delete the entity then return the Right value',
       () async {
-// Arrange
+    // Arrange
     when(() => repository.deleteEntity(id: params))
         .thenAnswer((_) async => const Right(null));
 
-// Act
+    // Act
     final actual = await useCase(params);
 
-// Assert
+    // Assert
     expect(actual, equals(const Right<Failure, void>(null)));
     verify(
       () => repository.deleteEntity(id: params),

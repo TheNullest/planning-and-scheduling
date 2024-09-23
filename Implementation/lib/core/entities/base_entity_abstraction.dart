@@ -11,7 +11,7 @@ abstract class BaseEntityAbstraction extends HiveObject with EquatableMixin {
   /// This allows to efficiently manage items by sorting or displaying\
   /// them based on their order values.
   @HiveField(100)
-  final int? order;
+  final int order;
 
   @HiveField(1)
   final String? creatorId;
@@ -25,7 +25,7 @@ abstract class BaseEntityAbstraction extends HiveObject with EquatableMixin {
   BaseEntityAbstraction({
     String? id,
     DateTime? createdAt,
-    this.order,
+    this.order = 0,
     this.creatorId,
     this.description,
   })  : id = id ?? const Uuid().v4(),

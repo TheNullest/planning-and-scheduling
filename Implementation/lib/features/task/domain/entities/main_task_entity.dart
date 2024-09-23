@@ -64,7 +64,7 @@ class MainTaskEntity extends BaseEntityAbstraction {
       super.description,
       required this.title,
       required this.taskCategoriyIds,
-      required super.createdAt,
+      super.createdAt,
       required this.colorCode,
       required this.iconCode,
       this.priority = Priority.optional,
@@ -77,6 +77,9 @@ class MainTaskEntity extends BaseEntityAbstraction {
       this.repetitionInterval,
       this.totalSpentTime,
       this.selectedWeekDays});
+
+  MainTaskEntity.empty()
+      : this(title: 'title', taskCategoriyIds: [], colorCode: 1, iconCode: 2);
 
   /// Creates a copy of this CategoryEntity with potentially modified properties.
   MainTaskEntity copyWith(
@@ -145,13 +148,11 @@ class MainTaskEntity extends BaseEntityAbstraction {
 
   @override
   BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
     throw UnimplementedError();
   }
 
   @override
   MainTaskEntity toEntity() {
-    // TODO: implement toEntity
     throw UnimplementedError();
   }
 }
