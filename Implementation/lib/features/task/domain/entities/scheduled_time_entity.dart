@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
 
-class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
+class ScheduledTimeEntity extends BaseEntityAbstraction {
   @HiveField(4)
   final String mainTaskId;
 
@@ -11,14 +11,14 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
   /// **Conditional End Time:**
   ///
   /// - If the task has a **predefined end time**, then `endAt` should be set
-  ///   at the same time as the entire `ScheduledTaskTimeIntervalEntity` definition.
+  ///   at the same time as the entire `ScheduledTimeEntity` definition.
   ///   This signifies a fixed duration for the task.
   /// - If the task has no predefined end time, `endAt` will be set later
   ///   when the task is actually completed. This indicates a dynamic duration.
   @HiveField(6)
   final DateTime? endAt;
 
-  ScheduledTaskTimeIntervalEntity(
+  ScheduledTimeEntity(
       {super.id,
       super.order,
       super.createdAt,
@@ -28,7 +28,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
       required this.willStartAt,
       required this.endAt});
 
-  ScheduledTaskTimeIntervalEntity copyWith(
+  ScheduledTimeEntity copyWith(
     String? id,
     int? order,
     DateTime? createdAt,
@@ -38,7 +38,7 @@ class ScheduledTaskTimeIntervalEntity extends BaseEntityAbstraction {
     DateTime? willStartAt,
     DateTime? endAt,
   ) =>
-      ScheduledTaskTimeIntervalEntity(
+      ScheduledTimeEntity(
         id: id ?? this.id,
         order: order ?? this.order,
         description: description ?? this.description,

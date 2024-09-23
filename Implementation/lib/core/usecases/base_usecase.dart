@@ -1,7 +1,7 @@
+import 'package:zamaan/core/repositories/base_repository_abstraction.dart';
 import 'package:zamaan/core/utils/typedef.dart';
-import 'package:zamaan/features/auth/domain/repositories/hive/authentication_repository.dart';
 
-abstract class UseCaseWithParams<Repo extends AuthenticationRepository,
+abstract class UseCaseWithParams<Repo extends BaseRepositoryAbstraction,
     ResultType, Params> {
   final Repo _repository;
 
@@ -12,7 +12,7 @@ abstract class UseCaseWithParams<Repo extends AuthenticationRepository,
   ResultFuture<ResultType> call(Params params);
 }
 
-abstract class UseCaseWithoutParams<Repo extends AuthenticationRepository,
+abstract class UseCaseWithoutParams<Repo extends BaseRepositoryAbstraction,
     ResultType> {
   final Repo _repository;
 

@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
 
-class TaskTimeIntervalEntity extends BaseEntityAbstraction {
+class TimeIntervalEntity extends BaseEntityAbstraction {
   @HiveField(4)
   final String mainTaskId;
 
@@ -22,7 +22,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
   @HiveField(8)
   final Duration? spentTime;
 
-  TaskTimeIntervalEntity({
+  TimeIntervalEntity({
     super.id,
     super.order,
     super.createdAt,
@@ -35,8 +35,8 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
     this.spentTime,
   });
 
-  /// Creates a copy of this CategoryEntity with potentially modified properties.
-  TaskTimeIntervalEntity copyWith(
+  /// Creates a copy of this TimeIntervalEntity with potentially modified properties.
+  TimeIntervalEntity copyWith(
     String? id,
     int? order,
     DateTime? createdAt,
@@ -48,7 +48,7 @@ class TaskTimeIntervalEntity extends BaseEntityAbstraction {
     DateTime? endAt,
     Duration? spentTime,
   ) =>
-      TaskTimeIntervalEntity(
+      TimeIntervalEntity(
         id: id ?? this.id,
         order: order ?? this.order,
         description: description ?? this.description,
