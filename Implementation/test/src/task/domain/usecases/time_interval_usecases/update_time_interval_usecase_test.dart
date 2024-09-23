@@ -48,7 +48,6 @@ void main() {
 
     // Assert
     expect(result, isA<Left>());
-    // or this
     expect(result, equals(const Left<Failure, void>(failure)));
 
     verify(() => repository.updateEntity(entity: params)).called(1);

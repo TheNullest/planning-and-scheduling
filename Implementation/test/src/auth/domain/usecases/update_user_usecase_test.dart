@@ -26,13 +26,15 @@ void main() {
     final actual = await useCase(params);
 
     // Assert
+    expect(actual.isRight(), true);
     expect(actual, equals(const Right<Failure, void>(unit)));
     verify(() => repository.updateEntity(entity: params)).called(1);
 
     verifyNoMoreInteractions(repository);
   });
 
-  test('[user.updateUsecase.failureTest] must return failure when update fails',
+  test(
+      '[user.updateUsecase.failureTest] must return failure with [Left(HiveFailure("Error"))] data when updateUsecase fails',
       () async {
     // Arrange
     const failure = HiveFailure('Update failed');
@@ -44,7 +46,6 @@ void main() {
 
     // Assert
     expect(result, isA<Left>());
-    // or this
     expect(result, equals(const Left<Failure, void>(failure)));
 
     verify(() => repository.updateEntity(entity: params)).called(1);
