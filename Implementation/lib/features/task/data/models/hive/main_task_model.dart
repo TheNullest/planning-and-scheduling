@@ -1,4 +1,0 @@
-
-// class MainTaskModel extends TaskEntity {
-
-// }

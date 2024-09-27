@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/core/utils/enums.dart';
+import 'package:zamaan/core/utils/enums/enums.dart';
 
 class SubTaskEntity extends BaseEntityAbstraction {
   @HiveField(4)
   final String mainTaskId;
 
   @HiveField(5)
-  final Priority priority;
+  final int priority;
 
   @HiveField(6)
   final String title;
@@ -16,7 +16,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
   /// Status == 1 => inProgress\
   /// Status == 2 => completed
   @HiveField(7)
-  final Status status;
+  final int status;
 
   SubTaskEntity({
     super.id,
@@ -26,9 +26,10 @@ class SubTaskEntity extends BaseEntityAbstraction {
     super.description,
     required this.mainTaskId,
     required this.title,
-    this.priority = Priority.optional,
-    this.status = Status.notStarted,
-  });
+    int? priority,
+    int? status,
+  })  : priority = priority ?? Priority.optional.index,
+        status = status ?? Status.notStarted.index;
 
   SubTaskEntity.empty() : this(mainTaskId: '1', title: 'title');
 
@@ -40,8 +41,8 @@ class SubTaskEntity extends BaseEntityAbstraction {
     String? description,
     String? mainTaskId,
     String? title,
-    Priority? priority,
-    Status? status,
+    int? priority,
+    int? status,
   ) =>
       SubTaskEntity(
         id: id ?? this.id,
@@ -67,16 +68,4 @@ class SubTaskEntity extends BaseEntityAbstraction {
         priority,
         status
       ];
-
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
-    throw UnimplementedError();
-  }
-
-  @override
-  BaseEntityAbstraction toEntity() {
-    // TODO: implement toEntity
-    throw UnimplementedError();
-  }
 }

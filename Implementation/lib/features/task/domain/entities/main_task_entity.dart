@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/core/utils/enums.dart';
+import 'package:zamaan/core/utils/enums/enums.dart';
 
 class MainTaskEntity extends BaseEntityAbstraction {
   @HiveField(4)
@@ -15,23 +15,14 @@ class MainTaskEntity extends BaseEntityAbstraction {
   final int iconCode;
 
   @HiveField(7)
-  final Priority priority;
+  final int priority;
 
   @HiveField(8)
-  final DateTime? dueTime;
-
-  /// If the value of this attribute is set as weekly,\
-  /// then the value of the [selectedWeekDays] must be determind
-  @HiveField(9)
-  final RepetitionInterval? repetitionInterval;
-
-  /// To set this attribute, the [repetitionInterval] must be set to weekly
-  @HiveField(10)
-  final List<WeekDays>? selectedWeekDays;
+  final DateTime? dueDate;
 
   /// Groups such as : sporting, reading, working, fun ,...
   @HiveField(11)
-  final List<String>? taskCategoriyIds;
+  final List<String>? categoryIds;
 
   @HiveField(12)
   final List<String>? fixedTagIds;
@@ -39,23 +30,17 @@ class MainTaskEntity extends BaseEntityAbstraction {
   @HiveField(13)
   final List<String>? tagIds;
 
-  /// When a project is planned and divided into smaller tasks
   @HiveField(14)
   final Duration? totalSpentTime;
-
-  /// Store all time spent based on miliseconds in TaskDoingTimFrameModels
-  @HiveField(15)
-  final String? superMainTaskId;
-
-  /// Doing work with the presence and help of other people
-  @HiveField(16)
-  final List<String>? contributorIds;
 
   /// Status == 0 => notStarted\
   /// Status == 1 => inProgress\
   /// Status == 2 => completed
-  @HiveField(17)
-  final Status status;
+  @HiveField(15)
+  final int status;
+
+  @HiveField(16)
+  final String? taskSchedulerId;
 
   MainTaskEntity(
       {super.id,
@@ -63,45 +48,42 @@ class MainTaskEntity extends BaseEntityAbstraction {
       super.creatorId,
       super.description,
       required this.title,
-      required this.taskCategoriyIds,
+      required this.categoryIds,
       super.createdAt,
       required this.colorCode,
       required this.iconCode,
-      this.priority = Priority.optional,
-      this.status = Status.notStarted,
+      int? priority,
+      int? status,
       this.fixedTagIds,
       this.tagIds,
-      this.contributorIds,
-      this.superMainTaskId,
-      this.dueTime,
-      this.repetitionInterval,
+      this.dueDate,
       this.totalSpentTime,
-      this.selectedWeekDays});
+      this.taskSchedulerId})
+      : priority = priority ?? Priority.optional.index,
+        status = status ?? Status.notStarted.index;
 
   MainTaskEntity.empty()
-      : this(title: 'title', taskCategoriyIds: [], colorCode: 1, iconCode: 2);
+      : this(title: 'title', categoryIds: [], colorCode: 1, iconCode: 2);
 
-  /// Creates a copy of this CategoryEntity with potentially modified properties.
+  /// Creates a copy of this MainTaskEntity with potentially modified properties.
   MainTaskEntity copyWith(
-          String? id,
-          int? order,
-          DateTime? createdAt,
-          String? creatorId,
-          String? description,
-          String? title,
-          int? colorCode,
-          int? iconCode,
-          List<String>? taskCategoriyIds,
-          Priority? priority,
-          Status? status,
-          List<String>? fixedTagIds,
-          List<String>? tagIds,
-          List<String>? contributorIds,
-          String? superMainTaskId,
-          DateTime? dueTime,
-          RepetitionInterval? repetitionInterval,
-          Duration? totalSpentTime,
-          List<WeekDays>? selectedWeekDays) =>
+    String? id,
+    int? order,
+    DateTime? createdAt,
+    String? creatorId,
+    String? description,
+    String? title,
+    int? colorCode,
+    int? iconCode,
+    List<String>? categoryIds,
+    int? priority,
+    int? status,
+    List<String>? fixedTagIds,
+    List<String>? tagIds,
+    DateTime? dueDate,
+    Duration? totalSpentTime,
+    String? taskSchedulerEntityId,
+  ) =>
       MainTaskEntity(
         id: id ?? this.id,
         order: order ?? this.order,
@@ -111,17 +93,14 @@ class MainTaskEntity extends BaseEntityAbstraction {
         title: title ?? this.title,
         colorCode: colorCode ?? this.colorCode,
         iconCode: iconCode ?? this.iconCode,
-        taskCategoriyIds: taskCategoriyIds ?? this.taskCategoriyIds,
+        categoryIds: categoryIds ?? this.categoryIds,
         priority: priority ?? this.priority,
         status: status ?? this.status,
         fixedTagIds: fixedTagIds ?? this.fixedTagIds,
         tagIds: tagIds ?? this.tagIds,
-        contributorIds: contributorIds ?? this.contributorIds,
-        superMainTaskId: superMainTaskId ?? this.superMainTaskId,
-        dueTime: dueTime ?? this.dueTime,
-        repetitionInterval: repetitionInterval ?? this.repetitionInterval,
+        dueDate: dueDate ?? this.dueDate,
         totalSpentTime: totalSpentTime ?? this.totalSpentTime,
-        selectedWeekDays: selectedWeekDays ?? this.selectedWeekDays,
+        taskSchedulerId: taskSchedulerEntityId ?? taskSchedulerId,
       );
 
   @override
@@ -131,7 +110,7 @@ class MainTaskEntity extends BaseEntityAbstraction {
         creatorId,
         description,
         title,
-        taskCategoriyIds,
+        categoryIds,
         createdAt,
         colorCode,
         iconCode,
@@ -139,20 +118,8 @@ class MainTaskEntity extends BaseEntityAbstraction {
         status,
         fixedTagIds,
         tagIds,
-        contributorIds,
-        superMainTaskId,
-        dueTime,
-        repetitionInterval,
+        dueDate,
         totalSpentTime,
+        taskSchedulerId
       ];
-
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    throw UnimplementedError();
-  }
-
-  @override
-  MainTaskEntity toEntity() {
-    throw UnimplementedError();
-  }
 }

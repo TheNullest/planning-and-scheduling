@@ -12,30 +12,34 @@ class GoalEntity extends BaseEntityAbstraction {
   @HiveField(6)
   final String measurementUnitId;
 
+  /// MeasurementValue enum
+  @HiveField(7)
+  final int measurementValue;
+
   /// The minimum amount determined per hour\
   /// based on the desired measurement unit of the current task
-  @HiveField(7)
-  final double perHour;
+  @HiveField(8)
+  final double perActiveHour;
 
   /// The minimum amount determined per day\
   /// based on the desired measurement unit of the current task
-  @HiveField(8)
-  final double perDay;
+  @HiveField(9)
+  final double perActiveDay;
 
   /// The minimum amount determined per week\
   /// based on the desired measurement unit of the current task
-  @HiveField(9)
-  final double perWeek;
+  @HiveField(10)
+  final double perActiveWeek;
 
   /// The minimum amount determined per month\
   /// based on the desired measurement unit of the current task
-  @HiveField(10)
-  final double perMonth;
+  @HiveField(11)
+  final double perActiveMonth;
 
   /// The minimum amount determined per year\
   /// based on the desired measurement unit of the current task
-  @HiveField(11)
-  final double perYear;
+  @HiveField(12)
+  final double perActiveYear;
 
   GoalEntity({
     super.id,
@@ -45,15 +49,17 @@ class GoalEntity extends BaseEntityAbstraction {
     super.description,
     required this.mainTaskId,
     required this.measurementUnitId,
+    required this.measurementValue,
     this.subTaskId,
-    this.perHour = 0,
-    this.perDay = 0,
-    this.perWeek = 0,
-    this.perMonth = 0,
-    this.perYear = 0,
+    this.perActiveHour = 0,
+    this.perActiveDay = 0,
+    this.perActiveWeek = 0,
+    this.perActiveMonth = 0,
+    this.perActiveYear = 0,
   });
 
-  GoalEntity.empty() : this(mainTaskId: '1', measurementUnitId: '2');
+  GoalEntity.empty()
+      : this(mainTaskId: '1', measurementUnitId: '2', measurementValue: 1);
 
   GoalEntity copyWith(
     String? id,
@@ -63,12 +69,13 @@ class GoalEntity extends BaseEntityAbstraction {
     String? description,
     String? mainTaskId,
     String? measurementUnitId,
+    int? measurementValue,
     String? subTaskId,
-    double? perHour,
-    double? perDay,
-    double? perWeek,
-    double? perMonth,
-    double? perYear,
+    double? perActiveHour,
+    double? perActiveDay,
+    double? perActiveWeek,
+    double? perActiveMonth,
+    double? perActiveYear,
   ) =>
       GoalEntity(
         id: id ?? this.id,
@@ -79,11 +86,12 @@ class GoalEntity extends BaseEntityAbstraction {
         mainTaskId: mainTaskId ?? this.mainTaskId,
         subTaskId: subTaskId ?? this.subTaskId,
         measurementUnitId: measurementUnitId ?? this.measurementUnitId,
-        perHour: perHour ?? this.perHour,
-        perDay: perDay ?? this.perDay,
-        perWeek: perWeek ?? this.perWeek,
-        perMonth: perMonth ?? this.perMonth,
-        perYear: perYear ?? this.perYear,
+        measurementValue: measurementValue ?? this.measurementValue,
+        perActiveHour: perActiveHour ?? this.perActiveHour,
+        perActiveDay: perActiveDay ?? this.perActiveDay,
+        perActiveWeek: perActiveWeek ?? this.perActiveWeek,
+        perActiveMonth: perActiveMonth ?? this.perActiveMonth,
+        perActiveYear: perActiveYear ?? this.perActiveYear,
       );
 
   @override
@@ -95,23 +103,12 @@ class GoalEntity extends BaseEntityAbstraction {
         description,
         mainTaskId,
         measurementUnitId,
+        measurementValue,
         subTaskId,
-        perHour,
-        perDay,
-        perWeek,
-        perMonth,
-        perYear,
+        perActiveHour,
+        perActiveDay,
+        perActiveWeek,
+        perActiveMonth,
+        perActiveYear,
       ];
-
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
-    throw UnimplementedError();
-  }
-
-  @override
-  GoalEntity toEntity() {
-    // TODO: implement toEntity
-    throw UnimplementedError();
-  }
 }

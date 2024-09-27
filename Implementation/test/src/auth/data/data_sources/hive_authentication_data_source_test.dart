@@ -5,19 +5,19 @@ import 'package:zamaan/core/error/failures/failure.dart';
 import 'package:zamaan/core/error/failures/hive_failure.dart';
 import 'package:zamaan/core/initializers/hive_initializer.dart';
 import 'package:zamaan/core/utils/uuid.dart';
-import 'package:zamaan/features/auth/data/data_sources/hive_authentication_data_source_impl.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/data_sources/local/hive_authentication_data_source_impl.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
 
 class MockHiveInit extends Mock implements HiveInitializer<HiveUserModel> {}
 
 void main() {
-  late HiveAuthenticationDataSourceImpl dataSource;
+  late AuthenticationDataSourceImpl dataSource;
   late HiveInitializer<HiveUserModel> mockHiveInit;
   late HiveUserModel model;
   late List<String> keys;
   setUp(() {
     mockHiveInit = MockHiveInit();
-    dataSource = HiveAuthenticationDataSourceImpl(hiveBox: mockHiveInit);
+    dataSource = AuthenticationDataSourceImpl(hiveBox: mockHiveInit);
     model = HiveUserModel.empty();
     keys = [
       uuidGenerator(),
