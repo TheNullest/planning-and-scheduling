@@ -1,43 +1,44 @@
 // ignore_for_file: void_checks
 
 import 'package:dartz/dartz.dart';
+import 'package:zamaan/core/entities/base_entity_abstraction.dart';
 import 'package:zamaan/core/error/failures/hive_failure.dart';
 import 'package:zamaan/core/initializers/hive_initializer.dart';
 import 'package:zamaan/core/utils/typedef.dart';
 import 'package:zamaan/core/utils/uuid.dart';
-import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
 
 /// The **[HiveModel]** has to be **[HiveModel]** class not the **[~~Entity class~~]**
-abstract class HiveBaseDataSourceAbstraction<HiveModel extends UserEntity> {
+abstract class HiveBaseDataSourceAbstraction<
+    HiveModel extends BaseEntityAbstraction> {
   final String _boxName;
-  final HiveInitializer<HiveModel> hiveBox;
+  final HiveInitializer<HiveModel> _hiveBox;
 
   // Just to add the testablity feature to the class,
   // we need to inject the [HiveInitializer<HiveModel>] like this
   HiveBaseDataSourceAbstraction(this._boxName,
       {HiveInitializer<HiveModel>? hiveBox})
-      : hiveBox = hiveBox ?? HiveInitializer<HiveModel>();
+      : _hiveBox = hiveBox ?? HiveInitializer<HiveModel>();
   // Just to add the testablity feature to the class
 
   /// #### Saves the `[item]` to the Hive box conditionally.
   ResultFutureVoid createEntity({
     required HiveModel newEntity,
   }) async =>
-      await hiveBox.operator<void>(
+      await _hiveBox.operator<void>(
         job: (box) async => await box.put(newEntity.id, newEntity),
         boxName: _boxName,
       );
 
   /// Retrieves all items from the Hive box.
   ResultFuture<List<HiveModel>> getEntities() async =>
-      await hiveBox.operator<List<HiveModel>>(
+      await _hiveBox.operator<List<HiveModel>>(
         job: ((box) async => box.values.toList()),
         boxName: _boxName,
       );
 
   /// Retrieves an item from the Hive box based on its **ID**.
   ResultFuture<HiveModel> getEntity({required String id}) async =>
-      await hiveBox.operator<HiveModel>(
+      await _hiveBox.operator<HiveModel>(
           job: (box) async => box.values.firstWhere((item) => item.id == id),
           boxName: _boxName);
 
@@ -55,7 +56,7 @@ abstract class HiveBaseDataSourceAbstraction<HiveModel extends UserEntity> {
     if (!isValidUUID(id)) {
       return Left(HiveFailure('This $id is not a valid [UUID] '));
     }
-    return await hiveBox.operator<void>(
+    return await _hiveBox.operator<void>(
       job: (box) async => await box.delete(id),
       boxName: _boxName,
     );
@@ -72,7 +73,7 @@ abstract class HiveBaseDataSourceAbstraction<HiveModel extends UserEntity> {
       return Left(HiveFailure('This $invalidKeys are not a valid [UUID] '));
     }
 
-    return await hiveBox.operator<void>(
+    return await _hiveBox.operator<void>(
       job: (box) async => await box.deleteAll(keys),
       boxName: _boxName,
     );

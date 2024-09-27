@@ -14,6 +14,5 @@ class GetTimeIntevalByMainTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
   @override
   ResultFuture<List<TimeIntervalEntity>> call(
           GetByTaskIdsAndDateRangeParams params) async =>
-      await repository.getTimeIntervalByMainTaskIdAndDateRange(
-          params.mainTaskIds, params.startAt, params.endAt);
+      await repository.getTimeIntervalByMainTaskIdAndDateRange(params);
 }

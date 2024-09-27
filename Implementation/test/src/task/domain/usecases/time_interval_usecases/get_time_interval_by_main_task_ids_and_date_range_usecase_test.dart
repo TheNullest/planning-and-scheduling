@@ -25,8 +25,8 @@ void main() {
       '[timeInterval.GetTimeIntevalByMainTaskIdsAndDateRangeUsecase] must call the [TimeIntervalRepository.getTimeIntervalByMainTaskIdAndDateRange] and return [List<TimeIntervalEntity>]',
       () async {
     //Arrange
-    when(() => repository.getTimeIntervalByMainTaskIdAndDateRange(
-        ['1'], startAt, endAt)).thenAnswer((_) async => const Right([]));
+    when(() => repository.getTimeIntervalByMainTaskIdAndDateRange(params))
+        .thenAnswer((_) async => const Right([]));
 
     // Act
     final result = await useCase(params);
@@ -35,8 +35,8 @@ void main() {
     expect(result.isRight(), true);
 
     expect(result, equals(const Right<dynamic, List<TimeIntervalEntity>>([])));
-    verify(() => repository.getTimeIntervalByMainTaskIdAndDateRange(
-        ['1'], startAt, endAt)).called(1);
+    verify(() => repository.getTimeIntervalByMainTaskIdAndDateRange(params))
+        .called(1);
     verifyNoMoreInteractions(repository);
   });
 
@@ -44,8 +44,7 @@ void main() {
       '[timeInterval.GetTimeIntevalByMainTaskIdsAndDateRangeUsecase.failureTest] must return failure with [Left(HiveFailure("Error"))] data when GetTimeIntevalByMainTaskIdsAndDateRangeUsecase fails',
       () async {
     //Arrange
-    when(() => repository
-            .getTimeIntervalByMainTaskIdAndDateRange(['1'], startAt, endAt))
+    when(() => repository.getTimeIntervalByMainTaskIdAndDateRange(params))
         .thenAnswer((_) async => const Left(HiveFailure("Error")));
 
     // Act
@@ -54,8 +53,8 @@ void main() {
     // Assert
     expect(result.isLeft(), true);
     expect(result, equals(const Left(HiveFailure("Error"))));
-    verify(() => repository.getTimeIntervalByMainTaskIdAndDateRange(
-        ['1'], startAt, endAt)).called(1);
+    verify(() => repository.getTimeIntervalByMainTaskIdAndDateRange(params))
+        .called(1);
     verifyNoMoreInteractions(repository);
   });
 }

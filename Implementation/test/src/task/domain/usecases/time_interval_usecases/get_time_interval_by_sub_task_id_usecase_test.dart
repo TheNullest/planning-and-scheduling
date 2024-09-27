@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zamaan/core/error/failures/hive_failure.dart';
-import 'package:zamaan/features/task/domain/entities/sub_task_entity.dart';
 import 'package:zamaan/features/task/domain/entities/time_interval_entity.dart';
 import 'package:zamaan/features/task/domain/repositories/time_interval_repository.dart';
 import 'package:zamaan/features/task/domain/usecases/time_interval_usecases/get_time_interval_by_sub_task_id_usecase.dart';

@@ -64,16 +64,6 @@ class UserEntity extends BaseEntityAbstraction {
         createdAt
       ];
 
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    throw UnimplementedError();
-  }
-
-  @override
-  BaseEntityAbstraction toEntity() {
-    throw UnimplementedError();
-  }
-
   UserEntity copyWith(
           {String? id,
           int? order,

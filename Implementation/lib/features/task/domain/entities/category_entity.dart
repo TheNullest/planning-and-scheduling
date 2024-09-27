@@ -59,16 +59,4 @@ class CategoryEntity extends BaseEntityAbstraction {
         colorCode,
         iconCode,
       ];
-
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
-    throw UnimplementedError();
-  }
-
-  @override
-  CategoryEntity toEntity() {
-    // TODO: implement toEntity
-    throw UnimplementedError();
-  }
 }
