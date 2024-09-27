@@ -34,16 +34,4 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
         isDouble,
         iconCode,
       ];
-
-  @override
-  BaseEntityAbstraction fromEntity(BaseEntityAbstraction entity) {
-    // TODO: implement fromEntity
-    throw UnimplementedError();
-  }
-
-  @override
-  MeasurementUnitEntity toEntity() {
-    // TODO: implement toEntity
-    throw UnimplementedError();
-  }
 }

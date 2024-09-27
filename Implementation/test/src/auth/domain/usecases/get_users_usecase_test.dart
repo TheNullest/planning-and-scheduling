@@ -6,7 +6,7 @@
 // Answer -- Using the [Mocktail]'s APIs
 
 import 'package:zamaan/core/error/failures/hive_failure.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/domain/usecases/get_users_usecase.dart';
 
 import '_authentication_repository.mock.dart';

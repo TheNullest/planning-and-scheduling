@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/data/models/remote/remote_user_model.dart';
 
 String fixtures(String fileName) =>

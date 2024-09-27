@@ -1,34 +1,23 @@
 import 'package:zamaan/core/error/failures/failure.dart';
 import 'package:zamaan/core/error/failures/hive_failure.dart';
-import 'package:zamaan/core/utils/uuid.dart';
-import 'package:zamaan/features/auth/data/data_sources/hive_authentication_data_source_impl.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
-import 'package:zamaan/features/auth/data/repositories/hive/hive_authentication_repository_impl.dart';
+import 'package:zamaan/features/auth/data/data_sources/local/hive_authentication_data_source_impl.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/repositories/authentication_repository_impl.dart';
 
 import '../../../domain/usecases/_authentication_repository.mock.dart';
 
-class MockAuthDataSource extends Mock
-    implements HiveAuthenticationDataSourceImpl {}
+class MockAuthDataSource extends Mock implements AuthenticationDataSourceImpl {}
 
 void main() {
-  late HiveAuthenticationDataSourceImpl mockDataSource;
-  late HiveAuthenticationRepositoryImpl authRepo;
+  late AuthenticationDataSourceImpl mockDataSource;
+  late AuthenticationRepositoryImpl authRepo;
   late HiveUserModel model;
   late UserEntity entity;
-  late List<String> keys;
   setUp(() {
     mockDataSource = MockAuthDataSource();
-    authRepo = HiveAuthenticationRepositoryImpl(mockDataSource);
+    authRepo = AuthenticationRepositoryImpl(mockDataSource);
     entity = UserEntity.empty();
     model = HiveUserModel.fromEntity(entity);
-    keys = [
-      uuidGenerator(),
-      uuidGenerator(),
-      uuidGenerator(),
-      uuidGenerator(),
-      uuidGenerator(),
-      uuidGenerator(),
-    ];
   });
 
   group('createEntity', () {

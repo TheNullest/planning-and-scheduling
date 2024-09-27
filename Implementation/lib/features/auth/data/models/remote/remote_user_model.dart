@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:zamaan/core/utils/typedef.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
 
 class RemoteUserModel extends HiveUserModel {
   RemoteUserModel(

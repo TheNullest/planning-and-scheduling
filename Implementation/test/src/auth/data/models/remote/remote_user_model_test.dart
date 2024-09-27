@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/features/auth/data/models/hive/hive_user_model.dart';
+import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
 import 'package:zamaan/features/auth/data/models/remote/remote_user_model.dart';
 import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
 
