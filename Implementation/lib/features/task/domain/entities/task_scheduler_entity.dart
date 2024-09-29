@@ -92,19 +92,20 @@ class TaskSchedulerEntity extends BaseEntityAbstraction {
             endAt: DateTime(2024, 10));
 
   /// Creates a copy of the current `TaskSchedulerEntity` with updated values.
-  TaskSchedulerEntity copyWith(
-          String? id,
-          int? order,
-          DateTime? createdAt,
-          String? creatorId,
-          String? description,
-          String? mainTaskId,
-          String? goalId,
-          DateTime? willStartAt,
-          DateTime? endAt,
-          int? repetitionType,
-          int? timeUnit,
-          List<int>? specificTimes) =>
+  TaskSchedulerEntity copyWith({
+    String? id,
+    int? order,
+    DateTime? createdAt,
+    String? creatorId,
+    String? description,
+    String? mainTaskId,
+    String? goalId,
+    DateTime? willStartAt,
+    DateTime? endAt,
+    int? repetitionType,
+    int? timeUnit,
+    List<int>? specificTimes,
+  }) =>
       TaskSchedulerEntity(
         id: id ?? this.id,
         order: order ?? this.order,

@@ -7,8 +7,7 @@ class HiveBoxConstants {
   static const String GOALS_BOX = 'goalsBox';
   static const String CATEGOREIS_BOX = 'categoriesBox';
   static const String MEASUREMENT_UNITS_BOX = 'measurementUnitsBox';
-  static const String SCHEDULED_TIMES_BOX = 'taskSchedulersBox';
-  static const String SELECTED_WEEK_DAYS_BOX = 'selectedWeekDaysBox';
+  static const String TASK_SCHEDULERS_BOX = 'taskSchedulersBox';
   static const String TAGS_BOX = 'tagsBox';
   static const String TIME_INTERVAL_BOX = 'timeIntervalsBox';
 }

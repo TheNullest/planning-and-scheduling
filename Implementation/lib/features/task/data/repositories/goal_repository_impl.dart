@@ -10,9 +10,7 @@ class GoalRepositoryImpl extends BaseCRUDOperations<GoalEntity, HiveGoalModel,
     HiveGoalDataSourceImpl> implements GoalRepository {
   final HiveGoalDataSourceImpl _dataSource;
 
-  GoalRepositoryImpl({required HiveGoalDataSourceImpl dataSource})
-      : _dataSource = dataSource,
-        super(dataSource);
+  GoalRepositoryImpl(super.dataSource) : _dataSource = dataSource;
 
   @override
   HiveGoalModel fromEntity(GoalEntity entity) =>

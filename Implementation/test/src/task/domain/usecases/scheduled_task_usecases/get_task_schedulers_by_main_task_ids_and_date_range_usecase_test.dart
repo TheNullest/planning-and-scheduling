@@ -5,7 +5,7 @@ import 'package:zamaan/core/error/failures/hive_failure.dart';
 import 'package:zamaan/features/task/domain/entities/task_scheduler_entity.dart';
 import 'package:zamaan/features/task/domain/params/get_by_task_ids_and_date_range_params.dart';
 import 'package:zamaan/features/task/domain/repositories/task_scheduler_repository.dart';
-import 'package:zamaan/features/task/domain/usecases/task_scheduler_usecases/get_task_scheduler_by_main_task_ids_and_date_range_usecase.dart';
+import 'package:zamaan/features/task/domain/usecases/task_scheduler_usecases/get_task_schedulers_by_main_task_ids_and_date_range_usecase.dart';
 
 import '_task_scheduler_repository.mock.dart';
 
@@ -25,7 +25,7 @@ void main() {
       '[scheduledTime.GetScheduledTimeByTaskIdsAndDateRangeUsecase] must call the [ScheduledTimeRepository.getScheduledTimeByTaskIdsAndDateRange] and return [List<ScheduledTimeEntity>]',
       () async {
     //Arrange
-    when(() => repository.getTaskSchedulerByMainTaskIdsAndDateRange(params))
+    when(() => repository.getTaskSchedulersByMainTaskIdsAndDateRange(params))
         .thenAnswer((_) async => const Right([]));
 
     // Act
@@ -35,7 +35,7 @@ void main() {
     expect(result.isRight(), true);
 
     expect(result, equals(const Right<dynamic, List<TaskSchedulerEntity>>([])));
-    verify(() => repository.getTaskSchedulerByMainTaskIdsAndDateRange(params))
+    verify(() => repository.getTaskSchedulersByMainTaskIdsAndDateRange(params))
         .called(1);
     verifyNoMoreInteractions(repository);
   });
@@ -44,7 +44,7 @@ void main() {
       '[scheduledTime.GetScheduledTimeByTaskIdsAndDateRangeUsecase.failureTest] must return failure with [Left(HiveFailure("Error"))] data when GetScheduledTimeByTaskIdsAndDateRangeUsecase fails',
       () async {
     //Arrange
-    when(() => repository.getTaskSchedulerByMainTaskIdsAndDateRange(params))
+    when(() => repository.getTaskSchedulersByMainTaskIdsAndDateRange(params))
         .thenAnswer((_) async => const Left(HiveFailure("Error")));
 
     // Act
@@ -53,7 +53,7 @@ void main() {
     // Assert
     expect(result.isLeft(), true);
     expect(result, equals(const Left(HiveFailure("Error"))));
-    verify(() => repository.getTaskSchedulerByMainTaskIdsAndDateRange(params))
+    verify(() => repository.getTaskSchedulersByMainTaskIdsAndDateRange(params))
         .called(1);
     verifyNoMoreInteractions(repository);
   });

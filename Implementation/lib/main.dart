@@ -7,16 +7,13 @@ import 'package:zamaan/core/utils/typedef.dart';
 import 'package:zamaan/features/auth/data/data_sources/local/hive_authentication_data_source_impl.dart';
 import 'package:zamaan/features/auth/data/repositories/authentication_repository_impl.dart';
 import 'package:zamaan/features/auth/domain/entities/user_entity.dart';
-import 'package:zamaan/features/auth/domain/usecases/create_user_usecase.dart';
-import 'package:zamaan/features/auth/domain/usecases/delete_all_selected_users_usecase.dart';
 import 'package:zamaan/features/auth/domain/usecases/delete_user_usecase.dart';
 import 'package:zamaan/features/auth/domain/usecases/get_user_usecase.dart';
-import 'package:zamaan/features/auth/domain/usecases/get_users_usecase.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required for Windows
   await HiveInitializer.init();
-  final dataSource = AuthenticationDataSourceImpl();
+  final dataSource = HiveAuthenticationDataSourceImpl();
 
   await DeleteUserUseCase(AuthenticationRepositoryImpl(dataSource))('1');
 

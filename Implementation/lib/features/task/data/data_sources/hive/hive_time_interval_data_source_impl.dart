@@ -6,7 +6,7 @@ import 'package:zamaan/features/task/data/models/local/hive_time_interval_model.
 
 class HiveTimeIntervalDataSourceImpl
     extends HiveBaseDataSourceAbstraction<HiveTimeIntervalModel> {
-  final String _boxName = HiveBoxConstants.SUB_TASKS_BOX;
+  final String _boxName;
   final HiveInitializer<HiveTimeIntervalModel> _hiveBox;
 
   // Just to add the testability feature to the class,
@@ -14,8 +14,9 @@ class HiveTimeIntervalDataSourceImpl
   HiveTimeIntervalDataSourceImpl(
       {HiveInitializer<HiveTimeIntervalModel>? hiveBox})
       : _hiveBox = hiveBox ?? HiveInitializer<HiveTimeIntervalModel>(),
+        _boxName = HiveBoxConstants.TIME_INTERVAL_BOX,
         super(
-          HiveBoxConstants.MAINTASKS_BOX,
+          HiveBoxConstants.TIME_INTERVAL_BOX,
           hiveBox: hiveBox,
         );
 
@@ -41,7 +42,9 @@ class HiveTimeIntervalDataSourceImpl
   /// Returns a [ResultFuture] containing a list of [HiveTimeIntervalModel].
   ResultFuture<List<HiveTimeIntervalModel>>
       getTimeIntervalByMainTaskIdAndDateRange(
-          List<String> mainTaskIds, DateTime? startAt, DateTime? endAt) async {
+          {required List<String> mainTaskIds,
+          required DateTime? startAt,
+          required DateTime? endAt}) async {
     return await _hiveBox.operator<List<HiveTimeIntervalModel>>(
       job: (box) async {
         return box.values.where((timeInterval) {

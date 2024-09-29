@@ -20,6 +20,25 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
       required this.title,
       required this.iconCode,
       this.isDouble = false});
+  MeasurementUnitEntity copyWith(
+          {String? id,
+          int? order,
+          DateTime? createdAt,
+          String? creatorId,
+          String? title,
+          String? description,
+          int? iconCode,
+          bool? isDouble}) =>
+      MeasurementUnitEntity(
+        id: id ?? this.id,
+        order: order ?? this.order,
+        createdAt: createdAt ?? this.createdAt,
+        creatorId: creatorId ?? this.creatorId,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        iconCode: iconCode ?? this.iconCode,
+        isDouble: isDouble ?? this.isDouble,
+      );
 
   MeasurementUnitEntity.empty() : this(title: 'title', iconCode: 2);
 

@@ -6,10 +6,11 @@ import 'package:zamaan/features/auth/data/repositories/authentication_repository
 
 import '../../../domain/usecases/_authentication_repository.mock.dart';
 
-class MockAuthDataSource extends Mock implements AuthenticationDataSourceImpl {}
+class MockAuthDataSource extends Mock
+    implements HiveAuthenticationDataSourceImpl {}
 
 void main() {
-  late AuthenticationDataSourceImpl mockDataSource;
+  late HiveAuthenticationDataSourceImpl mockDataSource;
   late AuthenticationRepositoryImpl authRepo;
   late HiveUserModel model;
   late UserEntity entity;
@@ -22,7 +23,7 @@ void main() {
 
   group('createEntity', () {
     test(
-        '[authRepo.createEntity] must call the [createEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.createEntity] must call the [createEntity] of the [dataSource] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.createEntity(
               newEntity: HiveUserModel.fromEntity(entity)))
@@ -58,9 +59,8 @@ void main() {
 
   group('getEntities', () {
     test(
-        '[authRepo.getEntities] must call the [getEntities] of the [dataStore] then returns [Right(List<UserEntity>)] data'
-        'wich should be converted into a [Right(List<UserEntity>)] data',
-        () async {
+        '[authRepo.getEntities] must call the [getEntities] of the [dataSource] then returns [Right(List<UserEntity>)] data'
+        'which will turn into [Right(List<UserEntity>)] data', () async {
       when(() => mockDataSource.getEntities())
           .thenAnswer((_) async => const Right([]));
 
@@ -74,7 +74,7 @@ void main() {
     });
 
     test(
-        '[authRepo.getEntitie.failureTests] must return failure when getEntitie fails with [Left(HiveFailure("Error"))] data',
+        '[authRepo.getEntities.failureTests] must return failure when getEntities fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockDataSource.getEntities())
           .thenAnswer((_) async => const Left(HiveFailure("Error")));
@@ -92,9 +92,8 @@ void main() {
 
   group('getEntity', () {
     test(
-        '[authRepo.getEntity] must call the [getEntity] of the [dataStore] then returns [Right(UserEntity)] data'
-        'wich should be converted into a [Right(List<UserEntity>)] data',
-        () async {
+        '[authRepo.getEntity] must call the [getEntity] of the [dataSource] then returns [Right(UserEntity)] data'
+        'which will turn into [Right(List<UserEntity>)] data', () async {
       when(() => mockDataSource.getEntity(id: model.id))
           .thenAnswer((_) async => Right(model));
 
@@ -125,7 +124,7 @@ void main() {
   });
   group('updateEntity', () {
     test(
-        '[authRepo.updateEntity] must call the [updateEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.updateEntity] must call the [updateEntity] of the [dataSource] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.updateEntity(entity: model))
           .thenAnswer((_) async => const Right(null));
@@ -157,7 +156,7 @@ void main() {
 
   group('deleteEntity', () {
     test(
-        '[authRepo.deleteEntity] must call the [deleteEntity] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.deleteEntity] must call the [deleteEntity] of the [dataSource] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.deleteEntity(id: model.id))
           .thenAnswer((_) async => const Right(null));
@@ -189,7 +188,7 @@ void main() {
 
   group('deleteAllSelected', () {
     test(
-        '[authRepo.deleteAllSelected] must call the [deleteAllSelected] of the [dataStore] then returns [Right(null)] data',
+        '[authRepo.deleteAllSelected] must call the [deleteAllSelected] of the [dataSource] then returns [Right(null)] data',
         () async {
       when(() => mockDataSource.deleteAllSelected([model.id]))
           .thenAnswer((_) async => const Right(null));

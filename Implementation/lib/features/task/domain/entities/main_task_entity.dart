@@ -66,7 +66,7 @@ class MainTaskEntity extends BaseEntityAbstraction {
       : this(title: 'title', categoryIds: [], colorCode: 1, iconCode: 2);
 
   /// Creates a copy of this MainTaskEntity with potentially modified properties.
-  MainTaskEntity copyWith(
+  MainTaskEntity copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
@@ -83,7 +83,7 @@ class MainTaskEntity extends BaseEntityAbstraction {
     DateTime? dueDate,
     Duration? totalSpentTime,
     String? taskSchedulerEntityId,
-  ) =>
+  }) =>
       MainTaskEntity(
         id: id ?? this.id,
         order: order ?? this.order,

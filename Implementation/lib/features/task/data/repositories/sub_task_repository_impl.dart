@@ -13,9 +13,7 @@ class SubTaskRepositoryImpl extends BaseCRUDOperations<SubTaskEntity,
     HiveSubTaskModel, HiveSubTaskDataSourceImpl> implements SubTaskRepository {
   final HiveSubTaskDataSourceImpl _dataSource;
 
-  SubTaskRepositoryImpl({required HiveSubTaskDataSourceImpl dataSource})
-      : _dataSource = dataSource,
-        super(dataSource);
+  SubTaskRepositoryImpl(super.dataSource) : _dataSource = dataSource;
 
   @override
   HiveSubTaskModel fromEntity(SubTaskEntity entity) =>
