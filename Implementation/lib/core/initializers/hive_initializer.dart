@@ -7,13 +7,8 @@ import 'package:zamaan/core/hive_type_adapter/hive_base_type_adapter.dart';
 import 'package:zamaan/core/utils/try_catch.dart';
 import 'package:zamaan/core/utils/typedef.dart';
 import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_goal_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_main_task_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_measurement_unit_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_task_scheduler_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_sub_task_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_tag_model.dart';
-import 'package:zamaan/features/task/data/models/local/hive_time_interval_model.dart';
+
+import '../../features/task/data/models/local/local_models.dart';
 
 class HiveInitializer<HiveModel extends BaseEntityAbstraction> {
   static Future<void> init() async {

@@ -67,7 +67,7 @@ class HiveMainTaskModel extends MainTaskEntity {
       );
 
   @override
-  HiveMainTaskModel copyWith(
+  HiveMainTaskModel copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
@@ -84,7 +84,7 @@ class HiveMainTaskModel extends MainTaskEntity {
     DateTime? dueDate,
     Duration? totalSpentTime,
     String? taskSchedulerEntityId,
-  ) =>
+  }) =>
       HiveMainTaskModel(
         id: id ?? this.id,
         order: order ?? this.order,

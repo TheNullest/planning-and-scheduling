@@ -36,18 +36,18 @@ class TimeIntervalEntity extends BaseEntityAbstraction {
   /// The `id`, `order`, `createdAt`, `creatorId`, `description`, and `endAt` are optional
   /// and can be customized. The `spentTime` is automatically calculated and cannot be
   /// directly customized or manipulated.
-  TimeIntervalEntity(
-      {super.id,
-      super.order,
-      super.createdAt,
-      super.creatorId,
-      super.description,
-      required this.mainTaskId,
-      required this.subTaskId,
-      required this.startAt,
-      this.endAt,
-      Duration? spentTime})
-      : spentTime = (endAt != null && spentTime == null)
+  TimeIntervalEntity({
+    super.id,
+    super.order,
+    super.createdAt,
+    super.creatorId,
+    super.description,
+    required this.mainTaskId,
+    required this.subTaskId,
+    required this.startAt,
+    this.endAt,
+    Duration? spentTime,
+  }) : spentTime = (endAt != null && spentTime == null)
             ? (endAt.isAfter(startAt)
                 ? endAt.difference(startAt)
                 : throw ArgumentError('endAt must be after startAt'))

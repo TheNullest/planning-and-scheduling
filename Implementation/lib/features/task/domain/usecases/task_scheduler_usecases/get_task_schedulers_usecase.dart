@@ -3,6 +3,6 @@ import 'package:zamaan/features/task/domain/entities/task_scheduler_entity.dart'
 import 'package:zamaan/features/task/domain/repositories/task_scheduler_repository.dart';
 
 class GetTaskSchedulersUsecase
-    extends GetEntitiesUseCase<TaskSchedulerRepository, TaskSchedulerEntity> {
+    extends getEntitiesUseCase<TaskSchedulerRepository, TaskSchedulerEntity> {
   GetTaskSchedulersUsecase(super.repository);
 }

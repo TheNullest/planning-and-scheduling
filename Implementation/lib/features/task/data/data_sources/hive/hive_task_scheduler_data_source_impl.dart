@@ -11,7 +11,7 @@ import 'package:zamaan/features/task/data/models/local/hive_task_scheduler_model
 /// and provides additional methods for specific task-related queries.
 class HiveTaskSchedulerDataSourceImpl
     extends HiveBaseDataSourceAbstraction<HiveTaskSchedulerModel> {
-  final String _boxName = HiveBoxConstants.SUB_TASKS_BOX;
+  final String _boxName;
   final HiveInitializer<HiveTaskSchedulerModel> _hiveBox;
 
   /// Constructor for [HiveTaskSchedulerDataSourceImpl].
@@ -21,7 +21,8 @@ class HiveTaskSchedulerDataSourceImpl
   HiveTaskSchedulerDataSourceImpl(
       {HiveInitializer<HiveTaskSchedulerModel>? hiveBox})
       : _hiveBox = hiveBox ?? HiveInitializer<HiveTaskSchedulerModel>(),
-        super(hiveBox: hiveBox, HiveBoxConstants.MAINTASKS_BOX);
+        _boxName = HiveBoxConstants.TASK_SCHEDULERS_BOX,
+        super(hiveBox: hiveBox, HiveBoxConstants.TASK_SCHEDULERS_BOX);
 
   /// Retrieves tasks based on main task IDs and a date range.
   ///
@@ -31,21 +32,20 @@ class HiveTaskSchedulerDataSourceImpl
   ///
   /// Returns a [ResultFuture] containing a list of [HiveTaskSchedulerModel] objects.
   ResultFuture<List<HiveTaskSchedulerModel>>
-      getTaskSchedulerByMainTaskIdsAndDateRange(
-          List<String> mainTaskIds, DateTime? startAt, DateTime? endAt) async {
-    return await _hiveBox.operator<List<HiveTaskSchedulerModel>>(
-      job: (box) async {
-        return box.values.where((task) {
-          final isWithinDateRange =
-              (startAt == null || task.willStartAt!.isAfter(startAt)) &&
-                  (endAt == null || task.endAt!.isBefore(endAt));
-          final isMainTaskIdMatch = mainTaskIds.contains(task.mainTaskId);
-          return isWithinDateRange && isMainTaskIdMatch;
-        }).toList();
-      },
-      boxName: _boxName,
-    );
-  }
+      getTaskSchedulersByMainTaskIdsAndDateRange(
+              {required List<String> mainTaskIds,
+              required DateTime? startAt,
+              required DateTime? endAt}) async =>
+          await _hiveBox.operator<List<HiveTaskSchedulerModel>>(
+            job: (box) async => box.values.where((task) {
+              final isWithinDateRange =
+                  (startAt == null || task.willStartAt!.isAfter(startAt)) &&
+                      (endAt == null || task.endAt!.isBefore(endAt));
+              if (!isWithinDateRange) return false;
+              return mainTaskIds.contains(task.mainTaskId);
+            }).toList(),
+            boxName: _boxName,
+          );
 
   /// Retrieves tasks scheduled before a specific end time.
   ///
@@ -142,14 +142,13 @@ class HiveTaskSchedulerDataSourceImpl
   ///
   /// Returns a [ResultFuture] containing a list of [HiveTaskSchedulerModel] objects.
   ResultFuture<List<HiveTaskSchedulerModel>> getTaskSchedulersWithinDateRange(
-      DateTime startDate, DateTime endDate) async {
-    return await _hiveBox.operator<List<HiveTaskSchedulerModel>>(
-      job: (box) async => box.values
-          .where((task) =>
-              task.willStartAt!.isAfter(startDate) &&
-              task.endAt!.isBefore(endDate))
-          .toList(),
-      boxName: _boxName,
-    );
-  }
+          {required DateTime startDate, required DateTime endDate}) async =>
+      await _hiveBox.operator<List<HiveTaskSchedulerModel>>(
+        job: (box) async => box.values
+            .where((task) =>
+                task.willStartAt!.isAfter(startDate) &&
+                task.endAt!.isBefore(endDate))
+            .toList(),
+        boxName: _boxName,
+      );
 }

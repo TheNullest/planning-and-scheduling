@@ -14,9 +14,7 @@ class MainTaskRepositoryImpl extends BaseCRUDOperations<
     HiveMainTaskDataSourceImpl> implements MainTaskRepository {
   final HiveMainTaskDataSourceImpl _dataSource;
 
-  MainTaskRepositoryImpl({required HiveMainTaskDataSourceImpl dataSource})
-      : _dataSource = dataSource,
-        super(dataSource);
+  MainTaskRepositoryImpl(super.dataSource) : _dataSource = dataSource;
 
   @override
   HiveMainTaskModel fromEntity(MainTaskEntity entity) =>
@@ -24,9 +22,6 @@ class MainTaskRepositoryImpl extends BaseCRUDOperations<
 
   @override
   MainTaskEntity toEntity(HiveMainTaskModel model) => model.toEntity();
-
-  List<HiveMainTaskModel> fromEntities(List<MainTaskEntity> entities) =>
-      entities.map((entity) => fromEntity(entity)).toList();
 
   Either<Failure, List<MainTaskEntity>> toEntities(
           Either<Failure, List<HiveMainTaskModel>> models) =>
@@ -60,9 +55,9 @@ class MainTaskRepositoryImpl extends BaseCRUDOperations<
       toEntities(await _dataSource.getMainTasksByTags(tagIds));
 
   @override
-  ResultFuture<MainTaskEntity> getMainTaskByTaskScheduler(
+  ResultFuture<MainTaskEntity> getMainTaskByTaskSchedulerId(
       String schedulerId) async {
-    var result = await _dataSource.getMainTaskByTaskScheduler(schedulerId);
+    var result = await _dataSource.getMainTaskByTaskSchedulerId(schedulerId);
     return result.map((model) => toEntity(model));
   }
 }

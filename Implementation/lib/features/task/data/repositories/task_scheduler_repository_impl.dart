@@ -9,16 +9,13 @@ import 'package:zamaan/features/task/domain/entities/task_scheduler_entity.dart'
 import 'package:zamaan/features/task/domain/params/get_by_task_ids_and_date_range_params.dart';
 import 'package:zamaan/features/task/domain/repositories/task_scheduler_repository.dart';
 
-class ScheduledTimeRepositoryImpl extends BaseCRUDOperations<
+class TaskSchedulerRepositoryImpl extends BaseCRUDOperations<
     TaskSchedulerEntity,
     HiveTaskSchedulerModel,
     HiveTaskSchedulerDataSourceImpl> implements TaskSchedulerRepository {
   final HiveTaskSchedulerDataSourceImpl _dataSource;
 
-  ScheduledTimeRepositoryImpl(
-      {required HiveTaskSchedulerDataSourceImpl dataSource})
-      : _dataSource = dataSource,
-        super(dataSource);
+  TaskSchedulerRepositoryImpl(super.dataSource) : _dataSource = dataSource;
 
   @override
   HiveTaskSchedulerModel fromEntity(TaskSchedulerEntity entity) =>
@@ -36,12 +33,12 @@ class ScheduledTimeRepositoryImpl extends BaseCRUDOperations<
 
   @override
   ResultFuture<
-      List<TaskSchedulerEntity>> getTaskSchedulerByMainTaskIdsAndDateRange(
+      List<TaskSchedulerEntity>> getTaskSchedulersByMainTaskIdsAndDateRange(
           GetByTaskIdsAndDateRangeParams params) async =>
-      toEntities(await _dataSource.getTaskSchedulerByMainTaskIdsAndDateRange(
-        params.mainTaskIds,
-        params.startAt,
-        params.endAt,
+      toEntities(await _dataSource.getTaskSchedulersByMainTaskIdsAndDateRange(
+        mainTaskIds: params.mainTaskIds,
+        startAt: params.startAt,
+        endAt: params.endAt,
       ));
 
   @override
@@ -75,9 +72,10 @@ class ScheduledTimeRepositoryImpl extends BaseCRUDOperations<
   ResultFuture<List<TaskSchedulerEntity>> getTaskSchedulersByTimeUnit(
           TimeUnit timeUnit) async =>
       toEntities(await _dataSource.getTaskSchedulersByTimeUnit(timeUnit));
+
   @override
   ResultFuture<List<TaskSchedulerEntity>> getTaskSchedulersWithinDateRange(
-          DateTime startDate, DateTime endDate) async =>
+          {required DateTime startDate, required DateTime endDate}) async =>
       toEntities(await _dataSource.getTaskSchedulersWithinDateRange(
-          startDate, endDate));
+          startDate: startDate, endDate: endDate));
 }

@@ -11,5 +11,5 @@ abstract class MainTaskRepository
   ResultFuture<List<MainTaskEntity>> getMainTasksByCategories(
       List<String> categoryIds);
   ResultFuture<List<MainTaskEntity>> getMainTasksByTags(List<String> tagIds);
-  ResultFuture<MainTaskEntity> getMainTaskByTaskScheduler(String schedulerId);
+  ResultFuture<MainTaskEntity> getMainTaskByTaskSchedulerId(String schedulerId);
 }
