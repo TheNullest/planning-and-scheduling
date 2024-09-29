@@ -16,7 +16,7 @@ abstract class TaskSchedulerRepository
   /// - [endAt] - The optional end date of the range.
   /// Returns a `ResultFuture<List<ScheduledTimeEntity>>` containing the matching scheduled times.
   ResultFuture<List<TaskSchedulerEntity>>
-      getTaskSchedulerByMainTaskIdsAndDateRange(
+      getTaskSchedulersByMainTaskIdsAndDateRange(
           GetByTaskIdsAndDateRangeParams params);
 
   /// Retrieves scheduled times by the main task ID.
@@ -75,5 +75,5 @@ abstract class TaskSchedulerRepository
   /// - [endDate] - The end date of the range.
   /// Returns a `ResultFuture<List<ScheduledTimeEntity>>` containing the matching scheduled times.
   ResultFuture<List<TaskSchedulerEntity>> getTaskSchedulersWithinDateRange(
-      DateTime startDate, DateTime endDate);
+      {required DateTime startDate, required DateTime endDate});
 }

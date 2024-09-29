@@ -11,13 +11,13 @@ import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart
 class MockHiveInit extends Mock implements HiveInitializer<HiveUserModel> {}
 
 void main() {
-  late AuthenticationDataSourceImpl dataSource;
+  late HiveAuthenticationDataSourceImpl dataSource;
   late HiveInitializer<HiveUserModel> mockHiveInit;
   late HiveUserModel model;
   late List<String> keys;
   setUp(() {
     mockHiveInit = MockHiveInit();
-    dataSource = AuthenticationDataSourceImpl(hiveBox: mockHiveInit);
+    dataSource = HiveAuthenticationDataSourceImpl(hiveBox: mockHiveInit);
     model = HiveUserModel.empty();
     keys = [
       uuidGenerator(),
@@ -29,9 +29,9 @@ void main() {
     ];
   });
 
-  group('authDataStore', () {
+  group('authDataSource', () {
     test(
-        '[authDataStore.createEntity] must save entity to the box and returns [Right(null)] data',
+        '[authDataSource.createEntity] must save entity to the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -48,7 +48,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.createEntity.failureTest] must return failure when createEntity fails with [Left(HiveFailure("Error"))] data',
+        '[authDataSource.createEntity.failureTest] must return failure when createEntity fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockHiveInit.operator<void>(
               job: any(named: 'job'), boxName: 'usersBox'))
@@ -65,7 +65,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.getEntities] should retrieve all entities from the box [Right([])] data ',
+        '[authDataSource.getEntities] should retrieve all entities from the box [Right([])] data ',
         () async {
       when(() => mockHiveInit.operator<List<HiveUserModel>>(
           job: any(named: 'job'),
@@ -82,7 +82,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.getEntities.failureTest] must return failure when getEntities fails with [Left(HiveFailure("Error"))] data ',
+        '[authDataSource.getEntities.failureTest] must return failure when getEntities fails with [Left(HiveFailure("Error"))] data ',
         () async {
       when(() => mockHiveInit.operator<List<HiveUserModel>>(
               job: any(named: 'job'), boxName: 'usersBox'))
@@ -102,7 +102,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.getEntity] should retrieve entity by id from the box and returns [Right(HiveUserModel)] data',
+        '[authDataSource.getEntity] should retrieve entity by id from the box and returns [Right(HiveUserModel)] data',
         () async {
       when(() => mockHiveInit.operator<HiveUserModel>(
           job: any(named: 'job'),
@@ -120,7 +120,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.getEntity.failureTest] must return failure when getEntity fails with [Left(HiveFailure("Error"))] data',
+        '[authDataSource.getEntity.failureTest] must return failure when getEntity fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockHiveInit.operator<HiveUserModel>(
               job: any(named: 'job'), boxName: 'usersBox'))
@@ -139,7 +139,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.updateEntity] must update entity in the box and returns [Right(null)] data',
+        '[authDataSource.updateEntity] must update entity in the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -156,7 +156,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.updateEntity.failureTest] must return failure when updateEntity fails with [Left(HiveFailure("Error"))] data',
+        '[authDataSource.updateEntity.failureTest] must return failure when updateEntity fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockHiveInit.operator<void>(
               job: any(named: 'job'), boxName: 'usersBox'))
@@ -173,7 +173,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.deleteEntity] must delete entity by id from the box and returns [Right(null)] data',
+        '[authDataSource.deleteEntity] must delete entity by id from the box and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -191,7 +191,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.deleteEntity.failureTest] must return failure when deleteEntity fails with [Left(HiveFailure("Error"))] data',
+        '[authDataSource.deleteEntity.failureTest] must return failure when deleteEntity fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockHiveInit.operator<void>(
               job: any(named: 'job'), boxName: 'usersBox'))
@@ -209,7 +209,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.deleteAllSelected] should delete from the box all the entities whose [ID] it has received and returns [Right(null)] data',
+        '[authDataSource.deleteAllSelected] should delete from the box all the entities whose [ID] it has received and returns [Right(null)] data',
         () async {
       when(() => mockHiveInit.operator<void>(
           job: any(named: 'job'),
@@ -227,7 +227,7 @@ void main() {
     });
 
     test(
-        '[authDataStore.deleteAllSelected.failureTest] must return failure when delete fails with [Left(HiveFailure("Error"))] data',
+        '[authDataSource.deleteAllSelected.failureTest] must return failure when delete fails with [Left(HiveFailure("Error"))] data',
         () async {
       when(() => mockHiveInit.operator<void>(
               job: any(named: 'job'), boxName: 'usersBox'))

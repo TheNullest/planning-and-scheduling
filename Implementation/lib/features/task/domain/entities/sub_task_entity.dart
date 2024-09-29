@@ -33,7 +33,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
 
   SubTaskEntity.empty() : this(mainTaskId: '1', title: 'title');
 
-  SubTaskEntity copyWith(
+  SubTaskEntity copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
@@ -43,7 +43,7 @@ class SubTaskEntity extends BaseEntityAbstraction {
     String? title,
     int? priority,
     int? status,
-  ) =>
+  }) =>
       SubTaskEntity(
         id: id ?? this.id,
         order: order ?? this.order,

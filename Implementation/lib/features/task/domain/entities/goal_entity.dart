@@ -61,7 +61,7 @@ class GoalEntity extends BaseEntityAbstraction {
   GoalEntity.empty()
       : this(mainTaskId: '1', measurementUnitId: '2', measurementValue: 1);
 
-  GoalEntity copyWith(
+  GoalEntity copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
@@ -76,7 +76,7 @@ class GoalEntity extends BaseEntityAbstraction {
     double? perActiveWeek,
     double? perActiveMonth,
     double? perActiveYear,
-  ) =>
+  }) =>
       GoalEntity(
         id: id ?? this.id,
         order: order ?? this.order,

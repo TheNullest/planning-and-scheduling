@@ -7,7 +7,7 @@ import 'package:zamaan/features/auth/domain/repositories/hive/authentication_rep
 class AuthenticationRepositoryImpl extends BaseCRUDOperations<
     UserEntity,
     HiveUserModel,
-    AuthenticationDataSourceImpl> implements AuthenticationRepository {
+    HiveAuthenticationDataSourceImpl> implements AuthenticationRepository {
   AuthenticationRepositoryImpl(super.dataSource);
 
   @override

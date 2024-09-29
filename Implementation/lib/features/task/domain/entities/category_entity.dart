@@ -27,7 +27,7 @@ class CategoryEntity extends BaseEntityAbstraction {
   CategoryEntity.empty() : this(title: 'title', colorCode: 1, iconCode: 2);
 
   /// Creates a copy of this CategoryEntity with potentially modified properties.
-  CategoryEntity copyWith(
+  CategoryEntity copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
@@ -36,7 +36,7 @@ class CategoryEntity extends BaseEntityAbstraction {
     String? title,
     int? colorCode,
     int? iconCode,
-  ) =>
+  }) =>
       CategoryEntity(
         id: id ?? this.id,
         order: order ?? this.order,

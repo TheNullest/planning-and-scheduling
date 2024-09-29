@@ -61,7 +61,7 @@ class HiveMainTaskDataSourceImpl
         boxName: _boxName,
       );
 
-  ResultFuture<HiveMainTaskModel> getMainTaskByTaskScheduler(
+  ResultFuture<HiveMainTaskModel> getMainTaskByTaskSchedulerId(
           String schedulerId) async =>
       await _hiveBox.operator<HiveMainTaskModel>(
         job: (box) async => box.values
