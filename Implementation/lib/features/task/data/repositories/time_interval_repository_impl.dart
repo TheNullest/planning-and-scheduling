@@ -14,10 +14,7 @@ class TimeIntervalRepositoryImpl extends BaseCRUDOperations<
     HiveTimeIntervalDataSourceImpl> implements TimeIntervalRepository {
   final HiveTimeIntervalDataSourceImpl _dataSource;
 
-  TimeIntervalRepositoryImpl(
-      {required HiveTimeIntervalDataSourceImpl dataSource})
-      : _dataSource = dataSource,
-        super(dataSource);
+  TimeIntervalRepositoryImpl(super.dataSource) : _dataSource = dataSource;
 
   @override
   HiveTimeIntervalModel fromEntity(TimeIntervalEntity entity) =>
@@ -37,7 +34,9 @@ class TimeIntervalRepositoryImpl extends BaseCRUDOperations<
       getTimeIntervalByMainTaskIdAndDateRange(
               GetByTaskIdsAndDateRangeParams params) async =>
           toEntities(await _dataSource.getTimeIntervalByMainTaskIdAndDateRange(
-              params.mainTaskIds, params.startAt, params.endAt));
+              mainTaskIds: params.mainTaskIds,
+              startAt: params.startAt,
+              endAt: params.endAt));
 
   @override
   ResultFuture<List<TimeIntervalEntity>> getTimeIntervalBySubTaskId(

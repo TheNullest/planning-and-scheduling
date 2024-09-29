@@ -3,6 +3,6 @@ import 'package:zamaan/features/task/domain/entities/category_entity.dart';
 import 'package:zamaan/features/task/domain/repositories/category_repository.dart';
 
 class GetCategoriesUsecase
-    extends GetEntitiesUseCase<CategoryRepository, CategoryEntity> {
+    extends getEntitiesUseCase<CategoryRepository, CategoryEntity> {
   GetCategoriesUsecase(super.repository);
 }
