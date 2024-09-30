@@ -1,4 +1,4 @@
-import 'package:zamaan/core/constants/hive_box_names.dart';
+import 'package:zamaan/core/utils/constants/hive_box_names.dart';
 import 'package:zamaan/core/data_sources/hive_base_data_source_abstraction.dart';
 import 'package:zamaan/core/initializers/hive_initializer.dart';
 import 'package:zamaan/features/auth/data/models/local/hive/hive_user_model.dart';
