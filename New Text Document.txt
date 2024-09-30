@@ -1,0 +1,40 @@
+Sure! Here are the clickable badges for all the dependencies listed in your `pubspec.yaml` file, along with their names:
+
+- [![bloc](https://img.shields.io/pub/v/bloc)](https://pub.dev/packages/bloc) `bloc`
+- [![cached_network_image](https://img.shields.io/pub/v/cached_network_image)](https://pub.dev/packages/cached_network_image) `cached_network_image`
+- [![cupertino_icons](https://img.shields.io/pub/v/cupertino_icons)](https://pub.dev/packages/cupertino_icons) `cupertino_icons`
+- [![dartz](https://img.shields.io/pub/v/dartz)](https://pub.dev/packages/dartz) `dartz`
+- [![dotted_line](https://img.shields.io/pub/v/dotted_line)](https://pub.dev/packages/dotted_line) `dotted_line`
+- [![equatable](https://img.shields.io/pub/v/equatable)](https://pub.dev/packages/equatable) `equatable`
+- [![flutter_bloc](https://img.shields.io/pub/v/flutter_bloc)](https://pub.dev/packages/flutter_bloc) `flutter_bloc`
+- [![font_awesome_flutter](https://img.shields.io/pub/v/font_awesome_flutter)](https://pub.dev/packages/font_awesome_flutter) `font_awesome_flutter`
+- [![ftoast](https://img.shields.io/pub/v/ftoast)](https://pub.dev/packages/ftoast) `ftoast`
+- [![get_it](https://img.shields.io/pub/v/get_it)](https://pub.dev/packages/get_it) `get_it`
+- [![hive](https://img.shields.io/pub/v/hive)](https://pub.dev/packages/hive) `hive`
+- [![hive_flutter](https://img.shields.io/pub/v/hive_flutter)](https://pub.dev/packages/hive_flutter) `hive_flutter`
+- [![iconly](https://img.shields.io/pub/v/iconly)](https://pub.dev/packages/iconly) `iconly`
+- [![intl](https://img.shields.io/pub/v/intl)](https://pub.dev/packages/intl) `intl`
+- [![path_provider](https://img.shields.io/pub/v/path_provider)](https://pub.dev/packages/path_provider) `path_provider`
+- [![persian_datetime_picker](https://img.shields.io/pub/v/persian_datetime_picker)](https://pub.dev/packages/persian_datetime_picker) `persian_datetime_picker`
+- [![provider](https://img.shields.io/pub/v/provider)](https://pub.dev/packages/provider) `provider`
+- [![shamsi_date](https://img.shields.io/pub/v/shamsi_date)](https://pub.dev/packages/shamsi_date) `shamsi_date`
+- [![smooth_page_indicator](https://img.shields.io/pub/v/smooth_page_indicator)](https://pub.dev/packages/smooth_page_indicator) `smooth_page_indicator`
+- [![uuid](https://img.shields.io/pub/v/uuid)](https://pub.dev/packages/uuid) `uuid`
+- [![bloc_test](https://img.shields.io/pub/v/bloc_test)](https://pub.dev/packages/bloc_test) `bloc_test`
+
+You can add these to your README file to make it more informative and interactive. If you need any further assistance, feel free to ask!
+
+Source: Conversation with Copilot, 9/30/2024
+(1) Flutter Tutorial - Convert Widget To Image. https://www.youtube.com/watch?v=DSJ5vONP3XM.
+(2) How to Make a Picture into a URL 🔗 CONVERT IMAGE INTO A LINK. https://www.youtube.com/watch?v=V75qbrxsdRM.
+(3) Image (Flutter Widget of the Week). https://www.youtube.com/watch?v=7oIAs-0G4mw.
+(4) pixels2flutter | Screenshot to Flutter Converter. https://pixels2flutter.dev/.
+(5) Image class - widgets library - Dart API - Flutter. https://api.flutter.dev/flutter/widgets/Image-class.html.
+(6) Create Flutter Icons from PNG Images - DEV Community. https://dev.to/glsolaria/create-flutter-icons-from-png-images-2k9p.
+(7) Display images from the internet - Flutter. https://docs.flutter.dev/cookbook/images/network-image.
+(8) Use any image URL for an image in your flutter app - YouTube. https://www.youtube.com/watch?v=7NgaCRXuqOc.
+(9) undefined. https://www.youtube.com/JohannesMilke?sub_confirmation=1.
+(10) undefined. https://github.com/JohannesMilke/convert_widget_image_example.
+(11) undefined. https://johannesmilke.teachable.com/p/home.
+(12) undefined. https://twitter.com/intent.
+(13) undefined. https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg.

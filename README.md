@@ -96,26 +96,29 @@ The project is organized into several directories, each serving a specific purpo
 
 Here are the badges for the dependencies used in this project:
 
-- ![bloc](https://img.shields.io/pub/v/bloc)
-- ![cached_network_image](https://img.shields.io/pub/v/cached_network_image)
-- ![cupertino_icons](https://img.shields.io/pub/v/cupertino_icons)
-- ![dartz](https://img.shields.io/pub/v/dartz)
-- ![dotted_line](https://img.shields.io/pub/v/dotted_line)
-- ![equatable](https://img.shields.io/pub/v/equatable)
-- ![flutter_bloc](https://img.shields.io/pub/v/flutter_bloc)
-- ![font_awesome_flutter](https://img.shields.io/pub/v/font_awesome_flutter)
-- ![ftoast](https://img.shields.io/pub/v/ftoast)
-- ![get_it](https://img.shields.io/pub/v/get_it)
-- ![hive](https://img.shields.io/pub/v/hive)
-- ![hive_flutter](https://img.shields.io/pub/v/hive_flutter)
-- ![iconly](https://img.shields.io/pub/v/iconly)
-- ![intl](https://img.shields.io/pub/v/intl)
-- ![path_provider](https://img.shields.io/pub/v/path_provider)
-- ![persian_datetime_picker](https://img.shields.io/pub/v/persian_datetime_picker)
-- ![provider](https://img.shields.io/pub/v/provider)
-- ![shamsi_date](https://img.shields.io/pub/v/shamsi_date)
-- ![smooth_page_indicator](https://img.shields.io/pub/v/smooth_page_indicator)
-- ![uuid](https://img.shields.io/pub/v/uuid)
+
+- [![bloc](https://img.shields.io/pub/v/bloc)](https://pub.dev/packages/bloc) `bloc`
+- [![cached_network_image](https://img.shields.io/pub/v/cached_network_image)](https://pub.dev/packages/cached_network_image) `cached_network_image`
+- [![cupertino_icons](https://img.shields.io/pub/v/cupertino_icons)](https://pub.dev/packages/cupertino_icons) `cupertino_icons`
+- [![dartz](https://img.shields.io/pub/v/dartz)](https://pub.dev/packages/dartz) `dartz`
+- [![dotted_line](https://img.shields.io/pub/v/dotted_line)](https://pub.dev/packages/dotted_line) `dotted_line`
+- [![equatable](https://img.shields.io/pub/v/equatable)](https://pub.dev/packages/equatable) `equatable`
+- [![flutter_bloc](https://img.shields.io/pub/v/flutter_bloc)](https://pub.dev/packages/flutter_bloc) `flutter_bloc`
+- [![font_awesome_flutter](https://img.shields.io/pub/v/font_awesome_flutter)](https://pub.dev/packages/font_awesome_flutter) `font_awesome_flutter`
+- [![ftoast](https://img.shields.io/pub/v/ftoast)](https://pub.dev/packages/ftoast) `ftoast`
+- [![get_it](https://img.shields.io/pub/v/get_it)](https://pub.dev/packages/get_it) `get_it`
+- [![hive](https://img.shields.io/pub/v/hive)](https://pub.dev/packages/hive) `hive`
+- [![hive_flutter](https://img.shields.io/pub/v/hive_flutter)](https://pub.dev/packages/hive_flutter) `hive_flutter`
+- [![iconly](https://img.shields.io/pub/v/iconly)](https://pub.dev/packages/iconly) `iconly`
+- [![intl](https://img.shields.io/pub/v/intl)](https://pub.dev/packages/intl) `intl`
+- [![path_provider](https://img.shields.io/pub/v/path_provider)](https://pub.dev/packages/path_provider) `path_provider`
+- [![persian_datetime_picker](https://img.shields.io/pub/v/persian_datetime_picker)](https://pub.dev/packages/persian_datetime_picker) `persian_datetime_picker`
+- [![provider](https://img.shields.io/pub/v/provider)](https://pub.dev/packages/provider) `provider`
+- [![shamsi_date](https://img.shields.io/pub/v/shamsi_date)](https://pub.dev/packages/shamsi_date) `shamsi_date`
+- [![smooth_page_indicator](https://img.shields.io/pub/v/smooth_page_indicator)](https://pub.dev/packages/smooth_page_indicator) `smooth_page_indicator`
+- [![uuid](https://img.shields.io/pub/v/uuid)](https://pub.dev/packages/uuid) `uuid`
+- [![bloc_test](https://img.shields.io/pub/v/bloc_test)](https://pub.dev/packages/bloc_test) `bloc_test`
+
 
 ## Getting Started
 
@@ -124,7 +127,7 @@ To get started with Zamaan, follow these steps:
 1. **Clone the repository** :
 
 ```bash
-   git clone https://github.com/yourusername/zamaan.git
+   git clone https://github.com/TheNullest/zamaan.git
 ```
 
 ## Contributing
@@ -136,3 +139,11 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 Thank you for checking out Zamaan! We hope you find it useful and educational. If you have any questions or feedback, please don’t hesitate to reach out.
 
 Happy coding! 🚀
+
+
+
+    Here is the code you can copy:
+
+* !bloc
+
+This will create a clickable badge for the BLoC package in your README file.
