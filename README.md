@@ -139,11 +139,3 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 Thank you for checking out Zamaan! We hope you find it useful and educational. If you have any questions or feedback, please don’t hesitate to reach out.
 
 Happy coding! 🚀
-
-
-
-    Here is the code you can copy:
-
-* !bloc
-
-This will create a clickable badge for the BLoC package in your README file.
