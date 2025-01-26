@@ -5,7 +5,6 @@ import 'package:zamaan/features/task/domain/params/get_by_task_ids_and_date_rang
 import 'package:zamaan/features/task/domain/repositories/time_interval_repository.dart';
 
 class GetTimeIntevalByMainTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
-    TimeIntervalEntity,
     TimeIntervalRepository,
     List<TimeIntervalEntity>,
     GetByTaskIdsAndDateRangeParams> {
@@ -13,6 +12,7 @@ class GetTimeIntevalByMainTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
 
   @override
   ResultFuture<List<TimeIntervalEntity>> call(
-          GetByTaskIdsAndDateRangeParams params) async =>
-      await repository.getTimeIntervalByMainTaskIdAndDateRange(params);
+    GetByTaskIdsAndDateRangeParams params,
+  ) async =>
+      repository.getTimeIntervalByMainTaskIdAndDateRange(params);
 }

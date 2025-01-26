@@ -42,6 +42,26 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/cmake_install.cmake")
+endif()
+
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Runtime" OR NOT CMAKE_INSTALL_COMPONENT)
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
     list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
@@ -141,6 +161,55 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Runtime" OR NOT CMAKE_INSTALL_COMPONENT)
       message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
     endif()
     file(INSTALL DESTINATION "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release" TYPE FILE FILES "E:/Flutter.Dart/Zamaan/Implementation/windows/flutter/ephemeral/flutter_windows.dll")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Runtime" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+    list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+     "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Debug/app_links_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Debug/connectivity_plus_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Debug/local_auth_windows_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Debug/url_launcher_windows_plugin.dll")
+    if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    file(INSTALL DESTINATION "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Debug" TYPE FILE FILES
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/Debug/app_links_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/Debug/connectivity_plus_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/Debug/local_auth_windows_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/Debug/url_launcher_windows_plugin.dll"
+      )
+  elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Pp][Rr][Oo][Ff][Ii][Ll][Ee])$")
+    list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+     "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Profile/app_links_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Profile/connectivity_plus_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Profile/local_auth_windows_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Profile/url_launcher_windows_plugin.dll")
+    if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    file(INSTALL DESTINATION "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Profile" TYPE FILE FILES
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/Profile/app_links_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/Profile/connectivity_plus_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/Profile/local_auth_windows_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/Profile/url_launcher_windows_plugin.dll"
+      )
+  elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+     "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release/app_links_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release/connectivity_plus_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release/local_auth_windows_plugin.dll;E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release/url_launcher_windows_plugin.dll")
+    if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+      message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+    endif()
+    file(INSTALL DESTINATION "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/Release" TYPE FILE FILES
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/Release/app_links_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/Release/connectivity_plus_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/Release/local_auth_windows_plugin.dll"
+      "E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/Release/url_launcher_windows_plugin.dll"
+      )
   endif()
 endif()
 

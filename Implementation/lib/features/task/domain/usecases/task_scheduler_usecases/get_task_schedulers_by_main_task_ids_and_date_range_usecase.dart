@@ -5,7 +5,6 @@ import 'package:zamaan/features/task/domain/params/get_by_task_ids_and_date_rang
 import 'package:zamaan/features/task/domain/repositories/task_scheduler_repository.dart';
 
 class GetTaskSchedulerByTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
-    TaskSchedulerEntity,
     TaskSchedulerRepository,
     List<TaskSchedulerEntity>,
     GetByTaskIdsAndDateRangeParams> {
@@ -13,6 +12,7 @@ class GetTaskSchedulerByTaskIdsAndDateRangeUsecase extends UseCaseWithParams<
 
   @override
   ResultFuture<List<TaskSchedulerEntity>> call(
-          GetByTaskIdsAndDateRangeParams params) async =>
-      await repository.getTaskSchedulersByMainTaskIdsAndDateRange(params);
+    GetByTaskIdsAndDateRangeParams params,
+  ) async =>
+      repository.getTaskSchedulersByMainTaskIdsAndDateRange(params);
 }

@@ -8,3 +8,15 @@ E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/flutter/CMakeFiles/INSTA
 E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/CMakeFiles/zamaan.dir
 E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/CMakeFiles/INSTALL.dir
 E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/runner/CMakeFiles/ALL_BUILD.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/CMakeFiles/app_links_plugin.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/CMakeFiles/INSTALL.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/app_links/CMakeFiles/ALL_BUILD.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/CMakeFiles/connectivity_plus_plugin.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/CMakeFiles/INSTALL.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/connectivity_plus/CMakeFiles/ALL_BUILD.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/CMakeFiles/local_auth_windows_plugin.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/CMakeFiles/INSTALL.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/local_auth_windows/CMakeFiles/ALL_BUILD.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/CMakeFiles/url_launcher_windows_plugin.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/CMakeFiles/INSTALL.dir
+E:/Flutter.Dart/Zamaan/Implementation/build/windows/x64/plugins/url_launcher_windows/CMakeFiles/ALL_BUILD.dir

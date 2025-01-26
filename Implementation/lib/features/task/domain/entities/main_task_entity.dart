@@ -1,8 +1,30 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/core/utils/enums/enums.dart';
+import 'package:zamaan/core/common/entities/base_entity_abstraction.dart';
+import 'package:zamaan/core/enums/enums.dart';
 
 class MainTaskEntity extends BaseEntityAbstraction {
+  MainTaskEntity({
+    required this.title,
+    required this.categoryIds,
+    required this.colorCode,
+    required this.iconCode,
+    super.id,
+    super.updatedAt,
+    super.userId,
+    super.description,
+    super.createdAt,
+    int? priority,
+    int? status,
+    this.fixedTagIds,
+    this.tagIds,
+    this.dueDate,
+    this.totalSpentTime,
+    this.taskSchedulerId,
+  })  : priority = priority ?? Priority.optional.index,
+        status = status ?? Status.notStarted.index;
+
+  MainTaskEntity.empty()
+      : this(title: 'title', categoryIds: [], colorCode: 1, iconCode: 2);
   @HiveField(4)
   final String title;
 
@@ -42,35 +64,31 @@ class MainTaskEntity extends BaseEntityAbstraction {
   @HiveField(16)
   final String? taskSchedulerId;
 
-  MainTaskEntity(
-      {super.id,
-      super.order,
-      super.creatorId,
-      super.description,
-      required this.title,
-      required this.categoryIds,
-      super.createdAt,
-      required this.colorCode,
-      required this.iconCode,
-      int? priority,
-      int? status,
-      this.fixedTagIds,
-      this.tagIds,
-      this.dueDate,
-      this.totalSpentTime,
-      this.taskSchedulerId})
-      : priority = priority ?? Priority.optional.index,
-        status = status ?? Status.notStarted.index;
+  MainTaskEntity toEntity() => MainTaskEntity(
+        id: id,
+        updatedAt: updatedAt,
+        description: description,
+        createdAt: createdAt,
+        userId: userId,
+        title: title,
+        colorCode: colorCode,
+        iconCode: iconCode,
+        categoryIds: categoryIds,
+        priority: priority,
+        status: status,
+        fixedTagIds: fixedTagIds,
+        tagIds: tagIds,
+        dueDate: dueDate,
+        totalSpentTime: totalSpentTime,
+        taskSchedulerId: taskSchedulerId,
+      );
 
-  MainTaskEntity.empty()
-      : this(title: 'title', categoryIds: [], colorCode: 1, iconCode: 2);
-
-  /// Creates a copy of this MainTaskEntity with potentially modified properties.
+  @override
   MainTaskEntity copyWith({
     String? id,
-    int? order,
     DateTime? createdAt,
-    String? creatorId,
+    DateTime? updatedAt,
+    String? userId,
     String? description,
     String? title,
     int? colorCode,
@@ -86,10 +104,10 @@ class MainTaskEntity extends BaseEntityAbstraction {
   }) =>
       MainTaskEntity(
         id: id ?? this.id,
-        order: order ?? this.order,
+        updatedAt: updatedAt ?? this.updatedAt,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
-        creatorId: creatorId ?? this.creatorId,
+        userId: userId ?? this.userId,
         title: title ?? this.title,
         colorCode: colorCode ?? this.colorCode,
         iconCode: iconCode ?? this.iconCode,
@@ -106,8 +124,8 @@ class MainTaskEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
-        order,
-        creatorId,
+        updatedAt,
+        userId,
         description,
         title,
         categoryIds,
@@ -120,6 +138,6 @@ class MainTaskEntity extends BaseEntityAbstraction {
         tagIds,
         dueDate,
         totalSpentTime,
-        taskSchedulerId
+        taskSchedulerId,
       ];
 }

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-copyfile.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\a3e0d6c291ad76973abdd507f4d618b9\nuget-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\08f83eb7c7c4dee092b2a4adf8c56099\nuget-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\2912a1a74b58ab69974fbad023b311b7\nuget-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\Flutter.Dart\Zamaan\Implementation\build\windows\x64\_deps\nuget-subbuild\CMakeFiles\nuget-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BBB72A70-B7C7-3691-94D0-38E58C80C1FC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

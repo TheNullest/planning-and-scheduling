@@ -1,7 +1,26 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
+import 'package:zamaan/core/common/entities/base_entity_abstraction.dart';
 
 class GoalEntity extends BaseEntityAbstraction {
+  GoalEntity({
+    required this.mainTaskId,
+    required this.measurementUnitId,
+    required this.measurementValue,
+    super.id,
+    super.createdAt,
+    super.updatedAt,
+    super.userId,
+    super.description,
+    this.subTaskId,
+    this.perActiveHour = 0,
+    this.perActiveDay = 0,
+    this.perActiveWeek = 0,
+    this.perActiveMonth = 0,
+    this.perActiveYear = 0,
+  });
+
+  GoalEntity.empty()
+      : this(mainTaskId: '1', measurementUnitId: '2', measurementValue: 1);
   @HiveField(4)
   final String mainTaskId;
 
@@ -41,31 +60,29 @@ class GoalEntity extends BaseEntityAbstraction {
   @HiveField(12)
   final double perActiveYear;
 
-  GoalEntity({
-    super.id,
-    super.order,
-    super.createdAt,
-    super.creatorId,
-    super.description,
-    required this.mainTaskId,
-    required this.measurementUnitId,
-    required this.measurementValue,
-    this.subTaskId,
-    this.perActiveHour = 0,
-    this.perActiveDay = 0,
-    this.perActiveWeek = 0,
-    this.perActiveMonth = 0,
-    this.perActiveYear = 0,
-  });
+  GoalEntity toEntity() => GoalEntity(
+        id: id,
+        updatedAt: updatedAt,
+        description: description,
+        createdAt: createdAt,
+        userId: userId,
+        mainTaskId: mainTaskId,
+        measurementUnitId: measurementUnitId,
+        measurementValue: measurementValue,
+        subTaskId: subTaskId,
+        perActiveHour: perActiveHour,
+        perActiveDay: perActiveDay,
+        perActiveWeek: perActiveWeek,
+        perActiveMonth: perActiveMonth,
+        perActiveYear: perActiveYear,
+      );
 
-  GoalEntity.empty()
-      : this(mainTaskId: '1', measurementUnitId: '2', measurementValue: 1);
-
+  @override
   GoalEntity copyWith({
     String? id,
-    int? order,
     DateTime? createdAt,
-    String? creatorId,
+    DateTime? updatedAt,
+    String? userId,
     String? description,
     String? mainTaskId,
     String? measurementUnitId,
@@ -79,10 +96,10 @@ class GoalEntity extends BaseEntityAbstraction {
   }) =>
       GoalEntity(
         id: id ?? this.id,
-        order: order ?? this.order,
+        updatedAt: updatedAt ?? this.updatedAt,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
-        creatorId: creatorId ?? this.creatorId,
+        userId: userId ?? this.userId,
         mainTaskId: mainTaskId ?? this.mainTaskId,
         subTaskId: subTaskId ?? this.subTaskId,
         measurementUnitId: measurementUnitId ?? this.measurementUnitId,
@@ -97,9 +114,9 @@ class GoalEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
-        order,
+        updatedAt,
         createdAt,
-        creatorId,
+        userId,
         description,
         mainTaskId,
         measurementUnitId,

@@ -1,11 +1,40 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
+import 'package:zamaan/core/common/entities/base_entity_abstraction.dart';
 
 /// Represents a time interval entity with details about tasks and time spent.
 ///
 /// This class extends `BaseEntityAbstraction` and includes additional fields
 /// for task IDs, start and end times, and calculated spent time.
 class TimeIntervalEntity extends BaseEntityAbstraction {
+  /// Creates a new `TimeIntervalEntity` with the specified properties.
+  ///
+  /// The `mainTaskId`, `subTaskId`, and `startAt` are required to initialize the entity.
+  /// The `id`, `order`, `createdAt`, `userId`, `description`, and `endAt` are optional
+  /// and can be customized. The `spentTime` is automatically calculated and cannot be
+  /// directly customized or manipulated.
+  TimeIntervalEntity({
+    required this.mainTaskId,
+    required this.subTaskId,
+    required this.startAt,
+    super.id,
+    super.updatedAt,
+    super.createdAt,
+    super.userId,
+    super.description,
+    this.endAt,
+    Duration? spentTime,
+  }) : spentTime = (endAt != null && spentTime == null)
+            ? (endAt.isAfter(startAt)
+                ? endAt.difference(startAt)
+                : throw ArgumentError('endAt must be after startAt'))
+            : spentTime;
+
+  /// Creates an empty `TimeIntervalEntity` with default values.
+  ///
+  /// This constructor is useful for initializing an entity with default values.
+  TimeIntervalEntity.empty()
+      : this(mainTaskId: '1', subTaskId: '2', startAt: DateTime(2024));
+
   /// The ID of the main task associated with this time interval.
   @HiveField(4)
   final String mainTaskId;
@@ -30,45 +59,13 @@ class TimeIntervalEntity extends BaseEntityAbstraction {
   @HiveField(8)
   final Duration? spentTime;
 
-  /// Creates a new `TimeIntervalEntity` with the specified properties.
-  ///
-  /// The `mainTaskId`, `subTaskId`, and `startAt` are required to initialize the entity.
-  /// The `id`, `order`, `createdAt`, `creatorId`, `description`, and `endAt` are optional
-  /// and can be customized. The `spentTime` is automatically calculated and cannot be
-  /// directly customized or manipulated.
-  TimeIntervalEntity({
-    super.id,
-    super.order,
-    super.createdAt,
-    super.creatorId,
-    super.description,
-    required this.mainTaskId,
-    required this.subTaskId,
-    required this.startAt,
-    this.endAt,
-    Duration? spentTime,
-  }) : spentTime = (endAt != null && spentTime == null)
-            ? (endAt.isAfter(startAt)
-                ? endAt.difference(startAt)
-                : throw ArgumentError('endAt must be after startAt'))
-            : spentTime;
-
-  /// Creates an empty `TimeIntervalEntity` with default values.
-  ///
-  /// This constructor is useful for initializing an entity with default values.
-  TimeIntervalEntity.empty()
-      : this(mainTaskId: '1', subTaskId: '2', startAt: DateTime(2024));
-
-  /// Creates a copy of this `TimeIntervalEntity` with potentially modified properties.
-  ///
-  /// The `copyWith` method allows you to create a new instance of `TimeIntervalEntity`
-  /// with some properties modified while keeping the rest unchanged.
-  /// The `spentTime` is automatically calculated and cannot be directly customized or manipulated.
+  @override
   TimeIntervalEntity copyWith({
     String? id,
     int? order,
     DateTime? createdAt,
-    String? creatorId,
+    DateTime? updatedAt,
+    String? userId,
     String? description,
     String? mainTaskId,
     String? subTaskId,
@@ -77,14 +74,27 @@ class TimeIntervalEntity extends BaseEntityAbstraction {
   }) =>
       TimeIntervalEntity(
         id: id ?? this.id,
-        order: order ?? this.order,
+        updatedAt: updatedAt ?? this.updatedAt,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
-        creatorId: creatorId ?? this.creatorId,
+        userId: userId ?? this.userId,
         mainTaskId: mainTaskId ?? this.mainTaskId,
         subTaskId: subTaskId ?? this.subTaskId,
         startAt: startAt ?? this.startAt,
         endAt: endAt ?? this.endAt,
+      );
+
+  TimeIntervalEntity toEntity() => TimeIntervalEntity(
+        id: id,
+        updatedAt: updatedAt,
+        description: description,
+        createdAt: createdAt,
+        userId: userId,
+        mainTaskId: mainTaskId,
+        subTaskId: subTaskId,
+        startAt: startAt,
+        endAt: endAt,
+        spentTime: spentTime,
       );
 
   /// Returns a list of properties that are used to determine equality.
@@ -94,9 +104,9 @@ class TimeIntervalEntity extends BaseEntityAbstraction {
   @override
   List<Object?> get props => [
         id,
-        order,
+        updatedAt,
         createdAt,
-        creatorId,
+        userId,
         description,
         mainTaskId,
         subTaskId,

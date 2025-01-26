@@ -3,6 +3,6 @@ import 'package:zamaan/features/task/domain/entities/measurement_unit_entity.dar
 import 'package:zamaan/features/task/domain/repositories/measurement_unit_repository.dart';
 
 class UpdateMeasurementUnitUsecase extends UpdateEntityUseCase<
-    MeasurementUnitRepository, MeasurementUnitEntity> {
+    MeasurementUnitEntity, MeasurementUnitRepository> {
   UpdateMeasurementUnitUsecase(super.repository);
 }

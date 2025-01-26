@@ -1,0 +1,42 @@
+com.example.zamaan.app-jetified-datastore-1.0.0-0 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\004ed2bc8a32cced44a42147c65c7ee2\transformed\jetified-datastore-1.0.0\res
+com.example.zamaan.app-jetified-window-java-1.2.0-1 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\06c6720023ede65e9cb5c0b734631188\transformed\jetified-window-java-1.2.0\res
+com.example.zamaan.app-jetified-profileinstaller-1.3.1-2 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\12b4440709752188d9c364536be001e1\transformed\jetified-profileinstaller-1.3.1\res
+com.example.zamaan.app-lifecycle-viewmodel-2.7.0-3 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\19d73225855651916228cb1e14d7bece\transformed\lifecycle-viewmodel-2.7.0\res
+com.example.zamaan.app-jetified-activity-1.8.1-4 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\1cf3f5e2dbb535ca4a55149467f6e0ee\transformed\jetified-activity-1.8.1\res
+com.example.zamaan.app-jetified-datastore-preferences-1.0.0-5 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\36a3dc5b9ee4dbdf9cb7659213ff4d1f\transformed\jetified-datastore-preferences-1.0.0\res
+com.example.zamaan.app-jetified-annotation-experimental-1.4.0-6 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\46221763811700d723fee56ad46a121b\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.zamaan.app-appcompat-1.2.0-7 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\6ecf4f6b402060e943200c8d77aa9549\transformed\appcompat-1.2.0\res
+com.example.zamaan.app-jetified-startup-runtime-1.1.1-8 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\721e865ca427bd2200454ded7f51fe1a\transformed\jetified-startup-runtime-1.1.1\res
+com.example.zamaan.app-core-runtime-2.2.0-9 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\7a7a05a7006332df39dd2ebf7579cbc6\transformed\core-runtime-2.2.0\res
+com.example.zamaan.app-lifecycle-runtime-2.7.0-10 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\84731c2ec8dba095f9c27185d196197e\transformed\lifecycle-runtime-2.7.0\res
+com.example.zamaan.app-jetified-lifecycle-viewmodel-savedstate-2.7.0-11 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\871ca9cfc426ccf3b1eee57659ee4fc8\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\res
+com.example.zamaan.app-jetified-lifecycle-process-2.7.0-12 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\91bd6d3ce498a9518dc44af59e240b33\transformed\jetified-lifecycle-process-2.7.0\res
+com.example.zamaan.app-browser-1.8.0-13 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\923b4c3bb75bca33b5b8e297c3f53108\transformed\browser-1.8.0\res
+com.example.zamaan.app-jetified-core-1.0.0-14 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\92b41525ccaaafa479b85aa955abd4c1\transformed\jetified-core-1.0.0\res
+com.example.zamaan.app-jetified-core-ktx-1.13.1-15 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\aa8ff02dc539a7dd0b9858c268488e9d\transformed\jetified-core-ktx-1.13.1\res
+com.example.zamaan.app-core-1.13.1-16 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\b6b6ab5dee821178a013ac72faed0850\transformed\core-1.13.1\res
+com.example.zamaan.app-jetified-lifecycle-livedata-core-ktx-2.7.0-17 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\c695e67c5e641060db7a90693fabcfc9\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
+com.example.zamaan.app-jetified-window-1.2.0-18 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\c8b35f78df9e323f3d62d4b7d3e27f9d\transformed\jetified-window-1.2.0\res
+com.example.zamaan.app-jetified-tracing-1.2.0-19 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\d2d1e606f83dc051e3c867d99a5177fe\transformed\jetified-tracing-1.2.0\res
+com.example.zamaan.app-fragment-1.7.1-20 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\d9e8901c9606c2f5503f06c7c42883bb\transformed\fragment-1.7.1\res
+com.example.zamaan.app-lifecycle-livedata-core-2.7.0-21 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\df814ab2d70cc0243bf0df6722ed9b9e\transformed\lifecycle-livedata-core-2.7.0\res
+com.example.zamaan.app-jetified-appcompat-resources-1.2.0-22 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\e3edb37a3749bd0cdaa626230b2b88df\transformed\jetified-appcompat-resources-1.2.0\res
+com.example.zamaan.app-lifecycle-livedata-2.7.0-23 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\f5c5efa74d490ec7cb936f4edc51493e\transformed\lifecycle-livedata-2.7.0\res
+com.example.zamaan.app-jetified-savedstate-1.2.1-24 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\f83713ec841fde576d24ba5e9e111a4f\transformed\jetified-savedstate-1.2.1\res
+com.example.zamaan.app-biometric-1.1.0-25 C:\Users\Moien M.Janlou\.gradle\caches\transforms-3\f892d2fc9b8a37898ad0173ac046afc2\transformed\biometric-1.1.0\res
+com.example.zamaan.app-debug-26 E:\Flutter.Dart\Zamaan\Implementation\android\app\src\debug\res
+com.example.zamaan.app-main-27 E:\Flutter.Dart\Zamaan\Implementation\android\app\src\main\res
+com.example.zamaan.app-pngs-28 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\pngs\debug
+com.example.zamaan.app-resValues-29 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\resValues\debug
+com.example.zamaan.app-rs-30 E:\Flutter.Dart\Zamaan\Implementation\build\app\generated\res\rs\debug
+com.example.zamaan.app-mergeDebugResources-31 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.zamaan.app-mergeDebugResources-32 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.zamaan.app-merged_res-33 E:\Flutter.Dart\Zamaan\Implementation\build\app\intermediates\merged_res\debug
+com.example.zamaan.app-packaged_res-34 E:\Flutter.Dart\Zamaan\Implementation\build\app_links\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-35 E:\Flutter.Dart\Zamaan\Implementation\build\connectivity_plus\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-36 E:\Flutter.Dart\Zamaan\Implementation\build\flutter_plugin_android_lifecycle\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-37 E:\Flutter.Dart\Zamaan\Implementation\build\local_auth_android\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-38 E:\Flutter.Dart\Zamaan\Implementation\build\path_provider_android\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-39 E:\Flutter.Dart\Zamaan\Implementation\build\shared_preferences_android\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-40 E:\Flutter.Dart\Zamaan\Implementation\build\sqflite_android\intermediates\packaged_res\debug
+com.example.zamaan.app-packaged_res-41 E:\Flutter.Dart\Zamaan\Implementation\build\url_launcher_android\intermediates\packaged_res\debug

@@ -11,6 +11,10 @@
 .buildlog/
 .history
 .svn/
+*.tmp
+*.temp
+*.bak
+*.old
 
 # IntelliJ related
 *.iml
@@ -23,6 +27,7 @@
 .project
 .settings/
 .vscode/
+*.code-workspace
 
 # Flutter repo-specific
 /bin/cache/

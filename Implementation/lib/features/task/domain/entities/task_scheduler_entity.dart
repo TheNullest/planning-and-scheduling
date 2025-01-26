@@ -1,11 +1,44 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
-import 'package:zamaan/core/utils/enums/enums.dart';
+import 'package:zamaan/core/common/entities/base_entity_abstraction.dart';
+import 'package:zamaan/core/enums/enums.dart';
 
 /// Represents a task scheduler entity with various repetition patterns.
 /// This class is used to define the scheduling details of a task, including
 /// its start time, end time, and repetition patterns.
 class TaskSchedulerEntity extends BaseEntityAbstraction {
+  /// Constructor for creating a `TaskSchedulerEntity`.
+  ///
+  /// - [mainTaskId] is the ID of the main task.
+  /// - [goalId] is the ID of the goal.
+  /// - [willStartAt] is the start time of the task.
+  /// - [repetitionType] is the type of repetition (default: RepetitionType.every).
+  /// - [timeUnit] is the unit of time for the repetition (default: TimeUnit.day).
+  /// - [specificTimes] are the specific times for the repetition (optional).
+  /// - [endAt] is the end time of the task (**Conditional**).
+  TaskSchedulerEntity({
+    required this.mainTaskId,
+    super.id,
+    super.updatedAt,
+    super.createdAt,
+    super.userId,
+    super.description,
+    this.goalId,
+    this.willStartAt,
+    this.endAt,
+    int? repetitionType,
+    int? timeUnit,
+    this.specificTimes,
+  })  : repetitionType = repetitionType ?? RepetitionType.every.index,
+        timeUnit = timeUnit ?? TimeUnit.day.index;
+
+  /// Creates an empty `TaskSchedulerEntity` with default values.
+  TaskSchedulerEntity.empty()
+      : this(
+          mainTaskId: '1',
+          willStartAt: DateTime(2024, 08),
+          endAt: DateTime(2024, 10),
+        );
+
   /// The ID of the main task associated with this schedule.
   @HiveField(4)
   final String mainTaskId;
@@ -59,44 +92,12 @@ class TaskSchedulerEntity extends BaseEntityAbstraction {
   @HiveField(10)
   final DateTime? endAt;
 
-  /// Constructor for creating a `TaskSchedulerEntity`.
-  ///
-  /// - [mainTaskId] is the ID of the main task.
-  /// - [goalId] is the ID of the goal.
-  /// - [willStartAt] is the start time of the task.
-  /// - [repetitionType] is the type of repetition (default: RepetitionType.every).
-  /// - [timeUnit] is the unit of time for the repetition (default: TimeUnit.day).
-  /// - [specificTimes] are the specific times for the repetition (optional).
-  /// - [endAt] is the end time of the task (**Conditional**).
-  TaskSchedulerEntity({
-    super.id,
-    super.order,
-    super.createdAt,
-    super.creatorId,
-    super.description,
-    required this.mainTaskId,
-    this.goalId,
-    this.willStartAt,
-    this.endAt,
-    int? repetitionType,
-    int? timeUnit,
-    this.specificTimes,
-  })  : repetitionType = repetitionType ?? RepetitionType.every.index,
-        timeUnit = timeUnit ?? TimeUnit.day.index;
-
-  /// Creates an empty `TaskSchedulerEntity` with default values.
-  TaskSchedulerEntity.empty()
-      : this(
-            mainTaskId: '1',
-            willStartAt: DateTime(2024, 08),
-            endAt: DateTime(2024, 10));
-
-  /// Creates a copy of the current `TaskSchedulerEntity` with updated values.
+  @override
   TaskSchedulerEntity copyWith({
     String? id,
-    int? order,
     DateTime? createdAt,
-    String? creatorId,
+    DateTime? updatedAt,
+    String? userId,
     String? description,
     String? mainTaskId,
     String? goalId,
@@ -108,10 +109,10 @@ class TaskSchedulerEntity extends BaseEntityAbstraction {
   }) =>
       TaskSchedulerEntity(
         id: id ?? this.id,
-        order: order ?? this.order,
+        updatedAt: updatedAt ?? this.updatedAt,
         description: description ?? this.description,
         createdAt: createdAt ?? this.createdAt,
-        creatorId: creatorId ?? this.creatorId,
+        userId: userId ?? this.userId,
         mainTaskId: mainTaskId ?? this.mainTaskId,
         goalId: goalId ?? this.goalId,
         willStartAt: willStartAt ?? this.willStartAt,
@@ -121,13 +122,28 @@ class TaskSchedulerEntity extends BaseEntityAbstraction {
         specificTimes: specificTimes ?? this.specificTimes,
       );
 
+  TaskSchedulerEntity toEntity() => TaskSchedulerEntity(
+        id: id,
+        updatedAt: updatedAt,
+        description: description,
+        createdAt: createdAt,
+        userId: userId,
+        mainTaskId: mainTaskId,
+        goalId: goalId,
+        willStartAt: willStartAt,
+        endAt: endAt,
+        repetitionType: repetitionType,
+        timeUnit: timeUnit,
+        specificTimes: specificTimes,
+      );
+
   /// Returns a list of properties for equality comparison.
   @override
   List<Object?> get props => [
         id,
-        order,
+        updatedAt,
         createdAt,
-        creatorId,
+        userId,
         description,
         mainTaskId,
         goalId,

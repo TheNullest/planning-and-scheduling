@@ -3,11 +3,11 @@ import 'package:zamaan/core/utils/typedef.dart';
 import 'package:zamaan/features/task/domain/entities/sub_task_entity.dart';
 import 'package:zamaan/features/task/domain/repositories/sub_task_repository.dart';
 
-class GetSubTasksByMainTaskIdUsecase extends UseCaseWithParams<SubTaskEntity,
-    SubTaskRepository, List<SubTaskEntity>, String> {
+class GetSubTasksByMainTaskIdUsecase
+    extends UseCaseWithParams<SubTaskRepository, List<SubTaskEntity>, String> {
   GetSubTasksByMainTaskIdUsecase(super.repository);
 
   @override
   ResultFuture<List<SubTaskEntity>> call(String params) async =>
-      await repository.getSubTasksByMainTaskId(params);
+      repository.getSubTasksByMainTaskId(params);
 }

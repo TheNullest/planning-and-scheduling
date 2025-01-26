@@ -1,12 +1,14 @@
-import 'package:zamaan/core/utils/constants/hive_box_names.dart';
-import 'package:zamaan/core/data_sources/hive_base_data_source_abstraction.dart';
-import 'package:zamaan/core/initializers/hive_initializer.dart';
-import 'package:zamaan/features/task/data/models/local/hive_category_model.dart';
+import 'package:zamaan/core/constants/hive_box_names.dart';
+import 'package:zamaan/core/data_sources/base_local_data_source_abstraction.dart';
+import 'package:zamaan/core/services/hive_services.dart';
+import 'package:zamaan/features/task/data/data_sources/bases/category_data_source.dart';
+import 'package:zamaan/features/task/data/models/local/local_models.dart';
 
 class HiveCategoryDataSourceImpl
-    extends HiveBaseDataSourceAbstraction<HiveCategoryModel> {
+    extends BaseLocalDataSourceAbstraction<CategoryLocalModel>
+    implements CategoryDataSource<CategoryLocalModel> {
   // Just to add the testablity feature to the class,
-  // we need to inject the [HiveInitializer<HiveCategoryModel>] like this
-  HiveCategoryDataSourceImpl({HiveInitializer<HiveCategoryModel>? hiveBox})
+  // we need to inject the [HiveInitializer<CategoryLocalModel>] like this
+  HiveCategoryDataSourceImpl({HiveServices<CategoryLocalModel>? hiveBox})
       : super(HiveBoxConstants.CATEGOREIS_BOX, hiveBox: hiveBox);
 }

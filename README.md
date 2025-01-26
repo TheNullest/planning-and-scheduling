@@ -96,8 +96,6 @@ The project is organized into several directories, each serving a specific purpo
 
 Here are the badges for the dependencies used in this project:
 
-
-- [![bloc](https://img.shields.io/pub/v/bloc)](https://pub.dev/packages/bloc) `bloc`
 - [![cached_network_image](https://img.shields.io/pub/v/cached_network_image)](https://pub.dev/packages/cached_network_image) `cached_network_image`
 - [![cupertino_icons](https://img.shields.io/pub/v/cupertino_icons)](https://pub.dev/packages/cupertino_icons) `cupertino_icons`
 - [![dartz](https://img.shields.io/pub/v/dartz)](https://pub.dev/packages/dartz) `dartz`
@@ -118,7 +116,6 @@ Here are the badges for the dependencies used in this project:
 - [![smooth_page_indicator](https://img.shields.io/pub/v/smooth_page_indicator)](https://pub.dev/packages/smooth_page_indicator) `smooth_page_indicator`
 - [![uuid](https://img.shields.io/pub/v/uuid)](https://pub.dev/packages/uuid) `uuid`
 - [![bloc_test](https://img.shields.io/pub/v/bloc_test)](https://pub.dev/packages/bloc_test) `bloc_test`
-
 
 ## Getting Started
 

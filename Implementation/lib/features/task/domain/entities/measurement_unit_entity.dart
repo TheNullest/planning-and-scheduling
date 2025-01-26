@@ -1,7 +1,19 @@
 import 'package:hive/hive.dart';
-import 'package:zamaan/core/entities/base_entity_abstraction.dart';
+import 'package:zamaan/core/common/entities/base_entity_abstraction.dart';
 
 class MeasurementUnitEntity extends BaseEntityAbstraction {
+  MeasurementUnitEntity({
+    required this.title,
+    required this.iconCode,
+    super.id,
+    super.createdAt,
+    super.updatedAt,
+    super.userId,
+    super.description,
+    this.isDouble = false,
+  });
+
+  MeasurementUnitEntity.empty() : this(title: 'title', iconCode: 2);
   @HiveField(4)
   final String title;
 
@@ -11,43 +23,45 @@ class MeasurementUnitEntity extends BaseEntityAbstraction {
   @HiveField(6)
   final int iconCode;
 
-  MeasurementUnitEntity(
-      {super.id,
-      super.order,
-      super.createdAt,
-      super.creatorId,
-      super.description,
-      required this.title,
-      required this.iconCode,
-      this.isDouble = false});
-  MeasurementUnitEntity copyWith(
-          {String? id,
-          int? order,
-          DateTime? createdAt,
-          String? creatorId,
-          String? title,
-          String? description,
-          int? iconCode,
-          bool? isDouble}) =>
+  MeasurementUnitEntity toEntity() => MeasurementUnitEntity(
+        id: id,
+        updatedAt: updatedAt,
+        description: description,
+        createdAt: createdAt,
+        userId: userId,
+        title: title,
+        iconCode: iconCode,
+        isDouble: isDouble,
+      );
+
+  @override
+  MeasurementUnitEntity copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? userId,
+    String? title,
+    String? description,
+    int? iconCode,
+    bool? isDouble,
+  }) =>
       MeasurementUnitEntity(
         id: id ?? this.id,
-        order: order ?? this.order,
         createdAt: createdAt ?? this.createdAt,
-        creatorId: creatorId ?? this.creatorId,
+        updatedAt: updatedAt ?? this.updatedAt,
+        userId: userId ?? this.userId,
         title: title ?? this.title,
         description: description ?? this.description,
         iconCode: iconCode ?? this.iconCode,
         isDouble: isDouble ?? this.isDouble,
       );
 
-  MeasurementUnitEntity.empty() : this(title: 'title', iconCode: 2);
-
   @override
   List<Object?> get props => [
         id,
-        order,
         createdAt,
-        creatorId,
+        updatedAt,
+        userId,
         description,
         title,
         isDouble,

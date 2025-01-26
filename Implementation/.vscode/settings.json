@@ -1,3 +1,7 @@
 {
-    "dotnet.defaultSolution": "build/windows/x64/zamaan.sln"
+  "dotnet.defaultSolution": "build/windows/x64/zamaan.sln",
+  "errorLens.codeLensEnabled": false,
+  "errorLens.codeLensOnClick": "showQuickFix",
+  "errorLens.borderRadius": "0.2em",
+  "errorLens.codeLensTemplate": "$severity $message $code"
 }

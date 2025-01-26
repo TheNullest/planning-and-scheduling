@@ -1,8 +1,8 @@
-export 'hive_category_model.dart';
-export 'hive_goal_model.dart';
-export 'hive_main_task_model.dart';
-export 'hive_measurement_unit_model.dart';
-export 'hive_sub_task_model.dart';
-export 'hive_tag_model.dart';
-export 'hive_task_scheduler_model.dart';
-export 'hive_time_interval_model.dart';
+export 'category_local_model.dart';
+export 'goal_local_model.dart';
+export 'main_task_local_model.dart';
+export 'measurement_unit_local_model.dart';
+export 'sub_task_local_model.dart';
+export 'tag_local_model.dart';
+export 'task_scheduler_local_model.dart';
+export 'time_interval_local_model.dart';
